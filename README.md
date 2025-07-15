@@ -1,119 +1,64 @@
-# PoL Data Management Tools TUD :
+# PoL Data Management Hub
 
-A comprehensive web application showcasing bioimaging software resources available at the Center for Molecular and Cellular Bioengineering, TU Dresden.
+A GitHub Pages–powered platform for managing, visualizing, and distributing PoL datasets and related insights. This repository serves as a frontend portal and backend toolkit for data handling, visualization, and publication.
 
-## Features
+## 🌐 Live Site
 
-- **Modern Web Interface**: Clean, responsive design inspired by contemporary web standards
-- **Software Showcase**: Detailed information about eLabFTW, OMERO, Bio-image Archive, bioimage.io, and image.sc
-- **Video Integration**: Embedded YouTube tutorials for each software platform
-- **REST API**: Backend API for dynamic content management
-- **Search Functionality**: Find software by name, description, or features
-- **Contact System**: Direct communication with CMCB support team
-- **Mobile Responsive**: Optimized for all device sizes
+Visit the site: [https://meet2197.github.io/PoL_Datamgmt-hub.github.io](https://meet2197.github.io/PoL_Datamgmt-hub.github.io)
 
-## Software Platforms Covered
-
-1. **eLabFTW** - Electronic lab notebook for research teams
-2. **OMERO** - Bioimage data management platform
-3. **Bio-image Archive** - Life sciences microscopy data repository
-4. **bioimage.io** - AI models for bioimage analysis
-5. **image.sc** - Scientific image analysis community forum
-
-## Technology Stack
-
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Backend**: Python Flask
-- **Styling**: CSS Grid, Flexbox, CSS Animations
-- **Icons**: Font Awesome
-- **Fonts**: Inter (Google Fonts)
-- **Container**: Docker support
-- **Web Server**: Nginx (production)
-- **Caching**: Redis
-
-## Installation
-
-### Local Development
-
-1. Clone the repository:
-```bash
-git clone https://github.com/your-username/bioimage-software-resources.git
-cd bioimage-software-resources
-```
-
-Create virtual environment:
+## 📁 Project Structure
 
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+├── index.html # Homepage
+├── assets/ # Static files (images, fonts, icons)
+├── data/ # Raw/processed data (CSV, JSON, etc.)
+├── scripts/ # Backend logic (Python/C++ tools)
+├── styles/ # CSS files
+└── README.md # This file
 ```
+---
 
-Install dependencies:
+
+## 🔧 Features
+
+- Interactive web interface for browsing PoL datasets.
+- Scripts for preprocessing, formatting, or analyzing data.
+- Responsive UI built with HTML/CSS/JS.
+- GitHub-hosted for easy deployment and collaboration.
+
+## 🛠️ Local Development
+
+Clone the repo:
 
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/Meet2197/PoL_Datamgmt-hub.github.io.git
+cd PoL_Datamgmt-hub.github.io
 ```
-Run the application:
+Open index.html directly in a browser or use a local server like:
 
 ```bash
-python app.py
-```
-Open ```http://localhost:5000``` in your browser
-
-Docker Deployment
-
-Build and run with Docker Compose:
-
-```
-bashdocker-compose up --build
+python3 -m http.server
 ```
 
-Access the application at ```http://localhost```
+# 🌐 Running Locally
 
-API Endpoints
+Use VS Code with Live Server, or Python’s HTTP server:
 
-
-```GET /api/software``` - Get all software data
-```GET /api/software/<id>``` - Get specific software details
-```POST /api/contact``` - Submit contact form
-```GET /api/search?q=<query>``` - Search software
-```GET /api/resources``` - Get additional resources
-```GET /api/health``` - Health check
-
-Configuration
-
-Set environment variables:
 ```bash
-export SECRET_KEY=your-secret-key
-export MAIL_USERNAME=your-email@tu-dresden.de
-export MAIL_PASSWORD=your-app-password
-export GOOGLE_ANALYTICS_ID=GA-XXXXX-X
+python -m http.server
 ```
+Or access the hosted version at:
+👉 ```https://meet2197.github.io/PoL_Datamgmt-hub.github.io```
 
-# Contributing
+# ✅ Deployment :
+Pushed automatically via GitHub Pages on the main branch. Updates reflect live in minutes.
 
-Fork the repository
+# 🤝  Contributions : 
+Contributions are welcome! Please:
+
+Fork the repo
 Create a feature branch
-Make your changes
-Test thoroughly
-Submit a pull request
+Open a pull request with a clear description
 
-# License
-This project is licensed under the MIT License - see the LICENSE file for details.
-Support
-
-
-This complete package provides:
-
-1. **Modern, responsive web design** inspired by the giraffe.build aesthetic
-2. **Comprehensive software information** for all requested platforms
-3. **Embedded YouTube videos** for each software tool
-4. **Full-stack Python Flask backend** with REST API
-5. **Docker containerization** for easy deployment
-6. **Production-ready configuration** with Nginx and Redis
-7. **Search and contact functionality**
-8. **Mobile-responsive design**
-9. **Proper error handling** and logging
-10. **GitHub-ready project structure**
-
-The application is designed to be easily deployed to any hosting platform and can be customized for specific institutional needs at PoL TUD.
+# 📄 License
+MIT License © 2025 
