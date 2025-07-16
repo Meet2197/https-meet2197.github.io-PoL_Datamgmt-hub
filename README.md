@@ -31,7 +31,7 @@ Visit the site: [https://meet2197.github.io/PoL_Datamgmt-hub.github.io](https://
 Clone the repo:
 
 ```bash
-git clone https://github.com/Meet2197/PoL_Datamgmt-hub.github.io.git
+git clone https://meet2197.github.io/PoL_Datamgmt-hub/
 cd PoL_Datamgmt-hub.github.io
 ```
 Open index.html directly in a browser or use a local server like:
