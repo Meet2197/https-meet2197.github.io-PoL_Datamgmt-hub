@@ -372,7 +372,7 @@
             // However, given the small number of elements and subtle effect, state update is fine.
             setTrailPositions([...trailRef.current]); // Create a new array to trigger re-render
             animationFrameRef.current = requestAnimationFrame(animateTrail);
-          }, [trailElements]); // Added trailElements to dependencies
+          }, []); // Removed trailElements from dependencies as it's static and causes unnecessary re-renders of animateTrail
 
           const handleMouseMove = React.useCallback((e) => {
             mousePos.current = { x: e.clientX, y: e.clientY };
@@ -414,6 +414,59 @@
           );
         };
 
+        // Tool Slider Component
+        const ToolSlider = ({ tools, darkMode }) => {
+          const sliderRef = React.useRef(null);
+          const [offsetX, setOffsetX] = React.useState(0);
+
+          const handleMouseMove = React.useCallback((e) => {
+            if (sliderRef.current) {
+              const { left, width } = sliderRef.current.getBoundingClientRect();
+              const mouseX = e.clientX - left; // Mouse position relative to the slider
+              const percentage = (mouseX / width); // 0 to 1
+              const maxOffset = sliderRef.current.scrollWidth - sliderRef.current.clientWidth;
+              const newOffsetX = maxOffset * percentage;
+              setOffsetX(-newOffsetX); // Negative because we're moving content left
+            }
+          }, []);
+
+          return (
+            <div
+              ref={sliderRef}
+              className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing rounded-xl"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={() => setOffsetX(0)} // Reset position on mouse leave
+              style={{ height: '300px' }} // Fixed height for the slider container
+            >
+              <div
+                className="flex items-center h-full py-4 transition-transform duration-100 ease-out"
+                style={{ transform: `translateX(${offsetX}px)` }}
+              >
+                {tools.map((tool, index) => (
+                  <a
+                    key={index}
+                    href={tool.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-shrink-0 w-64 h-full mx-4 p-6 flex flex-col items-center justify-center text-center rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 transform hover:scale-105 transition-transform duration-300 group"
+                  >
+                    <div className="text-5xl mb-4">
+                      {tool.logo}
+                    </div>
+                    <h4 className="text-xl font-semibold mb-2 text-indigo-600 dark:text-indigo-400 group-hover:underline">
+                      {tool.name}
+                    </h4>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      {tool.description}
+                    </p>
+                  </a>
+                ))}
+              </div>
+            </div>
+          );
+        };
+
+
         // Main App Component
         const App = () => {
           const [darkMode, setDarkMode] = React.useState(false);
@@ -434,6 +487,22 @@
               document.documentElement.classList.remove('dark');
             }
           }, [darkMode]);
+
+          const storageTools = [
+            { name: 'Owncloud TUD', link: 'https://cloud.tu-dresden.de/', logo: '☁️', description: 'Secure cloud storage solution for TU Dresden users to store and synchronize files.' },
+            { name: 'ZIH Drive TUD', link: 'https://tu-dresden.de/zih/dienste/dateidienste/zih-drive', logo: '💾', description: 'Central file storage and synchronization service provided by ZIH for TU Dresden members.' },
+            { name: 'Nextcloud TUD', link: 'https://cloud.tu-dresden.de/', logo: '☁️', description: 'Another secure cloud storage solution for TU Dresden users.' }, // Keeping Nextcloud as a distinct entry if it's different from Owncloud
+          ];
+
+          const sharingArchivingTools = [
+            { name: 'Zenodo', link: 'https://zenodo.org/', logo: '📚', description: 'A general-purpose open-access repository for research data, software, publications, and more.' },
+            { name: 'Figshare', link: 'https://figshare.com/', logo: '📊', description: 'An online repository to share, publish, and discover research data, figures, and other scholarly outputs.' },
+            { name: 'Datashare TUD', link: 'https://datashare.tu-dresden.de/', logo: '📦', description: 'The institutional data repository of TU Dresden for publishing and archiving research data.' },
+            { name: 'elabftw', link: 'https://www.elabftw.net/', logo: '🧪', description: 'An open-source electronic lab notebook for recording and managing experimental data.' },
+            { name: 'Gitlab TUD', link: 'https://gitlab.tu-dresden.de/', logo: '🦊', description: 'TU Dresden\'s platform for Git-based version control, code collaboration, and CI/CD.' },
+            { name: 'OpARA TUD', link: 'https://opara.tu-dresden.de/', logo: '🏛️', description: 'TU Dresden\'s institutional repository for publications and research data, ensuring long-term accessibility.' },
+          ];
+
 
           return (
             <div className={`min-h-screen font-inter ${darkMode ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-900'} transition-colors duration-300`}>
@@ -480,7 +549,7 @@
               {/* Hero Section */}
               <section id="overview" className="py-20 px-6 md:px-10 lg:px-20 text-center">
                 <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-400 dark:to-purple-500">
-                  Central Hub for Data Management
+                  Your Central Hub for Data Management
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-10">
                   Streamline your research data lifecycle with comprehensive tools, guidelines, and best practices.
@@ -514,7 +583,7 @@
                   <div className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 transform hover:scale-105 transition-transform duration-300">
                     <h3 className="text-2xl font-semibold mb-4 text-indigo-600 dark:text-indigo-400">Data Management Plans</h3>
                     <p className="text-gray-700 dark:text-gray-300 mb-6">
-                      Learn how to create effective Data Management Plans (DMPs) for your team's research projects.
+                      Learn how to create effective Data Management Plans (DMPs) for your research projects.
                     </p>
                     <div className="flex flex-col space-y-3">
                       <a
@@ -556,9 +625,8 @@
                         </svg>
                       </a>
                       <h4 className="text-lg font-semibold mt-4 text-gray-800 dark:text-gray-200">Recommended Tools:</h4>
-                      <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
-                        <li><a href="https://cloud.tu-dresden.de/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Nextcloud (TUD)</a></li>
-                      </ul>
+                      {/* Tool Slider for Storage Tools */}
+                      <ToolSlider tools={storageTools} darkMode={darkMode} />
                     </div>
                   </div>
 
@@ -587,13 +655,8 @@
                         ✨ Generate Metadata
                       </button>
                       <h4 className="text-lg font-semibold mt-4 text-gray-800 dark:text-gray-200">Recommended Tools:</h4>
-                      <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
-                        <li><a href="https://zenodo.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Zenodo</a></li>
-                        <li><a href="https://www.imagesc.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Image SC</a></li>
-                        <li><a href="https://figshare.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Figshare</a></li>
-                        <li><a href="https://opara.tu-dresden.de/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">OpARA TUD</a></li>
-                        <li><a href="https://datashare.tu-dresden.de/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Datashare (TUD)</a></li>
-                      </ul>
+                      {/* Tool Slider for Sharing & Archiving Tools */}
+                      <ToolSlider tools={sharingArchivingTools} darkMode={darkMode} />
                     </div>
                   </div>
                 </div>
