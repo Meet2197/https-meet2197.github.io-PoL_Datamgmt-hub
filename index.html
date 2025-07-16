@@ -68,6 +68,23 @@
             position: relative;
             z-index: 2; /* Ensure content is above overlay */
         }
+
+        /* Custom CSS for specific font colors in light mode */
+        .hero-content p {
+            color: #5F9EA0 !important;
+        }
+        .dark .hero-content p {
+            color: inherit !important; /* Let dark mode handle its own color */
+        }
+
+        header nav a,
+        nav.md\:hidden a { /* Target both desktop and mobile nav links */
+            color: #5F9EA0 !important;
+        }
+        .dark header nav a,
+        .dark nav.md\:hidden a {
+            color: inherit !important; /* Let dark mode handle its own color */
+        }
     </style>
 </head>
 <body>
@@ -545,9 +562,9 @@
                   />
                 </a>
                 <nav className="hidden md:flex space-x-6">
-                  <a href="#overview" className="text-[#5F9EA0] dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 rounded-lg p-2">Overview</a>
-                  <a href="#resources" className="text-[#5F9EA0] dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 rounded-lg p-2">Resources</a>
-                  <a href="#contact" className="text-[#5F9EA0] dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 rounded-lg p-2">Contact</a>
+                  <a href="#overview" className="dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 rounded-lg p-2">Overview</a>
+                  <a href="#resources" className="dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 rounded-lg p-2">Resources</a>
+                  <a href="#contact" className="dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 rounded-lg p-2">Contact</a>
                 </nav>
                 <div className="flex items-center space-x-4">
                   <button
@@ -570,9 +587,9 @@
               {/* Mobile Menu */}
               {isMobileMenuOpen && (
                 <nav className="md:hidden bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 py-4 px-6 space-y-2">
-                  <a href="#overview" className="block text-[#5F9EA0] dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 p-2 rounded-lg" onClick={() => setIsMobileMenuOpen(false)}>Overview</a>
-                  <a href="#resources" className="block text-[#5F9EA0] dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 p-2 rounded-lg" onClick={() => setIsMobileMenuOpen(false)}>Resources</a>
-                  <a href="#contact" className="block text-[#5F9EA0] dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 p-2 rounded-lg" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+                  <a href="#overview" className="block dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 p-2 rounded-lg" onClick={() => setIsMobileMenuOpen(false)}>Overview</a>
+                  <a href="#resources" className="block dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 p-2 rounded-lg" onClick={() => setIsMobileMenuOpen(false)}>Resources</a>
+                  <a href="#contact" className="block dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 p-2 rounded-lg" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
                 </nav>
               )}
 
@@ -583,7 +600,7 @@
                   <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-400 dark:to-purple-500">
                     Your Central Hub for Data Management
                   </h1>
-                  <p className="text-xl md:text-2xl text-[#5F9EA0] dark:text-gray-200 max-w-3xl mx-auto mb-10">
+                  <p className="text-xl md:text-2xl dark:text-gray-200 max-w-3xl mx-auto mb-10">
                     Streamline your research data lifecycle with comprehensive tools, guidelines, and best practices.
                     Designed for researchers at PoL.
                   </p>
