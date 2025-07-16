@@ -18,7 +18,8 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .hero-section {
-            background-image: url('https://placehold.co/1200x600/000000/FFFFFF?text=Microscopic+Cells'); /* Placeholder for the microscopic cells image */
+            /* Updated path to be relative to the current directory */
+            background-image: url('./static/images/FluorescentCells.jpg');
             background-size: cover;
             background-position: center;
             height: 600px; /* Adjust height as needed */
@@ -81,7 +82,8 @@
         <!-- Header Section -->
         <header class="bg-white p-4 flex justify-between items-center rounded-t-lg">
             <div class="flex items-center">
-                <img src="https://placehold.co/50x50/3498db/FFFFFF?text=PoL" alt="PoL Logo" class="h-12 mr-3">
+                <!-- Updated PoL logo path to be relative to the current directory -->
+                <img src="./static/images/logos/pol-logo.png" alt="PoL Logo" class="h-12 mr-3">
                 <span class="text-xl font-bold text-green-700">PoL</span>
             </div>
             <nav>
@@ -151,10 +153,11 @@
         <!-- Footer Section -->
         <footer class="bg-gray-200 p-6 flex justify-center items-center rounded-b-lg">
             <div class="footer-logos flex items-center">
-                <img src="static/images/logos/elabftw-logo.png" alt="elabftw Logo">
-                <img src="static/images/logos/imagesc-logo.png" alt="Image_Sc Logo">
-                <img src="static/images/logos/omero-logo.png" alt="OMERO Logo">
-                <img src="static/images/logos/bioimage-io-logo.png" alt="bioimage Logo">
+                <!-- Updated paths to be relative to the current directory -->
+                <img src="./static/images/logos/elabftw-logo.png" alt="elabftw Logo">
+                <img src="./static/images/logos/imagesc-logo.png" alt="Image_Sc Logo">
+                <img src="./static/images/logos/omero-logo.png" alt="OMERO Logo">
+                <img src="./static/images/logos/bioimage-io-logo.png" alt="bioimage Logo">
             </div>
         </footer>
     </div>
