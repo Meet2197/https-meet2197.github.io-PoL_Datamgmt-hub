@@ -3,9 +3,100 @@
 /* Basic Resets and Typography */
 body {
     font-family: 'Inter', sans-serif;
-    color: #333;
-    background-color: #f4f7f9;
+    color: #333; /* Dark text for a light background */
+    background-color: #f4f7f9; /* Light grey-blue background */
     line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .get-in-touch {
+    background-color: #0d1b2a; /* Darker navy blue for dark mode */
+    color: white;
+}
+
+body.dark-mode .get-in-touch button {
+    background-color: #6a47a8;
+    color: white;
+}
+
+body.dark-mode .resource-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+}
+
+body.dark-mode .resource-card:hover {
+    box-shadow: 0 8px 12px rgba(106, 71, 168, 0.5);
+}
+
+body.dark-mode .resource-card h3 {
+    color: #a78bfa;
+}
+
+body.dark-mode .resource-card p {
+    color: #c9c9c9;
+}
+
+body.dark-mode .resource-card a {
+    color: #a78bfa;
+}
+
+body.dark-mode .tool-item {
+    background-color: #2a2a2a;
+}
+
+body.dark-mode .tool-item:hover {
+    background-color: #3a3a3a;
+}
+
+body.dark-mode .nested-slider-nav {
+    background: rgba(106, 71, 168, 0.8);
+    color: #e0e0e0;
+}
+
+body.dark-mode .modal-content {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .modal-info h3 {
+    color: #a78bfa;
+}
+
+body.dark-mode .modal-links a {
+    background-color: #a78bfa;
+    color: #1e1e1e;
+}
+
+body.dark-mode .modal-links a:hover {
+    background-color: #8b5cf6;
+}
+
+body.dark-mode .modal-body form {
+    background: #2a2a2a;
+}
+
+body.dark-mode .modal-body .form-group label {
+    color: #e0e0e0;
+}
+
+body.dark-mode .modal-body input[type="text"],
+body.dark-mode .modal-body input[type="email"],
+body.dark-mode .modal-body textarea {
+    background-color: #3a3a3a;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+body.dark-mode .footer {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
 }
 
 h1, h2, h3, h4 {
@@ -27,6 +118,7 @@ p {
 /* Header and Hero Section */
 .header {
     height: 60vh;
+    /* Using a dark image, so we'll make the overlay darker to ensure text readability */
     background: url('static/images/image2.jpg') no-repeat center center/cover;
     position: relative;
     display: flex;
@@ -41,6 +133,7 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
+    /* Dark overlay for contrast against the white hero text */
     background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
@@ -70,32 +163,32 @@ p {
 }
 
 .get-started {
-    background-color: #007BFF;
-    color: white;
+    background-color: #6a47a8; /* Primary violet color */
+    color: white; /* White text for button */
 }
 
 .get-started:hover {
-    background-color: #0056b3;
+    background-color: #4a148c;
     transform: translateY(-2px);
 }
 
 .view-our-guidelines {
     background-color: transparent;
     color: white;
-    border: 2px solid white;
+    border: 2px solid #6a47a8; /* Primary violet color */
 }
 
 .view-our-guidelines:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(106, 71, 168, 0.2);
     transform: translateY(-2px);
 }
 
 
 /* Main Sections */
-.key-resources, .get-in-touch {
-    padding: 4rem 1rem;
+.key-resources {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 4rem 1rem;
 }
 
 .key-resources h2, .get-in-touch h2 {
@@ -112,7 +205,7 @@ p {
 }
 
 .resource-card {
-    background-color: #fff;
+    background-color: #ffffff; /* White card background */
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -121,27 +214,28 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s; /* Added box-shadow to transition */
 }
 
 .resource-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(106, 71, 168, 0.3); /* New glowing hover effect */
 }
 
 .resource-card h3 {
     font-size: 1.5rem;
-    color: #007BFF;
+    color: #6a47a8; /* Primary violet color */
     margin-bottom: 1rem;
 }
 
 .resource-card p {
-    color: #555;
+    color: #555; /* Dark text for readability */
     margin-bottom: 1rem;
     flex-grow: 1;
 }
 
 .resource-card a {
-    color: #007BFF;
+    color: #6a47a8; /* Primary violet color */
     font-weight: 700;
     text-decoration: none;
 }
@@ -152,7 +246,7 @@ p {
 }
 
 .recommended-tools h4 {
-    color: #333;
+    color: #333; /* Dark text */
     font-size: 1rem;
     margin-bottom: 0.5rem;
 }
@@ -161,7 +255,7 @@ p {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    background-color: #f0f4f7;
+    background-color: #f0f4f7; /* Light background for tool item */
     padding: 0.75rem;
     border-radius: 8px;
     margin-top: 0.5rem;
@@ -170,7 +264,7 @@ p {
 }
 
 .tool-item:hover {
-    background-color: #e2e8f0;
+    background-color: #e2e8f0; /* Slightly darker hover color */
 }
 
 .logo-placeholder {
@@ -182,6 +276,8 @@ p {
     position: relative;
     overflow: hidden;
     padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 .slider-wrapper {
@@ -194,7 +290,7 @@ p {
 .slider-card-item {
     flex-shrink: 0;
     width: 250px;
-    background-color: #f0f4f7;
+    background-color: #f0f4f7; /* Light background for card */
     padding: 1rem;
     border-radius: 8px;
     display: flex;
@@ -203,6 +299,7 @@ p {
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s;
+    color: #333; /* Dark text */
 }
 
 .slider-card-item:hover {
@@ -213,22 +310,22 @@ p {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(106, 71, 168, 0.8); /* Semi-transparent violet */
     border: none;
-    padding: 0.5rem;
+    padding: 0.3rem; /* Made padding smaller for smaller circles */
     cursor: pointer;
-    font-size: 1.25rem;
+    font-size: 1rem; /* Made font size smaller for smaller circles */
     border-radius: 50%;
     z-index: 10;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nested-slider-nav.left {
-    left: -1rem;
+    left: 0.5rem;
 }
 
 .nested-slider-nav.right {
-    right: -1rem;
+    right: 0.5rem;
 }
 
 .nested-slider-nav:disabled {
@@ -238,9 +335,13 @@ p {
 
 /* Contact Section */
 .get-in-touch {
-    background-color: #007BFF;
-    color: white;
+    background-color: #1a237e; /* Navy blue background */
+    color: #ffffff; /* White text for contrast */
     text-align: center;
+    padding: 4rem 1rem;
+    max-width: 100%;
+    margin: 0;
+    font-weight: 700; /* Bold font for the entire section */
 }
 
 .get-in-touch p {
@@ -249,8 +350,8 @@ p {
 }
 
 .get-in-touch button {
-    background-color: white;
-    color: #007BFF;
+    background-color: #ffffff; /* White button */
+    color: #6a47a8; /* Violet text */
     font-weight: 700;
     padding: 0.75rem 2rem;
     border-radius: 9999px;
@@ -260,7 +361,7 @@ p {
 }
 
 .get-in-touch button:hover {
-    background-color: #f0f4f7;
+    background-color: #e0e0e0;
     transform: translateY(-2px);
 }
 
@@ -268,8 +369,8 @@ p {
 .footer {
     text-align: center;
     padding: 2rem;
-    background-color: #2c3e50;
-    color: white;
+    background-color: #e0e0e0; /* Light grey footer */
+    color: #333;
 }
 
 /* Modals */
@@ -288,7 +389,7 @@ p {
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: #ffffff; /* White modal background */
     margin: auto;
     padding: 20px;
     border-radius: 8px;
@@ -296,10 +397,11 @@ p {
     width: 90%;
     max-width: 700px;
     position: relative;
+    color: #333; /* Dark text */
 }
 
 .close-button {
-    color: #aaa;
+    color: #555;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -311,7 +413,7 @@ p {
 
 .close-button:hover,
 .close-button:focus {
-    color: black;
+    color: #000000;
     text-decoration: none;
     cursor: pointer;
 }
@@ -329,6 +431,7 @@ p {
 .modal-info h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    color: #6a47a8; /* Primary violet color */
 }
 
 .modal-info p {
@@ -343,8 +446,8 @@ p {
 }
 
 .modal-links a {
-    background-color: #007BFF;
-    color: white;
+    background-color: #6a47a8;
+    color: white; /* White text */
     padding: 0.5rem 1.5rem;
     border-radius: 9999px;
     text-decoration: none;
@@ -352,7 +455,7 @@ p {
 }
 
 .modal-links a:hover {
-    background-color: #0056b3;
+    background-color: #4a148c;
 }
 
 .modal-body .resource-cards {
@@ -372,7 +475,7 @@ p {
     max-width: 500px;
     margin: 0 auto;
     padding: 2rem;
-    background: #2c3e50;
+    background: #f0f4f7; /* Light background for form */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -385,7 +488,7 @@ p {
 
 .modal-body .form-group label {
     font-weight: 700;
-    color: #f0f4f7;
+    color: #333;
 }
 
 .modal-body input[type="text"],
@@ -393,9 +496,9 @@ p {
 .modal-body textarea {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #4a637c;
-    background-color: #3b506b;
-    color: #f0f4f7;
+    border: 1px solid #cdd5dc; /* Light border */
+    background-color: #ffffff; /* White input background */
+    color: #333;
     border-radius: 8px;
     font-family: 'Inter', sans-serif;
     transition: border-color 0.3s, box-shadow 0.3s;
@@ -405,8 +508,8 @@ p {
 .modal-body input[type="email"]:focus,
 .modal-body textarea:focus {
     outline: none;
-    border-color: #007BFF;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    border-color: #6a47a8;
+    box-shadow: 0 0 0 3px rgba(106, 71, 168, 0.25);
 }
 
 .modal-body textarea {
@@ -415,7 +518,7 @@ p {
 }
 
 .modal-body .submit-btn {
-    background-color: #007BFF;
+    background-color: #6a47a8;
     color: white;
     padding: 0.75rem 1.5rem;
     border: none;
@@ -427,6 +530,6 @@ p {
 }
 
 .modal-body .submit-btn:hover {
-    background-color: #0056b3;
+    background-color: #4a148c;
     transform: translateY(-2px);
 }
