@@ -4,20 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoL Data Management Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="static/public/css/style.css">
 </head>
 <body>
-    <div class="header">
-        <img src="static/images/logos/pol-logo.png" alt="PoL Logo" class="logo">
-        <nav class="navbar">
-            <a href="#">Overview</a>
-            <a href="#">Resources</a>
-            <a href="#">Contact</a>
-        </nav>
+    <!-- Navigation -->
+    <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b border-gray-200">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center space-x-3">
+                <img src="static/images/logos/pol-logo.png" class="h-8" alt="PoL Logo">
+                <span class="text-2xl font-semibold">PoL Data Management</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#" data-modal-target="about-modal" class="text-blue-700">Overview</a>
+                <a href="#" data-modal-target="resources-modal" class="text-gray-900 hover:text-blue-700">Resources</a>
+                <a href="#" data-modal-target="contact-modal" class="text-gray-900 hover:text-blue-700">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="header pt-[70px]">
         <div class="header-overlay">
-            <div class="hero-section">
-                <h1>Your Central Hub for Data Management</h1>
-                <p>Streamline your research data lifecycle with comprehensive guides,
+            <div class="hero-section text-center">
+                <h1 class="text-white text-4xl font-bold mb-4">Your Central Hub for Data Management</h1>
+                <p class="text-white mb-6">Streamline your research data lifecycle with comprehensive guides,
                     best practices, and tools designed for researchers at PoL.</p>
                 <div class="hero-buttons">
                     <button class="get-started" id="getStartedBtn">Get Started</button>
@@ -27,14 +45,14 @@
         </div>
     </div>
 
+    <!-- Key Resources Section -->
     <div class="key-resources">
-        <h2>Key Resources</h2>
-        <div class="resource-cards">
+        <h2 class="text-2xl text-center font-bold mb-8">Key Resources</h2>
+        <div class="resource-cards flex flex-wrap justify-center gap-6">
             <div class="resource-card">
                 <h3>Data Management Plans</h3>
                 <p>Learn how to create effective Data Management Plans (DMPs) for your research projects.</p>
                 <a href="#">Read More ></a>
-                <button class="generate-button">✨ Generate DMP Outline</button>
             </div>
 
             <div class="resource-card">
@@ -53,29 +71,38 @@
                 </div>
             </div>
 
-            <div class="resource-card">
+            <!-- Data Sharing & Archiving with Slider -->
+            <div class="resource-card relative">
                 <h3>Data Sharing & Archiving</h3>
                 <p>Best practices for sharing your research data and long-term archiving.</p>
                 <a href="#">Read More ></a>
-                <button class="generate-button">✨ Generate Metadata</button>
-                <div class="recommended-tools">
-                    <h4>Recommended Tools:</h4>
-                    <div id="sharing-archiving-tools-container"></div>
+
+                <h4 class="mt-4 text-white text-lg font-bold">Recommended Tools</h4>
+                <!-- Slider container with new class names -->
+                <div class="slider-wrapper-outer">
+                    <div id="sharing-archiving-tools-container" class="slider-wrapper">
+                        <!-- Cards injected by JS -->
+                    </div>
+                    <button id="sharing-archiving-slider-left" class="nested-slider-nav left"><i class="fas fa-chevron-left"></i></button>
+                    <button id="sharing-archiving-slider-right" class="nested-slider-nav right"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Contact Section -->
     <div class="get-in-touch">
         <h2>Get in Touch</h2>
         <p>Have questions or need support with your data management? Contact our team.</p>
-        <button>Email Us</button>
+        <button id="emailUsBtn">Email Us</button>
     </div>
 
+    <!-- Footer -->
     <div class="footer">
         © 2025 PoL Data Management Hub. All rights reserved.
     </div>
 
+    <!-- Modal -->
     <div id="toolModal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
@@ -87,6 +114,103 @@
                     <a id="documentationLink" href="#" target="_blank">Documentation</a>
                     <a id="joinToolLink" href="#" target="_blank">Join Tool</a>
                 </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navigation Modals -->
+    <div id="about-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-modal-close="about-modal">&times;</span>
+            <div class="modal-body">
+                <h2>About PoL Data Management</h2>
+                <p>Explore essential tools and services for managing, storing, and sharing data across PoL and TUD. These resources are crucial for maintaining the integrity and accessibility of your research data.</p>
+                <div class="resource-cards">
+                    <div class="resource-card">
+                        <h3>☁️ OwnCloud TUD</h3>
+                        <p>Secure cloud storage solution for TU Dresden users to store and synchronize files. Ideal for active project data.</p>
+                    </div>
+                    <div class="resource-card">
+                        <h3>🔄 GitLab TUD</h3>
+                        <p>A web-based DevOps platform that provides a Git repository manager with wiki, issue tracking, CI/CD pipeline, and more.</p>
+                    </div>
+                    <div class="resource-card">
+                        <h3>🔬 OPARA</h3>
+                        <p>TU Dresden’s institutional data repository for long-term archiving and publication of research data with a DOI.</p>
+                    </div>
+                    <div class="resource-card">
+                        <h3>📂 DataShare TUD</h3>
+                        <p>A service for secure and confidential sharing of large datasets with internal and external collaborators.</p>
+                    </div>
+                    <div class="resource-card">
+                        <h3>📚 Zenodo</h3>
+                        <p>An open-access data repository that allows researchers to deposit data, software, reports, and other research artifacts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="resources-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-modal-close="resources-modal">&times;</span>
+            <div class="modal-body">
+                <h2>Key Resources</h2>
+                <div class="resource-cards">
+                    <div class="resource-card" data-tool-id="dmp">
+                        <h3>📄 Data Management Plans</h3>
+                        <p>Learn how to create effective Data Management Plans (DMPs) for your research projects.</p>
+                        <a href="#">Read More ></a>
+                    </div>
+                    <div class="resource-card" data-tool-id="storage">
+                        <h3>🔐 Data Storage & Backup</h3>
+                        <p>Guidelines and recommendations for secure data storage and backup solutions.</p>
+                        <a href="#">Read More ></a>
+                        <div class="recommended-tools">
+                            <h4>Recommended Tools:</h4>
+                            <div class="tool-item">
+                                <span class="logo-placeholder">☁️</span>
+                                <div class="tool-info">
+                                    <h5>OwnCloud TUD</h5>
+                                    <p>Secure cloud storage solution for TU Dresden users to store and synchronize files.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resource-card" data-tool-id="sharing">
+                        <h3>📤 Data Sharing & Archiving</h3>
+                        <p>Best practices for sharing your research data and long-term archiving.</p>
+                        <a href="#">Read More ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-modal-close="contact-modal">&times;</span>
+            <div class="modal-body">
+                <h2>Contact Us</h2>
+                <form action="mailto:meet_kaushal.bhatt@tu-dresden.de" method="POST" enctype="text/plain">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="Name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="Email" placeholder="youremail@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="Subject" placeholder="Data Management Inquiry" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="Message" placeholder="Your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
             </div>
         </div>
     </div>
