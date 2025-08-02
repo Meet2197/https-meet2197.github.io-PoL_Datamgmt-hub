@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EU & German Data Regulations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#1a237e',
+                        'secondary-violet': '#6a47a8',
+                        'light-bg': '#f4f7f9',
+                        'dark-bg': '#121212',
+                        'dark-surface': '#1e1e1e',
+                        'dark-card': '#2a2a2a',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-light-bg dark:bg-dark-bg text-gray-800 dark:text-gray-200 transition-colors duration-300 flex items-center justify-center min-h-screen p-4 sm:p-8">
+    
+    <!-- Navigation Bar -->
+    <nav class="bg-white dark:bg-dark-surface fixed w-full z-20 top-0 start-0 shadow-md dark:shadow-lg transition-colors duration-300">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="static/images/logos/tud_logo.svg" class="h-12 w-auto rounded-full shadow-lg" alt="PoL Logo">
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse items-center">
+                <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun h-5 w-5"></i>
+                    <i id="theme-toggle-dark-icon" class="fa-solid fa-moon h-5 w-5 hidden"></i>
+                </button>
+                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-dark-surface dark:border-gray-700">
+                    <li><a href="#" class="block py-2 px-3 text-white bg-secondary-violet rounded md:bg-transparent md:text-secondary-violet md:p-0 dark:text-white" aria-current="page" data-modal-target="about-modal">Overview</a></li>
+                    <li><a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" data-modal-target="resources-modal">Resources</a></li>
+                    <li><a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" data-modal-target="contact-modal">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="mt-24 container mx-auto max-w-6xl p-6 sm:p-10 bg-white dark:bg-dark-surface rounded-3xl shadow-2xl transition-colors duration-300">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-800 dark:text-gray-200 mb-4 tracking-tight">
+                Data Regulations <span class="text-blue-600 dark:text-blue-400">Explorer</span>
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                A guide to key data protection and management regulations in Germany and the EU.
+            </p>
+        </header>
+
+        <!-- Regulations Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <!-- GDPR Card -->
+            <a href="https://gdpr-info.eu/" target="_blank" class="card bg-gray-50 dark:bg-dark-card rounded-2xl p-6 flex flex-col items-center text-center border-b-4 border-blue-500">
+                <div class="text-5xl text-blue-500 dark:text-blue-400 mb-4">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h2 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">GDPR</h2>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    The General Data Protection Regulation is the cornerstone of EU data protection law.
+                </p>
+                <span class="mt-4 text-blue-600 dark:text-blue-400 font-bold hover:underline">
+                    Read the Regulation
+                </span>
+            </a>
+
+            <!-- Health Data Card -->
+            <a href="https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en" target="_blank" class="card bg-gray-50 dark:bg-dark-card rounded-2xl p-6 flex flex-col items-center text-center border-b-4 border-green-500">
+                <div class="text-5xl text-green-500 dark:text-green-400 mb-4">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h2 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Health Data</h2>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Specific regulations for handling sensitive health data in the EU.
+                </p>
+                <span class="mt-4 text-green-600 dark:text-green-400 font-bold hover:underline">
+                    Explore EHDS
+                </span>
+            </a>
+
+            <!-- Image Data Card -->
+            <a href="https://www.bmwk.de/Redaktion/EN/Dossier/guidelines-on-the-protection-of-health-data.html" target="_blank" class="card bg-gray-50 dark:bg-dark-card rounded-2xl p-6 flex flex-col items-center text-center border-b-4 border-yellow-500">
+                <div class="text-5xl text-yellow-500 dark:text-yellow-400 mb-4">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h2 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Image Data</h2>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Regulations often tied to GDPR, with specific guidelines for medical imaging.
+                </p>
+                <span class="mt-4 text-yellow-600 dark:text-yellow-400 font-bold hover:underline">
+                    View Guidelines
+                </span>
+            </a>
+
+            <!-- Animal Data Card -->
+            <a href="https://www.drze.de/en/research-publications/in-focus/animal-experiments-in-research/modules/german-animal-welfare-act" target="_blank" class="card bg-gray-50 dark:bg-dark-card rounded-2xl p-6 flex flex-col items-center text-center border-b-4 border-red-500">
+                <div class="text-5xl text-red-500 dark:text-red-400 mb-4">
+                    <i class="fas fa-paw"></i>
+                </div>
+                <h2 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Animal Data</h2>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Laws and directives for animal welfare and research data from Germany and EU.
+                </p>
+                <span class="mt-4 text-red-600 dark:text-red-400 font-bold hover:underline">
+                    Learn about TierschG
+                </span>
+            </a>
+
+        </div>
+
+        <footer class="mt-12 text-center text-gray-500 dark:text-gray-400 text-sm">
+            <p>
+                This page provides a general overview and links to external legal documents.
+            </p>
+            <p class="mt-1">
+                Consult with a legal professional for specific advice.
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript for Dark Mode Toggle -->
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Check for local storage or system preference on initial load
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggleLightIcon.classList.add('hidden');
+            themeToggleDarkIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+            themeToggleDarkIcon.classList.add('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            // toggle icons
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            // if dark mode is already set, switch to light
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else { // otherwise, switch to dark
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -106,7 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const sliderContainer = document.getElementById('sharing-archiving-tools-container');
     const leftArrow = document.getElementById('sharing-archiving-slider-left');
     const rightArrow = document.getElementById('sharing-archiving-slider-right');
-    const cardWidth = 200 + 16; // Card width + gap
+    const cardWidth = 216; // 200px width + 16px gap
+    let currentPosition = 0;
 
     // Dynamically create slider cards
     const renderSliderCards = () => {
@@ -129,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSliderCards();
 
     // Slider navigation logic
-    let currentPosition = 0;
     const updateSlider = () => {
         sliderContainer.style.transform = `translateX(-${currentPosition * cardWidth}px)`;
         leftArrow.disabled = currentPosition === 0;
@@ -158,11 +158,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const viewGuidelinesBtn = document.getElementById('viewGuidelinesBtn');
     const emailUsBtn = document.getElementById('emailUsBtn');
 
+    // This button now opens the 'about-modal' as requested
     getStartedBtn.addEventListener('click', () => {
-        const keyResourcesSection = document.getElementById('key-resources');
-        if (keyResourcesSection) {
-            keyResourcesSection.scrollIntoView({ behavior: 'smooth' });
-        }
+        openModal('about-modal');
     });
 
     viewGuidelinesBtn.addEventListener('click', () => {
@@ -175,11 +173,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Form submission (prevents default behavior and shows a confirmation message)
     const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Your message has been sent!'); // Using a simple alert for demonstration
-        closeModal(document.getElementById('contact-modal'));
-        contactForm.reset();
-    });
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // A custom modal or message box would be better, but this is for demonstration.
+            alert('Your message has been sent!');
+            closeModal(document.getElementById('contact-modal'));
+            contactForm.reset();
+        });
+    }
 
 });
