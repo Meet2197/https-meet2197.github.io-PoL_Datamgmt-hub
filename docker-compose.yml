@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15.3-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: pol_db
+      POSTGRES_USER: pol_user
+      POSTGRES_PASSWORD: pol_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pol_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/pol_db
+      SPRING_DATASOURCE_USERNAME: pol_user
+      SPRING_DATASOURCE_PASSWORD: pol_password
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pol_user -d pol_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pol_data:
