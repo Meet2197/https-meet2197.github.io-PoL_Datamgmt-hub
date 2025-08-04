@@ -162,7 +162,7 @@
                         <h4 class="text-lg font-bold mb-4">Recommended Tools</h4>
                         <div class="slider-wrapper-outer relative">
                             <div id="sharing-archiving-tools-container" class="slider-wrapper flex gap-4 transition-transform duration-500">
-                                </div>
+                            </div>
                             <button id="sharing-archiving-slider-left" class="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-secondary-violet text-white rounded-full shadow-md z-10 opacity-70 hover:opacity-100 transition-opacity duration-300">
                                 <i class="fas fa-chevron-left"></i>
                             </button>
@@ -177,7 +177,7 @@
 
         <section id="events-section" class="bg-violet-50 dark:bg-dark-surface p-8 rounded-xl shadow-lg my-12 animate-stagger-5">
             <h2 class="text-3xl md:text-4xl font-bold text-center text-primary-blue dark:text-secondary-violet mb-6">Upcoming Data Science Events</h2>
-            <p class="text-center text-lg max-w-3xl mx-auto mb-8 text-gray-600 dark:text-gray-400">Discover workshops, seminars, and talks on data science and genomics hosted by TU Dresden and PoL.</p>
+            <p class="text-center text-lg max-w-3xl mx-auto mb-8 text-gray-600 dark:text-gray-400">Discover workshops, seminars, and talks on data science and genomics hosted by TU Dresden , EMBO , EMBL.</p>
             <div class="text-center">
                 <a href="Events.html" class="inline-block bg-secondary-violet text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-violet-700 transition duration-300 transform hover:scale-105">View All Events</a>
             </div>
@@ -185,7 +185,7 @@
 
         <section id="get-in-touch" class="bg-primary-blue dark:bg-violet-900 text-white p-12 md:p-20 rounded-xl shadow-2xl my-12 text-center transition-colors duration-300 animate-stagger-5">
             <h2 class="text-3xl md:text-5xl font-bold mb-4">Get in Touch</h2>
-            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8">Have questions or need support with your data management? Contact our team for personalized assistance.</p>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8">Have questions or need support with your data management? Contact Data manager for personalized assistance.</p>
             <button id="emailUsBtn" class="bg-white text-secondary-violet font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105">Email Us</button>
         </section>
     </main>
@@ -195,7 +195,31 @@
             © 2025 PoL Data Management Hub. All rights reserved.
         </div>
     </footer>
+
     <div id="modal-container">
+        <div id="tool-details-modal" class="modal-wrapper hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-50"></div>
+            <div class="modal-content-container relative bg-white dark:bg-dark-card w-full max-w-sm p-6 rounded-lg shadow-xl transform transition-all duration-300 scale-95 opacity-0">
+                <button data-modal-close="tool-details-modal" class="modal-close-btn absolute top-3 right-3 text-xl text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors duration-200">
+                    &times;
+                </button>
+                <div class="flex flex-col items-center text-center">
+                    <img id="tool-modal-logo" src="" alt="Tool logo" class="w-20 h-20 object-contain mb-4">
+                    <h3 id="tool-modal-name" class="text-2xl font-bold mb-2"></h3>
+                    <p id="tool-modal-description" class="text-gray-600 dark:text-gray-400 mb-6"></p>
+                    <div class="flex space-x-4">
+                        <a id="tool-modal-doc-btn" href="#" target="_blank" class="px-6 py-2 rounded-lg font-semibold text-white bg-secondary-violet hover:bg-secondary-violet-dark transition-colors duration-200">
+                            Documentation
+                        </a>
+                        <a id="tool-modal-join-btn" href="#" target="_blank" class="px-6 py-2 rounded-lg font-semibold text-white bg-primary-blue hover:bg-primary-blue-dark transition-colors duration-200">
+                            Log In
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
         <div id="about-modal" class="modal-wrapper">
             <div class="modal-content-container">
                 <div class="relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-3xl w-full mx-4 my-8">
