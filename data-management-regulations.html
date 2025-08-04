@@ -42,10 +42,9 @@
 </head>
 <body class="bg-light-bg dark:bg-dark-bg text-gray-800 dark:text-gray-200 transition-colors duration-300 flex items-center justify-center min-h-screen p-4 sm:p-8">
     
-    <!-- Navigation Bar -->
     <nav class="bg-white dark:bg-dark-surface fixed w-full z-20 top-0 start-0 shadow-md dark:shadow-lg transition-colors duration-300">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="static/images/logos/tud_logo.svg" class="h-12 w-auto rounded-full shadow-lg" alt="PoL Logo">
             </a>
             <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse items-center">
@@ -62,8 +61,9 @@
             </div>
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-dark-surface dark:border-gray-700">
-                    <li><a href="#" class="block py-2 px-3 text-white bg-secondary-violet rounded md:bg-transparent md:text-secondary-violet md:p-0 dark:text-white" aria-current="page" data-modal-target="about-modal">Overview</a></li>
-                    <li><a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" data-modal-target="resources-modal">Resources</a></li>
+                    <li><a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" data-modal-target="about-modal">Overview</a></li>
+                    <li><a href="#" class="block py-2 px-3 text-white bg-secondary-violet rounded md:bg-transparent md:text-secondary-violet md:p-0 dark:text-white" aria-current="page" data-modal-target="resources-modal">Resources</a></li>
+                    <li><a href="Events.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Events</a></li>
                     <li><a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" data-modal-target="contact-modal">Contact</a></li>
                 </ul>
             </div>
@@ -71,20 +71,17 @@
     </nav>
     <div class="mt-24 container mx-auto max-w-6xl p-6 sm:p-10 bg-white dark:bg-dark-surface rounded-3xl shadow-2xl transition-colors duration-300">
         
-        <!-- Header Section -->
         <header class="text-center mb-12">
-            <h1 class="text-5xl md:text-6xl font-bold text-gray-800 dark:text-gray-200 mb-4 tracking-tight">
-                Data Regulations <span class="text-blue-600 dark:text-blue-400">Explorer</span>
-            </h1>
-            <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                A guide to key data protection and management regulations in Germany and the EU.
-            </p>
-        </header>
+                <h1 class="text-5xl md:text-6xl font-bold text-gray-800 dark:text-gray-200 mb-4 tracking-tight">
+                    Data Regulations <span class="text-blue-600 dark:text-blue-400">Explorer</span>
+                </h1>
+                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                    A guide to key data protection and management regulations in Germany and the EU.
+                </p>
+            </header>
 
-        <!-- Regulations Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             
-            <!-- GDPR Card -->
             <a href="https://gdpr-info.eu/" target="_blank" class="card bg-gray-50 dark:bg-dark-card rounded-2xl p-6 flex flex-col items-center text-center border-b-4 border-blue-500">
                 <div class="text-5xl text-blue-500 dark:text-blue-400 mb-4">
                     <i class="fas fa-user-shield"></i>
@@ -98,7 +95,6 @@
                 </span>
             </a>
 
-            <!-- Health Data Card -->
             <a href="https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en" target="_blank" class="card bg-gray-50 dark:bg-dark-card rounded-2xl p-6 flex flex-col items-center text-center border-b-4 border-green-500">
                 <div class="text-5xl text-green-500 dark:text-green-400 mb-4">
                     <i class="fas fa-heartbeat"></i>
@@ -112,7 +108,6 @@
                 </span>
             </a>
 
-            <!-- Image Data Card -->
             <a href="https://www.bmwk.de/Redaktion/EN/Dossier/guidelines-on-the-protection-of-health-data.html" target="_blank" class="card bg-gray-50 dark:bg-dark-card rounded-2xl p-6 flex flex-col items-center text-center border-b-4 border-yellow-500">
                 <div class="text-5xl text-yellow-500 dark:text-yellow-400 mb-4">
                     <i class="fas fa-camera"></i>
@@ -126,7 +121,6 @@
                 </span>
             </a>
 
-            <!-- Animal Data Card -->
             <a href="https://www.drze.de/en/research-publications/in-focus/animal-experiments-in-research/modules/german-animal-welfare-act" target="_blank" class="card bg-gray-50 dark:bg-dark-card rounded-2xl p-6 flex flex-col items-center text-center border-b-4 border-red-500">
                 <div class="text-5xl text-red-500 dark:text-red-400 mb-4">
                     <i class="fas fa-paw"></i>
@@ -153,7 +147,87 @@
 
     </div>
 
-    <!-- JavaScript for Dark Mode Toggle -->
+    <div id="modal-container">
+        <div id="about-modal" class="modal-wrapper hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-50"></div>
+            <div class="modal-content-container relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-sm w-full mx-4 my-8">
+                <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white" data-modal-close="about-modal"><i class="fa-solid fa-xmark text-2xl"></i></button>
+                <h2 class="text-2xl font-bold mb-4 text-center">About PoL Data Management</h2>
+                <p class="text-gray-600 dark:text-gray-400 text-center mb-6">Explore essential tools and services for managing, storing, and sharing data across PoL and TUD.</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="tool-card p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-sm">
+                        <h3 class="font-bold text-lg mb-1"><i class="fa-solid fa-cloud mr-2 text-secondary-violet"></i>OwnCloud TUD</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Secure cloud storage for active project data.</p>
+                    </div>
+                    <div class="tool-card p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-sm">
+                        <h3 class="font-bold text-lg mb-1"><i class="fa-solid fa-code-branch mr-2 text-secondary-violet"></i>GitLab TUD</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">DevOps platform with Git repository manager and CI/CD.</p>
+                    </div>
+                    <div class="tool-card p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-sm">
+                        <h3 class="font-bold text-lg mb-1"><i class="fa-solid fa-boxes-stacked mr-2 text-secondary-violet"></i>OPARA</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Institutional data repository for long-term archiving.</p>
+                    </div>
+                    <div class="tool-card p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-sm">
+                        <h3 class="font-bold text-lg mb-1"><i class="fa-solid fa-link mr-2 text-secondary-violet"></i>DataShare TUD</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Secure and confidential sharing of large datasets.</p>
+                    </div>
+                    <div class="tool-card p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-sm">
+                        <h3 class="font-bold text-lg mb-1"><i class="fa-solid fa-book-atlas mr-2 text-secondary-violet"></i>Zenodo</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Open-access data repository for various research artifacts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="resources-modal" class="modal-wrapper hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-50"></div>
+            <div class="modal-content-container relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-3xl w-full mx-4 my-8">
+                <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white" data-modal-close="resources-modal"><i class="fa-solid fa-xmark text-2xl"></i></button>
+                <h2 class="text-2xl font-bold mb-6 text-center">Key Resources</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="resource-card p-6 bg-gray-100 dark:bg-dark-card rounded-xl shadow-md">
+                        <h3 class="font-bold text-xl mb-2"><i class="fa-solid fa-file-alt mr-2 text-secondary-violet"></i>Data Management Plans</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Learn how to create effective DMPs.</p>
+                    </div>
+                    <div class="resource-card p-6 bg-gray-100 dark:bg-dark-card rounded-xl shadow-md">
+                        <h3 class="font-bold text-xl mb-2"><i class="fa-solid fa-hard-drive mr-2 text-secondary-violet"></i>Data Storage & Backup</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Guidelines for secure data storage.</p>
+                    </div>
+                    <div class="resource-card p-6 bg-gray-100 dark:bg-dark-card rounded-xl shadow-md">
+                        <h3 class="font-bold text-xl mb-2"><i class="fa-solid fa-share-alt mr-2 text-secondary-violet"></i>Data Sharing & Archiving</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Best practices for sharing and archiving data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact-modal" class="modal-wrapper hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-50"></div>
+            <div class="modal-content-container relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-2xl w-full mx-4 my-8">
+                <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white" data-modal-close="contact-modal"><i class="fa-solid fa-xmark text-2xl"></i></button>
+                <h2 class="text-2xl font-bold mb-4 text-center">Contact Us</h2>
+                <p class="text-gray-600 dark:text-gray-400 text-center mb-6">Fill out the form below to get in touch with our team.</p>
+                <form id="contact-form" class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary-violet focus:ring focus:ring-secondary-violet focus:ring-opacity-50 dark:bg-dark-card dark:border-gray-600 dark:text-white" placeholder="John Doe">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+                        <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary-violet focus:ring focus:ring-secondary-violet focus:ring-opacity-50 dark:bg-dark-card dark:border-gray-600 dark:text-white" placeholder="john.doe@example.com">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
+                        <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary-violet focus:ring focus:ring-secondary-violet focus:ring-opacity-50 dark:bg-dark-card dark:border-gray-600 dark:text-white" placeholder="Your message..."></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-secondary-violet text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-violet-700 transition duration-300">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="static/public/js/script.js"></script>
     <script>
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

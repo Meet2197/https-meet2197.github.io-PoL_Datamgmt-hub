@@ -86,13 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close modal with the Escape key
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
-            const openModal = document.querySelector('.modal-wrapper[style*="flex"]');
-            if (openModal) {
-                closeModal(openModal);
+            const openModalElement = document.querySelector('.modal-wrapper[style*="flex"]');
+            if (openModalElement) {
+                closeModal(openModalElement);
             }
         }
     });
-
+    
     // --- Dynamic Slider for Sharing & Archiving Tools ---
     const toolsData = [
         { name: 'Zenodo', link: 'https://zenodo.org/', logo: 'static/images/logos/omero-logo.png', description: 'A general-purpose open-access repository for research data, software, publications, and more.', documentation: 'https://help.zenodo.org/docs/', join: 'https://zenodo.org/signup/' },
@@ -108,20 +108,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const rightArrow = document.getElementById('sharing-archiving-slider-right');
     const cardWidth = 216; // 200px width + 16px gap
     let currentPosition = 0;
-
+    
     // Function to populate and open the tool details modal
     const openToolDetailsModal = (tool) => {
         const modal = document.getElementById('tool-details-modal');
         const modalContent = document.querySelector('#tool-details-modal .modal-content-container');
-        if (!modal || !modalContent) return;
-
+        
         const modalLogo = document.getElementById('tool-modal-logo');
         const modalName = document.getElementById('tool-modal-name');
         const modalDescription = document.getElementById('tool-modal-description');
         const modalDocBtn = document.getElementById('tool-modal-doc-btn');
         const modalJoinBtn = document.getElementById('tool-modal-join-btn');
-
-        // Populate the modal with the tool's data
+        
         modalLogo.src = tool.logo;
         modalLogo.alt = `${tool.name} logo`;
         modalName.textContent = tool.name;
@@ -130,12 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
         modalJoinBtn.href = tool.join;
 
         // Animate the modal opening
-        modal.classList.remove('hidden');
+        modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
-        setTimeout(() => {
-            modalContent.classList.remove('scale-95', 'opacity-0');
-            modalContent.classList.add('scale-100', 'opacity-100');
-        }, 10);
     };
 
     // Dynamically create slider cards
@@ -143,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sliderContainer.innerHTML = '';
         toolsData.forEach(tool => {
             const card = document.createElement('div');
-            card.className = "slider-card-item cursor-pointer bg-light-bg dark:bg-dark-card rounded-lg shadow-sm p-4 hover:shadow-lg transition-all duration-300 transform hover:scale-105";
+            card.className = "slider-card-item cursor-pointer bg-light-bg dark:bg-dark-card rounded-lg shadow-sm p-4 hover:shadow-lg transition-all duration-300 transform hover:scale-105 min-w-[200px]";
             card.innerHTML = `
                 <img src="${tool.logo}" alt="${tool.name} logo" class="w-10 h-10 object-contain mb-2">
                 <h5 class="font-bold text-base mb-1">${tool.name}</h5>
@@ -191,7 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const viewGuidelinesBtn = document.getElementById('viewGuidelinesBtn');
     const emailUsBtn = document.getElementById('emailUsBtn');
 
-    // This button now opens the 'about-modal' as requested
     if (getStartedBtn) {
         getStartedBtn.addEventListener('click', () => {
             openModal('about-modal');
@@ -221,5 +214,4 @@ document.addEventListener('DOMContentLoaded', () => {
             contactForm.reset();
         });
     }
-
 });
