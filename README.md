@@ -4,7 +4,7 @@ A GitHub Pages–powered platform for managing, visualizing, and distributing Po
 
 ## 🌐 Live Site
 
-Visit the site: [https://meet2197.github.io/PoL_Datamgmt-hub/](https://meet2197.github.io/PoL_Datamgmt-hub/)
+Visit the site: [https://meet2197.github.io/PoL_Datamgmt-hub/](https://meet2197.github.io/PoL_Datamgmt-hub)
 
 ## 📁 Project Structure
 
