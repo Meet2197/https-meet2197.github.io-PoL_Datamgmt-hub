@@ -38,9 +38,74 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
+
+        /*
+        * CSS for the modal animations and transitions from source file
+        */
+        .modal-wrapper {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .modal-wrapper.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content-container {
+            position: relative;
+            background-color: white;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+            max-width: 100%;
+            width: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .modal-wrapper.active .modal-content-container {
+            transform: scale(1);
+        }
+
+        /* Animation CSS from source file */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-stagger-1 {
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+        .animate-stagger-2 {
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
     </style>
 </head>
-<body class="bg-light-bg dark:bg-dark-bg text-gray-800 dark:text-gray-200 transition-colors duration-300 flex items-center justify-center min-h-screen p-4 sm:p-8">
+<body class="bg-light-bg dark:bg-dark-bg text-gray-800 dark:text-gray-200 transition-colors duration-300">
     
     <nav class="bg-white dark:bg-dark-surface fixed w-full z-20 top-0 start-0 shadow-md dark:shadow-lg transition-colors duration-300">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -62,34 +127,41 @@
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-dark-surface dark:border-gray-700">
                     <li><a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" data-modal-target="about-modal">Overview</a></li>
-                    <li><a href="#" class="block py-2 px-3 text-white bg-secondary-violet rounded md:bg-transparent md:text-secondary-violet md:p-0 dark:text-white" aria-current="page" data-modal-target="resources-modal">Resources</a></li>
+                    <li><a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" data-modal-target="resources-modal">Resources</a></li>
                     <li><a href="Events.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Events</a></li>
                     <li><a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" data-modal-target="contact-modal">Contact</a></li>
-                    <li><a href="whats-new.html" class="block py-2 px-3 text-white bg-secondary-red rounded md:bg-transparent md:text-secondary-red md:p-0 dark:text-white" aria-current="page">What's New</a></li>
+                    <li><a href="whats-new.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">What's New</a></li>
+                    <li><a href="#" class="block py-2 px-3 text-white bg-secondary-violet rounded md:bg-transparent md:text-secondary-violet md:p-0 dark:text-white" aria-current="page">Regulations</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="mt-24 container mx-auto max-w-6xl p-6 sm:p-10 bg-white dark:bg-dark-surface rounded-3xl shadow-2xl transition-colors duration-300">
-        
-        <header class="text-center mb-12">
-                <h1 class="text-5xl md:text-6xl font-bold text-gray-800 dark:text-gray-200 mb-4 tracking-tight">
-                    Data Regulations <span class="text-blue-600 dark:text-blue-400">Explorer</span>
-                </h1>
-                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                    A guide to key data protection and management regulations in Germany and the EU.
-                </p>
-            </header>
+    
+    <header class="relative pt-24 pb-16 md:pt-40 md:pb-24 bg-primary-blue text-white overflow-hidden shadow-xl">
+        <div class="container mx-auto px-4 text-center z-10 relative">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-stagger-1">
+                Data Regulations <span class="text-blue-300">Explorer</span>
+            </h1>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 animate-stagger-2">
+                A guide to key data protection and management regulations in Germany and the EU.
+            </p>
+        </div>
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <img src="static/images/data_reg.jpeg" class="w-full h-full object-cover opacity-30" alt="Regulations and Policy Background Image">
+        </div>
+    </header>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="container mx-auto max-w-6xl p-6 sm:p-10 my-8 bg-white dark:bg-dark-surface rounded-3xl shadow-2xl transition-colors duration-300">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
             <a href="https://gdpr-info.eu/" target="_blank" class="card bg-gray-50 dark:bg-dark-card rounded-2xl p-6 flex flex-col items-center text-center border-b-4 border-blue-500">
                 <div class="text-5xl text-blue-500 dark:text-blue-400 mb-4">
                     <i class="fas fa-user-shield"></i>
                 </div>
-                <h2 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">GDPR</h2>
+                <h2 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">GDPR for Research</h2>
                 <p class="text-gray-600 dark:text-gray-400 text-sm">
-                    The General Data Protection Regulation is the cornerstone of EU data protection law.
+                    Navigate the legal framework for handling personal data from study participants.
                 </p>
                 <span class="mt-4 text-blue-600 dark:text-blue-400 font-bold hover:underline">
                     Read the Regulation
@@ -100,12 +172,25 @@
                 <div class="text-5xl text-green-500 dark:text-green-400 mb-4">
                     <i class="fas fa-heartbeat"></i>
                 </div>
-                <h2 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Health Data</h2>
+                <h2 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Health Data Rules</h2>
                 <p class="text-gray-600 dark:text-gray-400 text-sm">
-                    Specific regulations for handling sensitive health data in the EU.
+                    Specific EU regulations for ethical and secure use of health-related research data.
                 </p>
                 <span class="mt-4 text-green-600 dark:text-green-400 font-bold hover:underline">
                     Explore EHDS
+                </span>
+            </a>
+            
+            <a href="https://www.dcc.ac.uk/guidance/standards/metadata" target="_blank" class="card bg-gray-50 dark:bg-dark-card rounded-2xl p-6 flex flex-col items-center text-center border-b-4 border-purple-500">
+                <div class="text-5xl text-purple-500 dark:text-purple-400 mb-4">
+                    <i class="fa-solid fa-list-check"></i>
+                </div>
+                <h2 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Metadata Management</h2>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Best practices and standards for creating rich metadata to ensure data is FAIR.
+                </p>
+                <span class="mt-4 text-purple-600 dark:text-purple-400 font-bold hover:underline">
+                    Learn about Metadata
                 </span>
             </a>
 
@@ -115,7 +200,7 @@
                 </div>
                 <h2 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Image Data</h2>
                 <p class="text-gray-600 dark:text-gray-400 text-sm">
-                    Regulations often tied to GDPR, with specific guidelines for medical imaging.
+                    Specific guidelines on consent and anonymization for medical and research image data.
                 </p>
                 <span class="mt-4 text-yellow-600 dark:text-yellow-400 font-bold hover:underline">
                     View Guidelines
@@ -128,29 +213,65 @@
                 </div>
                 <h2 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Animal Data</h2>
                 <p class="text-gray-600 dark:text-gray-400 text-sm">
-                    Laws and directives for animal welfare and research data from Germany and EU.
+                    Laws and directives for animal welfare and the use of data from animal research in Germany and the EU.
                 </p>
                 <span class="mt-4 text-red-600 dark:text-red-400 font-bold hover:underline">
                     Learn about TierschG
                 </span>
             </a>
+            
+            <a href="https://www.dfg.de/en/research_funding/proposals_guidelines/guidelines/research_data/index.html" target="_blank" class="card bg-gray-50 dark:bg-dark-card rounded-2xl p-6 flex flex-col items-center text-center border-b-4 border-indigo-500">
+                <div class="text-5xl text-indigo-500 dark:text-indigo-400 mb-4">
+                    <i class="fa-solid fa-file-contract"></i>
+                </div>
+                <h2 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">DFG Guidelines</h2>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    The German Research Foundation's recommendations for managing research data.
+                </p>
+                <span class="mt-4 text-indigo-600 dark:text-indigo-400 font-bold hover:underline">
+                    View DFG Guidelines
+                </span>
+            </a>
 
         </div>
 
-        <footer class="mt-12 text-center text-gray-500 dark:text-gray-400 text-sm">
-            <p>
-                This page provides a general overview and links to external legal documents.
-            </p>
-            <p class="mt-1">
-                Consult with a legal professional for specific advice.
-            </p>
-        </footer>
+        <div class="mt-16 bg-gray-100 dark:bg-dark-card p-8 rounded-2xl shadow-xl border-l-4 border-secondary-violet">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-6">Key Considerations for Researchers</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-secondary-violet mb-2"><i class="fa-solid fa-clipboard-question mr-2"></i>Data Management Plan (DMP)</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
+                        Develop a robust Data Management Plan from the beginning of your project. This is a crucial step for ensuring compliance with funder and institutional policies.
+                    </p>
+                    <h3 class="text-xl font-semibold text-secondary-violet mb-2"><i class="fa-solid fa-user-lock mr-2"></i>Data Anonymization</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Always anonymize or pseudonymize personal data before sharing. This protects the privacy of individuals and ensures compliance with GDPR.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-secondary-violet mb-2"><i class="fa-solid fa-file-export mr-2"></i>Long-Term Archiving</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
+                        Plan for long-term archiving in a trusted repository. Ensure your data is stored in a way that remains accessible and reusable for future research.
+                    </p>
+                    <h3 class="text-xl font-semibold text-secondary-violet mb-2"><i class="fa-solid fa-sitemap mr-2"></i>Ethical Clearances</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Obtain and document all necessary ethical approvals for your research, especially when dealing with sensitive data (human, animal, or genetic data).
+                    </p>
+                </div>
+            </div>
+        </div>
 
     </div>
-
+    
+    <footer class="bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 p-6 text-center transition-colors duration-300">
+        <div class="container mx-auto">
+            © 2025 PoL Data Management Hub. All rights reserved.
+        </div>
+    </footer>
+    
     <div id="modal-container">
-        <div id="about-modal" class="modal-wrapper hidden fixed inset-0 z-50 flex items-center justify-center p-4">
-            <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-50"></div>
+        <div id="about-modal" class="modal-wrapper">
+            <div class="modal-backdrop"></div>
             <div class="modal-content-container relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-sm w-full mx-4 my-8">
                 <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white" data-modal-close="about-modal"><i class="fa-solid fa-xmark text-2xl"></i></button>
                 <h2 class="text-2xl font-bold mb-4 text-center">About PoL Data Management</h2>
@@ -180,9 +301,9 @@
             </div>
         </div>
 
-        <div id="resources-modal" class="modal-wrapper hidden fixed inset-0 z-50 flex items-center justify-center p-4">
-            <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-50"></div>
-            <div class="modal-content-container relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-3xl w-full mx-4 my-8">
+        <div id="resources-modal" class="modal-wrapper">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content-container relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-xl w-full mx-4 my-8">
                 <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white" data-modal-close="resources-modal"><i class="fa-solid fa-xmark text-2xl"></i></button>
                 <h2 class="text-2xl font-bold mb-6 text-center">Key Resources</h2>
                 <div class="grid md:grid-cols-2 gap-6">
@@ -202,9 +323,9 @@
             </div>
         </div>
 
-        <div id="contact-modal" class="modal-wrapper hidden fixed inset-0 z-50 flex items-center justify-center p-4">
-            <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-50"></div>
-            <div class="modal-content-container relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-2xl w-full mx-4 my-8">
+        <div id="contact-modal" class="modal-wrapper">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content-container relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-md w-full mx-4 my-8">
                 <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white" data-modal-close="contact-modal"><i class="fa-solid fa-xmark text-2xl"></i></button>
                 <h2 class="text-2xl font-bold mb-4 text-center">Contact Us</h2>
                 <p class="text-gray-600 dark:text-gray-400 text-center mb-6">Fill out the form below to get in touch with our team.</p>
@@ -228,36 +349,87 @@
             </div>
         </div>
     </div>
-    <script src="static/public/js/script.js"></script>
+
     <script>
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        document.addEventListener('DOMContentLoaded', () => {
 
-        // Check for local storage or system preference on initial load
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-            themeToggleLightIcon.classList.add('hidden');
-            themeToggleDarkIcon.classList.remove('hidden');
-        } else {
-            document.documentElement.classList.remove('dark');
-            themeToggleLightIcon.classList.remove('hidden');
-            themeToggleDarkIcon.classList.add('hidden');
-        }
+            const modalWrappers = document.querySelectorAll('.modal-wrapper');
 
-        themeToggleBtn.addEventListener('click', function() {
-            // toggle icons
-            themeToggleDarkIcon.classList.toggle('hidden');
-            themeToggleLightIcon.classList.toggle('hidden');
+            const openModal = (modalId) => {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.add('active');
+                }
+            };
 
-            // if dark mode is already set, switch to light
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
-            } else { // otherwise, switch to dark
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
+            const closeModal = (modalId) => {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.remove('active');
+                }
+            };
+
+            document.addEventListener('click', (event) => {
+                const openBtn = event.target.closest('[data-modal-target]');
+                if (openBtn) {
+                    event.preventDefault();
+                    const modalId = openBtn.getAttribute('data-modal-target');
+                    openModal(modalId);
+                }
+
+                const closeBtn = event.target.closest('[data-modal-close]');
+                if (closeBtn) {
+                    event.preventDefault();
+                    const modalId = closeBtn.getAttribute('data-modal-close');
+                    closeModal(modalId);
+                }
+
+                modalWrappers.forEach(wrapper => {
+                    if (wrapper.classList.contains('active') && event.target === wrapper.querySelector('.modal-backdrop')) {
+                        closeModal(wrapper.id);
+                    }
+                });
+            });
+
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
+            const mobileMenuBtn = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
+            const mobileMenu = document.getElementById('navbar-sticky');
+            const htmlTag = document.documentElement;
+
+            const isDarkMode = localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+            if (isDarkMode) {
+                htmlTag.classList.add('dark');
+                lightIcon.classList.add('hidden');
+                darkIcon.classList.remove('hidden');
+            } else {
+                htmlTag.classList.remove('dark');
+                lightIcon.classList.remove('hidden');
+                darkIcon.classList.add('hidden');
             }
+
+            themeToggleBtn.addEventListener('click', () => {
+                const isCurrentlyDark = htmlTag.classList.contains('dark');
+                if (isCurrentlyDark) {
+                    htmlTag.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                    lightIcon.classList.remove('hidden');
+                    darkIcon.classList.add('hidden');
+                } else {
+                    htmlTag.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                    lightIcon.classList.add('hidden');
+                    darkIcon.classList.remove('hidden');
+                }
+            });
+
+            mobileMenuBtn.addEventListener('click', () => {
+                const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+                mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.classList.toggle('hidden');
+            });
         });
     </script>
 </body>
