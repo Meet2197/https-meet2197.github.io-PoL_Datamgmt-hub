@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events - PoL Data Management Hub</title>
+    <title>Events - PoL Data Management Corner</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,6 +20,7 @@
                         'dark-bg': '#121212',
                         'dark-surface': '#1e1e1e',
                         'dark-card': '#2a2a2a',
+                        'secondary-red': '#ef4444',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -30,6 +31,7 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="static/public/css/style.css">
+    <link rel="icon" href="static/images/logos/pol-logo.png" type="image/png">
     <style>
         /* Define a subtle fade-in and slide-up animation */
         @keyframes fadeInUp {
@@ -114,6 +116,9 @@
             <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="static/images/logos/tud_logo.svg" class="h-12 w-auto rounded-full shadow-lg" alt="PoL Logo">
             </a>
+            <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="static/images/logos/pol-logo.png" class="h-9 w-auto sqaured-full shadow-lg" alt="PoL Logo">
+            </a>
             <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse items-center">
                 <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
                     <i id="theme-toggle-light-icon" class="fa-solid fa-sun h-5 w-5"></i>
@@ -132,6 +137,7 @@
                     <li><a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" data-modal-target="resources-modal">Resources</a></li>
                     <li><a href="Events.html" class="block py-2 px-3 text-white bg-secondary-violet rounded md:bg-transparent md:text-secondary-violet md:p-0 dark:text-white" aria-current="page">Events</a></li>
                     <li><a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" data-modal-target="contact-modal">Contact</a></li>
+                    <li><a href="#whats-new-section" class="block py-2 px-3 text-white bg-secondary-violet rounded md:bg-transparent md:text-secondary-red md:p-0 dark:text-white">What's New</a></li>
                 </ul>
             </div>
         </div>
@@ -247,27 +253,20 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="relative pl-6 sm:pl-10">
-                    <h3 class="text-2xl font-bold text-primary-blue dark:text-secondary-violet mb-4">Ongoing</h3>
-                    <div class="absolute left-0 top-0 w-1 h-full bg-gray-200 dark:bg-gray-700"></div>
-                    <div class="relative">
-                        <div class="event-card bg-white dark:bg-dark-surface p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 mb-6 ml-6">
-                            <span class="inline-block bg-pink-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-4">Exhibition</span>
-                            <a href="https://tu-dresden.de/cids/interactive-science-lab?set_language=en" target="_blank" rel="noopener noreferrer">
-                                <h3 class="text-xl font-bold mb-2">DataSpaces Experiencing Science</h3>
-                                <p class="text-gray-600 dark:text-gray-400 mb-4">An exhibition by the CIDS Interactive Science Lab focusing on experiencing science through interactive data visualization.</p>
-                            </a>
-                            <div class="flex items-center mb-2">
-                                <i class="fa-solid fa-calendar-alt text-gray-500 mr-2"></i>
-                                <span class="text-sm font-medium">Until the end of 2025</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fa-solid fa-map-marker-alt text-gray-500 mr-2"></i>
-                                <span class="text-sm font-medium">SLUB Makerspace</span>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+        </section>
+        <section id="whats-new-section" class="mb-12 animate-stagger-5">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">What's New!?</h2>
+            <div class="relative bg-white dark:bg-dark-surface p-8 rounded-xl shadow-lg overflow-hidden flex items-center justify-center min-h-[300px]">
+                <!-- Background Image Overlay -->
+                <div class="absolute inset-0 bg-black opacity-40"></div>
+                <!-- Background Image -->
+                <img src="static/images/openFrame-Microscope-6.jpg" alt="A microscope in a lab environment" class="absolute inset-0 w-full h-full object-cover">
+                <!-- Content -->
+                <div class="relative z-10 text-center text-white p-4">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4">Stay Up-to-Date with Latest Trends!</h3>
+                    <p class="text-lg mb-6 max-w-2xl mx-auto">Discover the newest advancements in data science, AI, and research tools.</p>
+                    <a href="whats-new.html" class="inline-block bg-white text-secondary-violet font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105">Read More &rarr;</a>
                 </div>
             </div>
         </section>
@@ -275,7 +274,7 @@
 
     <footer class="bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 p-6 text-center transition-colors duration-300">
         <div class="container mx-auto">
-            © 2025 PoL Data Management Hub. All rights reserved.
+            © 2025 PoL Data Management Corner. All rights reserved.
         </div>
     </footer>
     <div id="modal-container">
