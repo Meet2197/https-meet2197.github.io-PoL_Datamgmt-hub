@@ -30,8 +30,7 @@
             },
         }
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="static/public/css/style.css">
+    <link rel="icon" href="static/images/logos/pol-logo.png" type="image/png">
     <style>
         /* CSS for card hover effect */
         .card-animate {
@@ -249,22 +248,35 @@
         </div>
 
         <div id="resources-modal" class="modal-wrapper">
-            <div class="modal-backdrop"></div>
-            <div class="modal-content-container relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-xl w-full mx-4 my-8">
-                <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white" data-modal-close="resources-modal"><i class="fa-solid fa-xmark text-2xl"></i></button>
-                <h2 class="text-2xl font-bold mb-6 text-center">Key Resources</h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="resource-card p-6 bg-gray-100 dark:bg-dark-card rounded-xl shadow-md">
-                        <h3 class="font-bold text-xl mb-2"><i class="fa-solid fa-file-alt mr-2 text-secondary-violet"></i>Data Management Regulations</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Learn how to create effective DMPs.</p>
-                    </div>
-                    <div class="resource-card p-6 bg-gray-100 dark:bg-dark-card rounded-xl shadow-md">
-                        <h3 class="font-bold text-xl mb-2"><i class="fa-solid fa-hard-drive mr-2 text-secondary-violet"></i>Data Storage & Backup</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Guidelines for secure data storage.</p>
-                    </div>
-                    <div class="resource-card p-6 bg-gray-100 dark:bg-dark-card rounded-xl shadow-md">
-                        <h3 class="font-bold text-xl mb-2"><i class="fa-solid fa-share-alt mr-2 text-secondary-violet"></i>Data Sharing & Archiving</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Best practices for sharing and archiving data.</p>
+            <div class="modal-content-container">
+                <div class="relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-3xl w-full mx-4 my-8">
+                    <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white" data-modal-close="resources-modal"><i class="fa-solid fa-xmark text-2xl"></i></button>
+                    <h2 class="text-2xl font-bold mb-6 text-center">Key Resources</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="resource-card p-6 bg-gray-100 dark:bg-dark-card rounded-xl shadow-md">
+                            <h3 class="font-bold text-xl mb-2">
+                                <a href="data-management-regulations.html" class="hover:text-secondary-violet">
+                                    <i class="fa-solid fa-file-alt mr-2 text-secondary-violet"></i>Data Management Regulations
+                                </a>
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400">Learn how to create effective DMPs.</p>
+                        </div>
+                        <div class="resource-card p-6 bg-gray-100 dark:bg-dark-card rounded-xl shadow-md">
+                            <h3 class="font-bold text-xl mb-2">
+                                <a href="data-storage-backup.html" class="hover:text-secondary-violet">
+                                    <i class="fa-solid fa-hard-drive mr-2 text-secondary-violet"></i>Data Storage & Backup
+                                </a>
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400">Guidelines for secure data storage.</p>
+                        </div>
+                        <div class="resource-card p-6 bg-gray-100 dark:bg-dark-card rounded-xl shadow-md">
+                            <h3 class="font-bold text-xl mb-2">
+                                <a href="data-sharing-archiving.html" class="hover:text-secondary-violet">
+                                    <i class="fa-solid fa-share-alt mr-2 text-secondary-violet"></i>Data Sharing & Archiving
+                                </a>
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400">Best practices for sharing and archiving data.</p>
+                        </div>
                     </div>
                 </div>
             </div>

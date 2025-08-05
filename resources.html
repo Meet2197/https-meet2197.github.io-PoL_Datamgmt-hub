@@ -125,9 +125,10 @@
             </div>
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-dark-surface dark:border-gray-700">
-                    <li><a href="index.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Overview</a></li>
-                    <li><a href="Resources.html" class="block py-2 px-3 text-white bg-secondary-violet rounded md:bg-transparent md:text-secondary-violet md:p-0 dark:text-white" aria-current="page">Resources</a></li>
+                    <li><a href="index.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" data-modal-target="about-modal">Overview</a></li>
+                    <li><a href="Resources.html" class="block py-2 px-3 text-white bg-secondary-violet rounded md:bg-transparent md:text-secondary-violet md:p-0 dark:text-white" aria-current="page" data-modal-target="resources-modal">Resources</a></li>
                     <li><a href="Events.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Events</a></li>
+                    <li><a href="whats-new.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">What's New</a></li>
                     <li><a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" data-modal-target="contact-modal">Contact</a></li>
                 </ul>
             </div>
@@ -138,21 +139,19 @@
         <section id="key-resources" class="mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-primary-blue dark:text-secondary-violet">Key Resources</h2>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
-                <!-- Data Management Regulations Card -->
                 <div class="bg-white dark:bg-dark-surface p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between">
                     <div>
                         <h3 class="text-2xl font-bold text-primary-blue dark:text-secondary-violet mb-2"><i class="fa-solid fa-file-contract mr-2"></i>Data Management Regulations</h3>
                         <p class="text-gray-600 dark:text-gray-400 mb-4">Learn how to create effective Data Management policies for your research projects.</p>
-                        <a href="#" class="text-secondary-violet hover:underline">Read More →</a>
+                        <a href="data-management-regulations.html" class="text-secondary-violet hover:underline">Read More →</a>
                     </div>
                 </div>
 
-                <!-- Data Storage & Backup Card -->
                 <div class="bg-white dark:bg-dark-surface p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between">
                     <div>
                         <h3 class="text-2xl font-bold text-primary-blue dark:text-secondary-violet mb-2"><i class="fa-solid fa-cloud-upload-alt mr-2"></i>Data Storage & Backup</h3>
                         <p class="text-gray-600 dark:text-gray-400 mb-4">Guidelines and recommendations for secure data storage and backup solutions.</p>
-                        <a href="#" class="text-secondary-violet hover:underline">Read More →</a>
+                        <a href="data-storage-backup.html" class="text-secondary-violet hover:underline">Read More →</a>
                         <div class="mt-4">
                             <h4 class="font-bold text-lg text-primary-blue dark:text-white mb-2">Recommended Tool</h4>
                             <div class="flex items-center space-x-4 bg-gray-100 dark:bg-dark-card p-4 rounded-xl cursor-pointer hover:bg-gray-200 dark:hover:bg-dark-card/80 transition-colors duration-200" data-modal-target="owncloud-modal">
@@ -166,21 +165,18 @@
                     </div>
                 </div>
 
-                <!-- Data Sharing & Archiving Card -->
                 <div class="bg-white dark:bg-dark-surface p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between">
                     <div>
                         <h3 class="text-2xl font-bold text-primary-blue dark:text-secondary-violet mb-2"><i class="fa-solid fa-box-open mr-2"></i>Data Sharing & Archiving</h3>
                         <p class="text-gray-600 dark:text-gray-400 mb-4">Best practices for sharing your research data and long-term archiving.</p>
-                        <a href="#" class="text-secondary-violet hover:underline">Read More →</a>
+                        <a href="data-sharing-archiving.html" class="text-secondary-violet hover:underline">Read More →</a>
                         <div class="mt-4">
                             <h4 class="font-bold text-lg text-primary-blue dark:text-white mb-2">Recommended Tools</h4>
                             <div class="grid grid-cols-2 gap-4">
-                                <!-- Zenodo Card -->
                                 <div class="flex flex-col items-center justify-center p-4 bg-gray-100 dark:bg-dark-card rounded-xl cursor-pointer hover:bg-gray-200 dark:hover:bg-dark-card/80 transition-colors duration-200" data-modal-target="zenodo-modal">
                                     <img src="https://placehold.co/40x40/6a47a8/ffffff?text=Zenodo" alt="Zenodo Logo" class="h-10 w-10 mb-2">
                                     <p class="font-semibold text-sm text-center">Zenodo</p>
                                 </div>
-                                <!-- Figshare Card -->
                                 <div class="flex flex-col items-center justify-center p-4 bg-gray-100 dark:bg-dark-card rounded-xl cursor-pointer hover:bg-gray-200 dark:hover:bg-dark-card/80 transition-colors duration-200" data-modal-target="figshare-modal">
                                     <img src="https://placehold.co/40x40/6a47a8/ffffff?text=Figshare" alt="Figshare Logo" class="h-10 w-10 mb-2">
                                     <p class="font-semibold text-sm text-center">Figshare</p>
@@ -205,9 +201,66 @@
         </div>
     </footer>
 
-    <!-- Modals Container -->
     <div id="modal-container">
-        <!-- OwnCloud TUD Modal -->
+        <div id="about-modal" class="modal-wrapper">
+            <div class="modal-content-container">
+                <div class="relative bg-white dark:bg-dark-surface p-0 rounded-xl shadow-2xl max-w-2xl w-full mx-4 my-8 overflow-hidden">
+        
+                    <div class="relative pt-12 pb-8 px-6 bg-primary-blue text-white text-center">
+                        <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('static/images/image2.jpg');"></div>
+                        <div class="relative z-10">
+                            <h2 class="text-3xl md:text-4xl font-bold mb-2">About Our Initiative</h2>
+                            <p class="text-lg opacity-80">Your guide to effective research data management at PoL.</p>
+                        </div>
+                    </div>
+        
+                    <div class="p-8">
+                        <button class="absolute top-4 right-4 text-white hover:text-gray-200 dark:text-gray-400 dark:hover:text-white" data-modal-close="about-modal"><i class="fa-solid fa-xmark text-2xl"></i></button>
+        
+                        <div class="text-center mb-6">
+                            <p class="text-gray-600 dark:text-gray-400">
+                                This is your central hub for all things related to research data management at the Physics of Life (PoL) and TU Dresden (TUD). We provide comprehensive guides, best practices, and essential tools to help you streamline the entire lifecycle of your research data, from project inception to long-term archiving.
+                            </p>
+                        </div>
+        
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <a href="resources.html" class="flex items-center p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-md hover:bg-gray-200 dark:hover:bg-dark-card/80 transition duration-300">
+                                <i class="fa-solid fa-file-contract mr-4 text-3xl text-secondary-violet"></i>
+                                <div>
+                                    <h3 class="font-bold text-xl">Key Resources</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Detailed guides on regulations, storage, and sharing.</p>
+                                </div>
+                            </a>
+        
+                            <a href="Events.html" class="flex items-center p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-md hover:bg-gray-200 dark:hover:bg-dark-card/80 transition duration-300">
+                                <i class="fa-solid fa-calendar-alt mr-4 text-3xl text-secondary-violet"></i>
+                                <div>
+                                    <h3 class="font-bold text-xl">Upcoming Events</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Workshops, seminars, and talks on data science.</p>
+                                </div>
+                            </a>
+        
+                            <a href="whats-new.html" class="flex items-center p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-md hover:bg-gray-200 dark:hover:bg-dark-card/80 transition duration-300">
+                                <i class="fa-solid fa-bell mr-4 text-3xl text-secondary-violet"></i>
+                                <div>
+                                    <h3 class="font-bold text-xl">What's New</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Latest updates and news from the team.</p>
+                                </div>
+                            </a>
+        
+                            <a href="#" class="flex items-center p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-md hover:bg-gray-200 dark:hover:bg-dark-card/80 transition duration-300">
+                                <i class="fa-solid fa-envelope mr-4 text-3xl text-secondary-violet"></i>
+                                <div>
+                                    <h3 class="font-bold text-xl">Contact Us</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Get in touch with the data management team.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="owncloud-modal" class="modal-wrapper">
             <div class="modal-content-container">
                 <div class="relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-2xl w-full mx-4 my-8">
@@ -226,7 +279,6 @@
             </div>
         </div>
 
-        <!-- Zenodo Modal -->
         <div id="zenodo-modal" class="modal-wrapper">
             <div class="modal-content-container">
                 <div class="relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-2xl w-full mx-4 my-8">
@@ -245,7 +297,6 @@
             </div>
         </div>
 
-        <!-- Figshare Modal -->
         <div id="figshare-modal" class="modal-wrapper">
             <div class="modal-content-container">
                 <div class="relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-2xl w-full mx-4 my-8">

@@ -112,7 +112,7 @@
             </div>
         </div>
     </nav>
-    <header class="relative pt-24 pb-16 md:pt-40 md:pb-24 bg-primary-blue text-white overflow-hidden shadow-xl">
+    <header class="relative pt-24 pb-16 md:pt-40 md:pb-24 bg-primary-blue text-white overflow-hidden shadow-xl min-h-screen flex items-center justify-center">
         <div class="container mx-auto px-4 text-center z-10 relative">
             <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-stagger-1">Data Management Corner</h1>
             <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 animate-stagger-2">Streamline your research data lifecycle with comprehensive guides, best practices, and tools designed for researchers at PoL.</p>
@@ -121,9 +121,10 @@
                 <button id="viewGuidelinesBtn" class="bg-transparent border-2 border-secondary-violet text-white font-bold py-3 px-6 rounded-full hover:bg-secondary-violet transition duration-300 transform hover:scale-105">View Our Guidelines</button>
             </div>
         </div>
+        
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-black opacity-50"></div>
-            <img src="static/images/image2.jpg" class="w-full h-full object-cover opacity-30" alt="Abstract data background">
+            <img src="static/images/background_img.jpg" class="w-full h-full object-cover opacity-30" alt="Abstract data background">
         </div>
     </header>
 
@@ -252,30 +253,57 @@
 
         <div id="about-modal" class="modal-wrapper">
             <div class="modal-content-container">
-                <div class="relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-sm w-full mx-4 my-8">
-                    <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white" data-modal-close="about-modal"><i class="fa-solid fa-xmark text-2xl"></i></button>
-                    <h2 class="text-2xl font-bold mb-4 text-center">About PoL Data Management</h2>
-                    <p class="text-gray-600 dark:text-gray-400 text-center mb-6">Explore essential tools and services for managing, storing, and sharing data across PoL and TUD.</p>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div class="tool-card p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-sm">
-                            <h3 class="font-bold text-lg mb-1"><i class="fa-solid fa-cloud mr-2 text-secondary-violet"></i>OwnCloud</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Secure cloud storage for active project data</p>
+                <div class="relative bg-white dark:bg-dark-surface p-0 rounded-xl shadow-2xl max-w-2xl w-full mx-4 my-8 overflow-hidden">
+        
+                    <div class="relative pt-12 pb-8 px-6 bg-primary-blue text-white text-center">
+                        <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('static/images/image2.jpg');"></div>
+                        <div class="relative z-10">
+                            <h2 class="text-3xl md:text-4xl font-bold mb-2">About Our Initiative</h2>
+                            <p class="text-lg opacity-80">Your guide to effective research data management at PoL.</p>
                         </div>
-                        <div class="tool-card p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-sm">
-                            <h3 class="font-bold text-lg mb-1"><i class="fa-solid fa-code-branch mr-2 text-secondary-violet"></i>GitLab</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">DevOps platform with Git repository manager</p>
+                    </div>
+        
+                    <div class="p-8">
+                        <button class="absolute top-4 right-4 text-white hover:text-gray-200 dark:text-gray-400 dark:hover:text-white" data-modal-close="about-modal"><i class="fa-solid fa-xmark text-2xl"></i></button>
+        
+                        <div class="text-center mb-6">
+                            <p class="text-gray-600 dark:text-gray-400">
+                                This is your central hub for all things related to research data management at the Physics of Life (PoL) and TU Dresden (TUD). We provide comprehensive guides, best practices, and essential tools to help you streamline the entire lifecycle of your research data, from project inception to long-term archiving.
+                            </p>
                         </div>
-                        <div class="tool-card p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-sm">
-                            <h3 class="font-bold text-lg mb-1"><i class="fa-solid fa-boxes-stacked mr-2 text-secondary-violet"></i>OPARA</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Institutional data repository for long-term archiving</p>
-                        </div>
-                        <div class="tool-card p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-sm">
-                            <h3 class="font-bold text-lg mb-1"><i class="fa-solid fa-link mr-2 text-secondary-violet"></i>DataShare</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Secure and confidential sharing of large datasets.</p>
-                        </div>
-                        <div class="tool-card p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-sm">
-                            <h3 class="font-bold text-lg mb-1"><i class="fa-solid fa-book-atlas mr-2 text-secondary-violet"></i>Zenodo</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Open-access data repository for research artifacts.</p>
+        
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <a href="resources.html" class="flex items-center p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-md hover:bg-gray-200 dark:hover:bg-dark-card/80 transition duration-300">
+                                <i class="fa-solid fa-file-contract mr-4 text-3xl text-secondary-violet"></i>
+                                <div>
+                                    <h3 class="font-bold text-xl">Key Resources</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Detailed guides on regulations, storage, and sharing.</p>
+                                </div>
+                            </a>
+        
+                            <a href="Events.html" class="flex items-center p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-md hover:bg-gray-200 dark:hover:bg-dark-card/80 transition duration-300">
+                                <i class="fa-solid fa-calendar-alt mr-4 text-3xl text-secondary-violet"></i>
+                                <div>
+                                    <h3 class="font-bold text-xl">Upcoming Events</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Workshops, seminars, and talks on data science.</p>
+                                </div>
+                            </a>
+        
+                            <a href="whats-new.html" class="flex items-center p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-md hover:bg-gray-200 dark:hover:bg-dark-card/80 transition duration-300">
+                                <i class="fa-solid fa-bell mr-4 text-3xl text-secondary-violet"></i>
+                                <div>
+                                    <h3 class="font-bold text-xl">What's New</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Latest updates and news from the team.</p>
+                                </div>
+                            </a>
+        
+                            <a href="#" class="flex items-center p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-md hover:bg-gray-200 dark:hover:bg-dark-card/80 transition duration-300">
+                                <i class="fa-solid fa-envelope mr-4 text-3xl text-secondary-violet"></i>
+                                <div>
+                                    <h3 class="font-bold text-xl">Contact Us</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Get in touch with the data management team.</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -284,20 +312,32 @@
 
         <div id="resources-modal" class="modal-wrapper">
             <div class="modal-content-container">
-                <div class="relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-xl w-full mx-4 my-8">
+                <div class="relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-3xl w-full mx-4 my-8">
                     <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white" data-modal-close="resources-modal"><i class="fa-solid fa-xmark text-2xl"></i></button>
                     <h2 class="text-2xl font-bold mb-6 text-center">Key Resources</h2>
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="resource-card p-6 bg-gray-100 dark:bg-dark-card rounded-xl shadow-md">
-                            <h3 class="font-bold text-xl mb-2"><i class="fa-solid fa-file-alt mr-2 text-secondary-violet"></i>Data Management Plans</h3>
+                            <h3 class="font-bold text-xl mb-2">
+                                <a href="data-management-regulations.html" class="hover:text-secondary-violet">
+                                    <i class="fa-solid fa-file-alt mr-2 text-secondary-violet"></i>Data Management Regulations
+                                </a>
+                            </h3>
                             <p class="text-gray-600 dark:text-gray-400">Learn how to create effective DMPs.</p>
                         </div>
                         <div class="resource-card p-6 bg-gray-100 dark:bg-dark-card rounded-xl shadow-md">
-                            <h3 class="font-bold text-xl mb-2"><i class="fa-solid fa-hard-drive mr-2 text-secondary-violet"></i>Data Storage & Backup</h3>
+                            <h3 class="font-bold text-xl mb-2">
+                                <a href="data-storage-backup.html" class="hover:text-secondary-violet">
+                                    <i class="fa-solid fa-hard-drive mr-2 text-secondary-violet"></i>Data Storage & Backup
+                                </a>
+                            </h3>
                             <p class="text-gray-600 dark:text-gray-400">Guidelines for secure data storage.</p>
                         </div>
                         <div class="resource-card p-6 bg-gray-100 dark:bg-dark-card rounded-xl shadow-md">
-                            <h3 class="font-bold text-xl mb-2"><i class="fa-solid fa-share-alt mr-2 text-secondary-violet"></i>Data Sharing & Archiving</h3>
+                            <h3 class="font-bold text-xl mb-2">
+                                <a href="data-sharing-archiving.html" class="hover:text-secondary-violet">
+                                    <i class="fa-solid fa-share-alt mr-2 text-secondary-violet"></i>Data Sharing & Archiving
+                                </a>
+                            </h3>
                             <p class="text-gray-600 dark:text-gray-400">Best practices for sharing and archiving data.</p>
                         </div>
                     </div>

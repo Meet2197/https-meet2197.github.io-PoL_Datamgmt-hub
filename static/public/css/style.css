@@ -37,6 +37,13 @@ html {
 }
 
 /* Hero Section Animations */
+
+/* Ensure text content is above the overlay */
+.hero-background .container {
+    position: relative;
+    z-index: 2;
+}
+
 @keyframes fadeInDown {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -162,11 +169,14 @@ body {
 }
 
 .modal-content-container {
+    /* Remove width and height to let inner content define size */
+    /* width: 100%;
+    height: 100%; */
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
+    /* Optional: Add padding to prevent content from touching edges */
+    padding: 2rem;
 }
 
 @keyframes fadeIn {
