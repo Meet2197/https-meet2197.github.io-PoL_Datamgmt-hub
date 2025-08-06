@@ -111,36 +111,30 @@
     </style>
 </head>
 <body class="bg-light-bg dark:bg-dark-bg text-gray-800 dark:text-gray-200 transition-colors duration-300">
-    <nav class="bg-white dark:bg-dark-surface fixed w-full z-20 top-0 start-0 shadow-md dark:shadow-lg transition-colors duration-300">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="static/images/logos/tud_logo.svg" class="h-12 w-auto rounded-full shadow-lg" alt="PoL Logo">
-            </a>
-            <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="static/images/logos/pol-logo.png" class="h-9 w-auto sqaured-full shadow-lg" alt="PoL Logo">
-            </a>
-            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse items-center">
-                <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
-                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun h-5 w-5"></i>
-                    <i id="theme-toggle-dark-icon" class="fa-solid fa-moon h-5 w-5 hidden"></i>
-                </button>
-                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-dark-surface dark:border-gray-700">
-                    <li><a href="index.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Overview</a></li>
-                    <li><a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" data-modal-target="resources-modal">Resources</a></li>
-                    <li><a href="Events.html" class="block py-2 px-3 text-white bg-secondary-violet rounded md:bg-transparent md:text-secondary-violet md:p-0 dark:text-white" aria-current="page">Events</a></li>
-                    <li><a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" data-modal-target="contact-modal">Contact</a></li>
-                    <li><a href="#whats-new-section" class="block py-2 px-3 text-white bg-secondary-violet rounded md:bg-transparent md:text-secondary-red md:p-0 dark:text-white">What's New</a></li>
-                </ul>
-            </div>
-        </div>
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 dark:bg-dark-surface/80 shadow-md transition-all">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-4">
+        <a href="index.html"><img src="static/images/logos/tud_logo.svg" alt="TUD" class="h-10 w-auto rounded-full" /></a>
+        <a href="index.html"><img src="static/images/logos/pol-logo.png" alt="PoL" class="h-8 w-auto" /></a>
+      </div>
+      <div class="hidden md:flex space-x-6 font-medium text-sm">
+        <a href="#" data-modal-target="about-modal" class="nav-link">Overview</a>
+        <a href="#" data-modal-target="resources-modal" class="nav-link">Resources</a>
+        <a href="Events.html" class="nav-link">Events</a>
+        <a href="#" data-modal-target="contact-modal" class="nav-link">Contact</a>
+        <a href="whats-new.html" class="nav-link text-secondary-red font-semibold">What's New</a>
+      </div>
+      <div class="flex items-center space-x-3">
+        <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+          <i id="theme-toggle-light-icon" class="fa-solid fa-sun hidden"></i>
+          <i id="theme-toggle-dark-icon" class="fa-solid fa-moon"></i>
+        </button>
+        <button class="md:hidden p-2" id="menu-toggle">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+    </div>
+    </div>
     </nav>
     
     <header class="video-header mt-16 md:mt-0">
@@ -344,5 +338,6 @@
     </div>
     <script src="static/public/js/script.js"></script>
     <script src="static/public/js/navigation.js"></script>
+    <script src="static/public/js/chatbot.js"></script>
 </body>
 </html>

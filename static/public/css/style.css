@@ -183,3 +183,13 @@ body {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+
+.nav-link {
+    @apply text-gray-800 dark:text-gray-200 hover:text-secondary-violet transition-colors duration-200;
+  }
+  .btn-glass {
+    @apply py-3 px-6 rounded-full font-bold shadow-md bg-opacity-90 backdrop-blur-lg transition-transform transform hover:scale-105;
+  }
+  .btn-outline-glass {
+    @apply py-3 px-6 rounded-full font-bold border-2 shadow-md transition-transform transform hover:scale-105;
+  }  

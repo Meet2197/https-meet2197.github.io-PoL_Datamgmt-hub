@@ -55,6 +55,7 @@ const KNOWLEDGE_BASE = [
 ];
 
 // Function to call the Gemini API (mocked for preview)
+// Function to call the Gemini API (mocked for preview)
 async function callGeminiAPI(prompt) {
     // This is a mock implementation for the preview.
     // In a real scenario, this would make a fetch call to the Gemini API.
@@ -62,39 +63,164 @@ async function callGeminiAPI(prompt) {
     console.log("Mock API call with prompt:", prompt);
     let responseText = "I'm a chatbot for the PoL Data Management Corner. I can answer questions based on the information provided on this website. What would you like to know?";
 
-    const lowerCasePrompt = prompt.toLowerCase();
+    // Normalize input for better matching, handling common variations and punctuation
+    const lowerCasePrompt = prompt.toLowerCase().replace(/[?!.,;']/g, '').trim();
 
-    if (lowerCasePrompt.includes("hello") || lowerCasePrompt.includes("hi")) {
-        responseText = "Hello! I'm your PoL Data Management Corner assistant. I can help students, researchers, professors, and department heads at PoL EXC TU Dresden with questions about data management, tools, and regulations. What's on your mind?";
-    } else if (lowerCasePrompt.includes("how to store data") || lowerCasePrompt.includes("data storage options")) {
-        responseText = "For data storage, you have options like Cloud Storage (for accessibility and syncing), Local Backup (for control and speed), or a Hybrid Approach combining both. OwnCloud TUD is a recommended tool for secure cloud storage for TU Dresden users. You can find more details on the Data Storage & Backup page: data-storage-backup.html";
-    } else if (lowerCasePrompt.includes("upcoming events") || lowerCasePrompt.includes("data science events")) {
-        responseText = "The 'Events' page lists upcoming data science and genomics events. For example, in August 2025, there are events on 'Drosophila genetics and genomics' and 'Light sheet microscopy'. In November, the 'Cytodata Symposium' is scheduled. Check out the full list here: Events.html";
-    } else if (lowerCasePrompt.includes("gdpr") || lowerCasePrompt.includes("data regulations")) {
-        responseText = "The 'EU & German Data Regulations' page covers important topics like GDPR for Research, DFG General Guidelines, and Data Anonymization. It's crucial for understanding the legal framework for data processing. More information is available at: data-management-regulations.html";
-    } else if (lowerCasePrompt.includes("share data") || lowerCasePrompt.includes("data sharing")) {
-        responseText = "Data sharing guidelines focus on making your research data accessible to the scientific community. Recommended repositories include Zenodo (a general-purpose open-access repository by CERN: https://zenodo.org/), OpARA (TU Dresden's open-access data repository), and Figshare (for publishing data, figures, and research outputs: https://figshare.com/). You can explore these options on the Data Sharing & Archiving page: data-sharing-archiving.html";
-    } else if (lowerCasePrompt.includes("archive data") || lowerCasePrompt.includes("data archiving")) {
-        responseText = "Data archiving policies cover long-term data preservation. The FAIR Principles (Findable, Accessible, Interoperable, Reusable) are key to ensuring your archived data is usable. Repositories like Zenodo and Figshare also support archiving. More details are on the Data Sharing & Archiving page: data-sharing-archiving.html";
-    } else if (lowerCasePrompt.includes("what's new") || lowerCasePrompt.includes("new tools")) {
-        responseText = "The 'What's New' page highlights advancements in data science, AI, and research tools, including AI Usage in Python, Recent 2025 LLM Tools, and Big Data Open Source Tools. You can visit the page for specific links and details: whats-new.html";
-    } else if (lowerCasePrompt.includes("resources")) {
-        responseText = "The 'Resources' page provides comprehensive information on Data Management Regulations, Data Storage & Backup, and Data Sharing & Archiving. It's a great starting point for any data management queries: resources.html";
-    } else if (lowerCasePrompt.includes("contact") || lowerCasePrompt.includes("get in touch")) {
-        responseText = "You can get in touch with the data management team for assistance. Please refer to the contact section on the main page for details.";
-    } else if (lowerCasePrompt.includes("dmp") || lowerCasePrompt.includes("data management plan")) {
-        responseText = "Developing a Data Management Plan (DMP) is a key consideration for researchers under EU & German Data Regulations. It helps outline how data will be handled throughout a project. More on this: data-management-regulations.html";
-    } else if (lowerCasePrompt.includes("interoperability standards")) {
-        responseText = "The 'EU & German Data Regulations' page mentions interoperability standards like FHIR (Fast Healthcare Interoperability Resources), UCUM (Unified Code for Units of Measure), and LOINC (Logical Observation Identifiers Names and Codes) for consistent data exchange. SNOMED CT is also covered. Find details here: data-management-regulations.html";
-    } else if (lowerCasePrompt.includes("owncloud tud")) {
-        responseText = "OwnCloud TUD is a recommended tool for secure cloud storage for TU Dresden users, offering accessibility and syncing benefits. You can find more about it on the Data Storage & Backup page: data-storage-backup.html";
-    } else if (lowerCasePrompt.includes("zenodo")) {
-        responseText = "Zenodo is a general-purpose open-access repository by CERN, providing persistent identifiers (DOIs). It's a recommended tool for data sharing and archiving: https://zenodo.org/. See more on the Data Sharing & Archiving page: data-sharing-archiving.html";
-    } else if (lowerCasePrompt.includes("figshare")) {
-        responseText = "Figshare is an online repository for researchers to publish data, figures, and research outputs with DOIs: https://figshare.com/. It's listed as a recommended tool for data sharing and archiving. Check the Data Sharing & Archiving page for context: data-sharing-archiving.html";
-    } else {
-        // Fallback to a more helpful general response if no specific keyword is matched
-        responseText = "I'm designed to provide information from the PoL Data Management Corner website. Could you please ask about specific topics like 'data storage', 'events', 'data regulations', or 'data sharing'? I can also guide you to relevant pages.";
+    // --- General Greetings and Introduction ---
+    if (lowerCasePrompt.includes("hello") || lowerCasePrompt.includes("hi") || lowerCasePrompt.includes("hey") || lowerCasePrompt.includes("hallo")) {
+        responseText = "Hello! I'm your PoL Data Management Corner AI assistant. What's on your mind?";
+    } else if (lowerCasePrompt.includes("who are you") || lowerCasePrompt.includes("what can you do") || lowerCasePrompt.includes("what is your purpose")) {
+        responseText = "I am the AI chatbot for the PoL Data Management Corner. I can provide information on data management regulations, storage, sharing, archiving, upcoming events, and relevant tools mentioned on this website. Just ask me a question!";
+    } else if (lowerCasePrompt.includes("what is this site about") || lowerCasePrompt.includes("purpose of this website") || lowerCasePrompt.includes("about this site")) {
+        responseText = "This website, the PoL Data Management Corner at Physics of Life (PoL) and TU Dresden (TUD).How can I help you?";
+    }
+
+    // --- "What is..." questions (expanded) ---
+    else if (lowerCasePrompt.includes("what is pol data management corner") || lowerCasePrompt.includes("what is pol dmc") || lowerCasePrompt.includes("what is po l dmc")) {
+        responseText = "The PoL Data Management Corner is a central hub for research data management at Physics of Life (PoL) and TU Dresden (TUD). It offers guides, best practices, and tools for the entire research data lifecycle. Visit the <a href='./index.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>homepage</a> for more.";
+    } else if (lowerCasePrompt.includes("what is a dmp") || lowerCasePrompt.includes("what is data management plan") || lowerCasePrompt.includes("what dmp is")) {
+        responseText = "A Data Management Plan (DMP) is a document outlining how data will be handled throughout a research project, covering aspects like collection, storage, sharing, and archiving. It's a key consideration under EU & German Data Regulations. Learn more on the <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>Data Management Regulations page</a>.";
+    } else if (lowerCasePrompt.includes("what are fair principles") || lowerCasePrompt.includes("what fair")) {
+        responseText = "The FAIR Principles ensure data is Findable, Accessible, Interoperable, and Reusable. Adhering to these principles is crucial for effective data sharing and archiving. Find details on the <a href='./data-sharing-archiving.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>Data Sharing & Archiving page</a>.";
+    } else if (lowerCasePrompt.includes("what is zenodo") || lowerCasePrompt.includes("info on zenodo") || lowerCasePrompt.includes("about zenodo")) {
+        responseText = "Zenodo is a general-purpose open-access repository by CERN, providing persistent identifiers (DOIs) for research data. It's recommended for data sharing and archiving. Official website: <a href='https://zenodo.org/' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://zenodo.org/</a>. More info: <a href='./data-sharing-archiving.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>data-sharing-archiving.html</a>.";
+    } else if (lowerCasePrompt.includes("what is figshare") || lowerCasePrompt.includes("info on figshare") || lowerCasePrompt.includes("about figshare")) {
+        responseText = "Figshare is an online repository for researchers to publish data, figures, and research outputs with DOIs. Official website: <a href='https://figshare.com/' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://figshare.com/</a>. It's a recommended tool for data sharing and archiving: <a href='./data-sharing-archiving.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>data-sharing-archiving.html</a>.";
+    } else if (lowerCasePrompt.includes("what is owncloud tud") || lowerCasePrompt.includes("owncloud for tud") || lowerCasePrompt.includes("tud cloud storage")) {
+        responseText = "OwnCloud TUD is a recommended tool for secure cloud storage specifically for TU Dresden users. It offers benefits like accessibility and syncing. Find more details on the <a href='./data-storage-backup.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>Data Storage & Backup page</a>.";
+    } else if (lowerCasePrompt.includes("what are the latest llm tools") || lowerCasePrompt.includes("latest llm") || lowerCasePrompt.includes("new llm tools")) {
+        responseText = "The 'What's New' page highlights Recent 2025 LLM Tools. You can find more information and links on this topic here: <a href='./whats-new.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>whats-new.html</a> (e.g., <a href='https://datacamp.com/blog/llmops-tools' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>datacamp.com/blog/llmops-tools</a>).";
+    } else if (lowerCasePrompt.includes("what is gdpr for research") || lowerCasePrompt.includes("gdpr research") || lowerCasePrompt.includes("gdpr and research")) {
+        responseText = "GDPR for Research refers to the General Data Protection Regulation's application to scientific research, outlining the legal framework for processing personal data. It's covered under EU & German Data Regulations: <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>data-management-regulations.html</a>.";
+    } else if (lowerCasePrompt.includes("what are big data open source tools") || lowerCasePrompt.includes("open source big data tools")) {
+        responseText = "The 'What's New' page features information on Big Data Open Source Tools. You can explore relevant resources and links on this topic: <a href='./whats-new.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>whats-new.html</a> (e.g., <a href='https://opensource.com/resources/big-data' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>opensource.com/resources/big-data</a>).";
+    } else if (lowerCasePrompt.includes("what is opara") || lowerCasePrompt.includes("what is op ara")) {
+        responseText = "OpARA is the open-access data repository at TU Dresden, recommended for data sharing and archiving. You can find it mentioned on the <a href='./data-sharing-archiving.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>Data Sharing & Archiving page</a>. For TU Dresden's official OpARA site, you might check the <a href='https://tu-dresden.de/forschung/services-forschende/forschungsdatenmanagement' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>TU Dresden Research Data Management page</a>.";
+    } else if (lowerCasePrompt.includes("what are interoperability standards") || lowerCasePrompt.includes("interoperability standards")) {
+        responseText = "Interoperability standards like FHIR, UCUM, LOINC, and SNOMED CT are crucial for consistent data exchange and management, especially in specific fields like health data. They are discussed on the <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>EU & German Data Regulations page</a>.";
+    } else if (lowerCasePrompt.includes("what is the 3-2-1 backup strategy") || lowerCasePrompt.includes("3-2-1 backup")) {
+        responseText = "The 3-2-1 backup strategy is a robust approach mentioned on the <a href='./data-storage-backup.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>Data Storage & Backup page</a>. It recommends having at least 3 copies of your data, stored on 2 different types of media, with 1 copy off-site for disaster recovery.";
+    } else if (lowerCasePrompt.includes("what are the main resources") || lowerCasePrompt.includes("main resources")) {
+        responseText = "The main resources provided by the PoL Data Management Corner include Data Management Regulations, Data Storage & Backup, and Data Sharing & Archiving. You can explore them on the <a href='./resources.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>Resources page</a>.";
+    } else if (lowerCasePrompt.includes("what is metadata management") || lowerCasePrompt.includes("metadata")) {
+        responseText = "Metadata Management is crucial for making data Findable and Interoperable (part of FAIR Principles). It involves creating and maintaining descriptive information about your data. This is covered in the <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'EU & German Data Regulations' section</a>.";
+    } else if (lowerCasePrompt.includes("what is image data management") || lowerCasePrompt.includes("image data")) {
+        responseText = "Image Data Management is a specific topic addressed under EU & German Data Regulations, highlighting best practices for handling image-based research data. You can find more details here: <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>data-management-regulations.html</a>.";
+    } else if (lowerCasePrompt.includes("what is fhir")) {
+        responseText = "FHIR (Fast Healthcare Interoperability Resources) is an interoperability standard mentioned in the <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'EU & German Data Regulations' page</a>, primarily for health data exchange.";
+    } else if (lowerCasePrompt.includes("what is ucum")) {
+        responseText = "UCUM (Unified Code for Units of Measure) is an interoperability standard mentioned in the <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'EU & German Data Regulations' page</a>, used for consistent measurement units.";
+    } else if (lowerCasePrompt.includes("what is loinc")) {
+        responseText = "LOINC (Logical Observation Identifiers Names and Codes) is an interoperability standard mentioned in the <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'EU & German Data Regulations' page</a>, used for medical lab results.";
+    } else if (lowerCasePrompt.includes("what is snomed ct")) {
+        responseText = "SNOMED CT is a globally recognized clinical terminology for electronic health records, covered under the interoperability standards in the <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'EU & German Data Regulations' page</a>.";
+    } else if (lowerCasePrompt.includes("what is the pol exc")) {
+        responseText = "PoL EXC refers to the Physics of Life Excellence Cluster at TU Dresden. The PoL Data Management Corner provides dedicated resources for data management within this cluster and the broader TU Dresden community. You can find more about PoL on their official website: <a href='https://physics-of-life.tu-dresden.de/' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://physics-of-life.tu-dresden.de/</a>.";
+    }
+
+    // --- "How can I..." questions (expanded) ---
+    else if (lowerCasePrompt.includes("how can i store my data") || lowerCasePrompt.includes("how to store data") || lowerCasePrompt.includes("storing data")) {
+        responseText = "You have several options for data storage: Cloud Storage (for accessibility), Local Backup (for control), or a Hybrid Approach (combining both). OwnCloud TUD is a recommended tool for TU Dresden users. Details are on the <a href='./data-storage-backup.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>Data Storage & Backup page</a>.";
+    } else if (lowerCasePrompt.includes("how can i share my data") || lowerCasePrompt.includes("how to share data") || lowerCasePrompt.includes("sharing data")) {
+        responseText = "To share your data effectively, consider using recommended repositories like Zenodo (<a href='https://zenodo.org/' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://zenodo.org/</a>), OpARA (TU Dresden's repository), or Figshare (<a href='https://figshare.com/' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://figshare.com/</a>). Adhering to FAIR Principles is also key. More guidance is on the <a href='./data-sharing-archiving.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>Data Sharing & Archiving page</a>.";
+    } else if (lowerCasePrompt.includes("how can i archive my data") || lowerCasePrompt.includes("how to archive data") || lowerCasePrompt.includes("archiving data")) {
+        responseText = "For long-term data preservation, you should follow data archiving policies. Repositories like Zenodo (<a href='https://zenodo.org/' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://zenodo.org/</a>) and Figshare (<a href='https://figshare.com/' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://figshare.com/</a>) are suitable for archiving. The <a href='./data-sharing-archiving.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>Data Sharing & Archiving page</a> provides more details.";
+    } else if (lowerCasePrompt.includes("how to create a dmp") || lowerCasePrompt.includes("how to make dmp") || lowerCasePrompt.includes("creating a dmp")) {
+        responseText = "While this chatbot doesn't create DMPs directly, the <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'EU & German Data Regulations' page</a> highlights developing a Data Management Plan as a key consideration for researchers. This page will guide you on the important aspects to include.";
+    } else if (lowerCasePrompt.includes("how to find open source information") || lowerCasePrompt.includes("open source info") || lowerCasePrompt.includes("where to get open source data")) {
+        responseText = "For open-source information related to data science tools, you can often find resources on platforms like GitHub or dedicated open-source communities. For example, the 'What's New' page links to 'Big Data Open Source Tools' on <a href='https://opensource.com/resources/big-data' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>opensource.com</a>: <a href='./whats-new.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>whats-new.html</a>. Always check the official project websites or GitHub repositories for specific tools.";
+    } else if (lowerCasePrompt.includes("how to get help with data management") || lowerCasePrompt.includes("who to contact for data management")) {
+        responseText = "You can get in touch with the data management team for assistance. Please refer to the contact information usually found on the <a href='./index.html#contact' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>main page's contact section</a>.";
+    } else if (lowerCasePrompt.includes("how to comply with gdpr")) {
+        responseText = "Complying with GDPR involves understanding regulations around data processing, anonymization, and ethical clearances. The <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'EU & German Data Regulations' page</a> provides key considerations for researchers.";
+    }
+
+    // --- "Where can I..." questions (expanded) ---
+    else if (lowerCasePrompt.includes("where can i find upcoming events") || lowerCasePrompt.includes("where are events") || lowerCasePrompt.includes("upcoming events")) {
+        responseText = "You can find a list of upcoming data science and genomics events on the <a href='./Events.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'Events' page</a>. This includes workshops, seminars, and talks.";
+    } else if (lowerCasePrompt.includes("where can i find data regulations") || lowerCasePrompt.includes("where are regulations") || lowerCasePrompt.includes("data regulation info")) {
+        responseText = "Information on EU & German Data Regulations, including GDPR for Research and DFG Guidelines, is available on the <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'Data Management Regulations' page</a>.";
+    } else if (lowerCasePrompt.includes("where can i learn about ai usage in python") || lowerCasePrompt.includes("ai in python learning")) {
+        responseText = "The <a href='./whats-new.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'What's New' page</a> provides links and information on AI Usage in Python, such as resources from <a href='https://koshurai.medium.com/' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>koshurai.medium.com</a>. You can check that page for more.";
+    } else if (lowerCasePrompt.includes("where is pol dmc located") || lowerCasePrompt.includes("pol dmc location")) {
+        responseText = "The PoL Data Management Corner is a central hub for research data management at Physics of Life (PoL) and TU Dresden. While the website provides resources, for physical location or direct contact, please refer to the contact information on the <a href='./index.html#contact' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>main page's contact section</a>.";
+    } else if (lowerCasePrompt.includes("where can i find tud policies") || lowerCasePrompt.includes("tud data policies")) {
+        responseText = "For official TU Dresden data policies, you should refer to the <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'EU & German Data Regulations' page</a> which covers relevant guidelines. You can also visit the official TU Dresden website for research data management: <a href='https://tu-dresden.de/forschung/services-forschende/forschungsdatenmanagement' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://tu-dresden.de/forschung/services-forschende/forschungsdatenmanagement</a>.";
+    } else if (lowerCasePrompt.includes("where can i find cmcb resources")) {
+        responseText = "While this site focuses on PoL and TU Dresden, general data management principles apply. For specific CMCB resources, you might consult their official website or direct data management contacts. A general link for CMCB is <a href='https://www.tu-dresden.de/cmcb' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://www.tu-dresden.de/cmcb</a>.";
+    }
+
+    // --- "Why..." questions (expanded) ---
+    else if (lowerCasePrompt.includes("why is data management important") || lowerCasePrompt.includes("importance of data management") || lowerCasePrompt.includes("why data management")) {
+        responseText = "Effective data management is crucial for ensuring the integrity, accessibility, and reusability of research data throughout its lifecycle. It helps comply with regulations, promotes reproducibility, and maximizes the impact of your research.";
+    } else if (lowerCasePrompt.includes("why use zenodo") || lowerCasePrompt.includes("benefits of zenodo") || lowerCasePrompt.includes("why zenodo")) {
+        responseText = "Zenodo provides persistent identifiers (DOIs) for your research data, making it citable and discoverable. It's a general-purpose open-access repository, suitable for a wide range of research outputs, ensuring long-term access. Official website: <a href='https://zenodo.org/' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://zenodo.org/</a>.";
+    } else if (lowerCasePrompt.includes("why are fair principles important") || lowerCasePrompt.includes("why fair")) {
+        responseText = "FAIR Principles are important because they make data Findable, Accessible, Interoperable, and Reusable. This enhances the value of research data, promotes collaboration, and allows for greater scientific discovery and reproducibility. See <a href='./data-sharing-archiving.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>data-sharing-archiving.html</a> for more.";
+    } else if (lowerCasePrompt.includes("why is a dmp needed")) {
+        responseText = "A DMP is needed to systematically plan how your research data will be handled, ensuring compliance with regulations, promoting data quality, and facilitating future reuse. It's a requirement for many funding bodies. More on <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>data-management-regulations.html</a>.";
+    }
+
+    // --- "When..." questions (expanded) ---
+    else if (lowerCasePrompt.includes("when are the next events") || lowerCasePrompt.includes("when is the next workshop") || lowerCasePrompt.includes("next events")) {
+        responseText = "Upcoming events are listed on the <a href='./Events.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'Events' page</a>. For example, in August 2025, there are events on 'Drosophila genetics and genomics' and 'Light sheet microscopy'. The 'Cytodata Symposium' is in November 2025.";
+    } else if (lowerCasePrompt.includes("when was this site updated") || lowerCasePrompt.includes("site update date")) {
+        responseText = "The 'What's New' section provides updates on advancements in data science, AI, and research tools, indicating ongoing updates to the content and information provided on the site: <a href='./whats-new.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>whats-new.html</a>.";
+    } else if (lowerCasePrompt.includes("when should i create a dmp")) {
+        responseText = "It's best to create a DMP at the beginning of your research project, often as part of the grant application process. This ensures data management is planned from the outset. Refer to <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>data-management-regulations.html</a> for more.";
+    }
+
+    // --- "Who..." questions (expanded) ---
+    else if (lowerCasePrompt.includes("who is this chatbot for") || lowerCasePrompt.includes("target audience") || lowerCasePrompt.includes("who can use this chatbot")) {
+        responseText = "This chatbot is designed to assist students, researchers, professors, and heads of departments at PoL EXC TU Dresden with their data management queries.";
+    } else if (lowerCasePrompt.includes("who can i contact for help") || lowerCasePrompt.includes("contact person for data management")) {
+        responseText = "You can get in touch with the data management team for assistance. Please refer to the contact information usually found on the <a href='./index.html#contact' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>main page's contact section</a>.";
+    } else if (lowerCasePrompt.includes("who is responsible for data management at tud")) {
+        responseText = "At TU Dresden, responsibility for data management often lies with individual researchers and research groups, supported by central services and guidelines provided by the university and initiatives like the PoL Data Management Corner. For official guidelines, see <a href='https://tu-dresden.de/forschung/services-forschende/forschungsdatenmanagement' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>TU Dresden Research Data Management</a>.";
+    }
+
+    // --- "Which..." questions (expanded) ---
+    else if (lowerCasePrompt.includes("which tools are recommended for storage") || lowerCasePrompt.includes("recommended storage tools") || lowerCasePrompt.includes("best storage options")) {
+        responseText = "For data storage, OwnCloud TUD is a recommended tool for secure cloud storage for TU Dresden users. You can find more details on the <a href='./data-storage-backup.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>Data Storage & Backup page</a>.";
+    } else if (lowerCasePrompt.includes("which repositories for sharing") || lowerCasePrompt.includes("recommended data repositories") || lowerCasePrompt.includes("best repositories")) {
+        responseText = "Recommended data repositories for sharing and archiving include Zenodo (<a href='https://zenodo.org/' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://zenodo.org/</a>), OpARA (TU Dresden's open-access data repository), and Figshare (<a href='https://figshare.com/' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://figshare.com/</a>). More details are on the <a href='./data-sharing-archiving.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>Data Sharing & Archiving page</a>.";
+    } else if (lowerCasePrompt.includes("which regulations apply to research data") || lowerCasePrompt.includes("what regulations")) {
+        responseText = "The <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'EU & German Data Regulations' page</a> covers regulations like GDPR for Research and DFG General Guidelines that apply to research data management.";
+    } else if (lowerCasePrompt.includes("which events are upcoming")) {
+        responseText = "You can find a list of upcoming data science and genomics events on the <a href='./Events.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'Events' page</a>. This includes workshops, seminars, and talks for August, October, and November 2025.";
+    }
+
+    // --- TU Dresden / PoL / CMCB specific queries ---
+    else if (lowerCasePrompt.includes("data management at tud") || lowerCasePrompt.includes("tud data management") || lowerCasePrompt.includes("tu dresden data management")) {
+        responseText = "The PoL Data Management Corner serves as a central hub for research data management at TU Dresden (TUD) and Physics of Life (PoL). It provides guides, tools, and addresses regulations relevant to TUD researchers. You can find more information on the <a href='./index.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>main page</a> or under <a href='./resources.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>Resources</a>. Also, check the official TU Dresden Research Data Management page: <a href='https://tu-dresden.de/forschung/services-forschende/forschungsdatenmanagement' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://tu-dresden.de/forschung/services-forschende/forschungsdatenmanagement</a>.";
+    } else if (lowerCasePrompt.includes("cmcb data management") || lowerCasePrompt.includes("data management for cmcb") || lowerCasePrompt.includes("cmcb data")) {
+        responseText = "While the site focuses on PoL and TU Dresden, the principles of data management, regulations like GDPR, and recommended tools for storage and sharing (like Zenodo and Figshare) are broadly applicable. For specific CMCB guidelines, you might need to consult their internal resources or contact the PoL Data Management team directly via the <a href='./index.html#contact' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>contact section</a> on the main page. A general link for CMCB is <a href='https://www.tu-dresden.de/cmcb' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://www.tu-dresden.de/cmcb</a>.";
+    } else if (lowerCasePrompt.includes("pol exc data management") || lowerCasePrompt.includes("data management at pol exc") || lowerCasePrompt.includes("pol exc data")) {
+        responseText = "The PoL Data Management Corner is specifically designed as a central resource for research data management at Physics of Life (PoL) and TU Dresden (TUD), including PoL EXC. All the information on regulations, storage, sharing, and tools is directly relevant to researchers within PoL EXC. Start exploring from the <a href='./index.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>main page</a>. You can find more about PoL on their official website: <a href='https://physics-of-life.tu-dresden.de/' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://physics-of-life.tu-dresden.de/</a>.";
+    }
+
+    // --- Open-ended questions / More general topics ---
+    else if (lowerCasePrompt.includes("tell me about data science") || lowerCasePrompt.includes("data science info") || lowerCasePrompt.includes("what is data science")) {
+        responseText = "Data science involves extracting knowledge and insights from data. The PoL Data Management Corner keeps you updated on advancements in data science, AI, and research tools in its <a href='./whats-new.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'What's New!?' section</a>. You can also find upcoming data science events on the <a href='./Events.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>Events page</a>.";
+    } else if (lowerCasePrompt.includes("ethical considerations for data") || lowerCasePrompt.includes("data ethics")) {
+        responseText = "Ethical Clearances are a key consideration under EU & German Data Regulations. This involves ensuring data collection and usage adhere to ethical guidelines and privacy standards. More details can be found on the <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>Data Management Regulations page</a>.";
+    } else if (lowerCasePrompt.includes("data anonymization") || lowerCasePrompt.includes("anonymize data")) {
+        responseText = "Data Anonymization is an important aspect of data protection, especially under regulations like GDPR. It involves removing or modifying personally identifiable information from datasets. This topic is covered in the <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'EU & German Data Regulations' section</a>.";
+    } else if (lowerCasePrompt.includes("dfg guidelines") || lowerCasePrompt.includes("about dfg")) {
+        responseText = "The DFG General Guidelines (German Research Foundation) are important regulations for data management in Germany, including principles like the 3Rs for animal data. These are detailed on the <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'EU & German Data Regulations' page</a>.";
+    } else if (lowerCasePrompt.includes("animal data guidelines") || lowerCasePrompt.includes("3rs principle")) {
+        responseText = "Animal Data Guidelines, specifically referencing DFG's 3Rs principle (Replacement, Reduction, Refinement), are part of the <a href='./data-management-regulations.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>'EU & German Data Regulations'</a> to ensure ethical handling of animal-related research data.";
+    } else if (lowerCasePrompt.includes("open access repositories") || lowerCasePrompt.includes("public data repositories")) {
+        responseText = "For open access to research data, recommended repositories include Zenodo (<a href='https://zenodo.org/' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://zenodo.org/</a>), OpARA (TU Dresden's open-access data repository), and Figshare (<a href='https://figshare.com/' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>https://figshare.com/</a>). More details are on the <a href='./data-sharing-archiving.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>Data Sharing & Archiving page</a>.";
+    } else if (lowerCasePrompt.includes("how to get youtube videos on data management")) {
+        responseText = "While this site doesn't host YouTube videos directly, you can find many educational videos on data management, data science, and specific tools on YouTube by searching for terms like 'research data management tutorial', 'FAIR data principles explained', or 'Zenodo guide'. Look for content from reputable universities or organizations.";
+    } else if (lowerCasePrompt.includes("what is the structure of research data lifecycle")) {
+        responseText = "The research data lifecycle typically includes planning, collection, processing, analysis, preservation, sharing, and reuse. The PoL Data Management Corner provides comprehensive guides for this entire lifecycle. See the <a href='./index.html' target='_blank' class='text-blue-500 dark:text-blue-300 hover:underline'>homepage</a> for an overview.";
+    }
+
+    // --- Fallback for general or unhandled queries ---
+    else {
+        responseText = "I'm designed to provide information from the PoL Data Management Corner website. Could you please ask about specific topics like 'data storage options', 'upcoming events', 'data regulations', 'data sharing', or tools like 'Zenodo' or 'Figshare'?";
     }
 
     // Simulate a slight delay for a more natural feel
@@ -107,7 +233,6 @@ function initializeChatbot() {
     // Create chatbot button
     const chatbotButton = document.createElement('button');
     chatbotButton.id = 'chatbot-toggle-button';
-    // Changed icon to 'fa-comments' and background to 'secondary-violet'
     chatbotButton.className = 'fixed bottom-4 right-4 bg-secondary-violet text-white rounded-full p-4 shadow-lg hover:bg-primary-blue transition-all duration-300 z-[1000] focus:outline-none focus:ring-2 focus:ring-secondary-violet focus:ring-offset-2';
     // Replaced Font Awesome icon with inline SVG for a 'Radar' icon
     chatbotButton.innerHTML = `
