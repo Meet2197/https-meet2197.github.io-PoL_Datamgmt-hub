@@ -63,7 +63,7 @@ The front-end code is self-contained in a single ```bash data-hub.html``` file. 
 
 ## 🌐 Live Site
 
-Visit the site: [```bashhttps://meet2197.github.io/PoL_Datamgmt-hub/```]
+Visit the site: [```bash https://meet2197.github.io/PoL_Datamgmt-hub/```]
 
 
 # 🤝 Contribution
