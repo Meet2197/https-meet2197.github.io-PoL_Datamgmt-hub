@@ -117,39 +117,7 @@ body {
 }
 
 /* Nested slider navigation buttons */
-.nested-slider-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #6a47a8;
-    color: white;
-    border: none;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 50%;
-    cursor: pointer;
-    opacity: 0.8;
-    transition: opacity 0.3s, transform 0.3s;
-}
 
-.nested-slider-nav:hover {
-    opacity: 1;
-    transform: translateY(-50%) scale(1.1);
-}
-
-.nested-slider-nav.left {
-    left: 0;
-}
-
-.nested-slider-nav.right {
-    right: 0;
-}
-
-.nested-slider-nav:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-    transform: translateY(-50%) scale(1);
-}
 
 /* Modal base styles */
 .modal-wrapper {
@@ -183,13 +151,3 @@ body {
     from { opacity: 0; }
     to { opacity: 1; }
 }
-
-.nav-link {
-    @apply text-gray-800 dark:text-gray-200 hover:text-secondary-violet transition-colors duration-200;
-  }
-  .btn-glass {
-    @apply py-3 px-6 rounded-full font-bold shadow-md bg-opacity-90 backdrop-blur-lg transition-transform transform hover:scale-105;
-  }
-  .btn-outline-glass {
-    @apply py-3 px-6 rounded-full font-bold border-2 shadow-md transition-transform transform hover:scale-105;
-  }  

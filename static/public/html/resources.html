@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - PoL Data Management Corner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#1a237e',
+                        'secondary-violet': '#6a47a8',
+                        'light-bg': '#f4f7f9',
+                        'dark-bg': '#121212',
+                        'dark-surface': '#1e1e1e',
+                        'dark-card': '#2a2a2a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="static/public/css/style.css">
+    <style>
+        /* Define a subtle fade-in and slide-up animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Apply staggered animation to the hero section elements */
+        .animate-stagger-1 {
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.2s;
+            opacity: 0; /* Ensure initial state is hidden */
+        }
+        .animate-stagger-2 {
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+        .animate-stagger-3 {
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.6s;
+            opacity: 0;
+        }
+        /* Extend the staggered animation to the main content */
+        .animate-stagger-4 {
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.8s;
+            opacity: 0;
+        }
+        .animate-stagger-5 {
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 1s;
+            opacity: 0;
+        }
+        /* Animate footer with a final delay */
+        .animate-stagger-6 {
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 1.2s;
+            opacity: 0;
+        }
+
+        /* Modal Styles */
+        .modal-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal-wrapper.active {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content-container {
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="bg-light-bg dark:bg-dark-bg text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <nav class="bg-white dark:bg-dark-surface fixed w-full z-20 top-0 start-0 shadow-md dark:shadow-lg transition-colors duration-300">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="static/images/logos/tud_logo.svg" class="h-12 w-auto rounded-full shadow-lg" alt="TUD Logo">
+            </a>
+            <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="static/images/logos/pol-logo.png" class="h-9 w-auto sqaured-full shadow-lg" alt="PoL Logo">
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse items-center">
+                <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun h-5 w-5"></i>
+                    <i id="theme-toggle-dark-icon" class="fa-solid fa-moon h-5 w-5 hidden"></i>
+                </button>
+                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-dark-surface dark:border-gray-700">
+                    <li><a href="index.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" data-modal-target="about-modal">Overview</a></li>
+                    <li><a href="Resources.html" class="block py-2 px-3 text-white bg-secondary-violet rounded md:bg-transparent md:text-secondary-violet md:p-0 dark:text-white" aria-current="page" data-modal-target="resources-modal">Resources</a></li>
+                    <li><a href="Events.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Events</a></li>
+                    <li><a href="whats-new.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">What's New</a></li>
+                    <li><a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-violet md:p-0 md:dark:hover:text-secondary-violet dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" data-modal-target="contact-modal">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+
+    <main class="container mx-auto p-4 md:p-8 mt-24">
+        <section id="key-resources" class="mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-primary-blue dark:text-secondary-violet">Key Resources</h2>
+            <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold text-primary-blue dark:text-secondary-violet mb-2"><i class="fa-solid fa-file-contract mr-2"></i>Data Management Regulations</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Learn how to create effective Data Management policies for your research projects.</p>
+                        <a href="data-management-regulations.html" class="text-secondary-violet hover:underline">Read More →</a>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold text-primary-blue dark:text-secondary-violet mb-2"><i class="fa-solid fa-cloud-upload-alt mr-2"></i>Data Storage & Backup</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Guidelines and recommendations for secure data storage and backup solutions.</p>
+                        <a href="data-storage-backup.html" class="text-secondary-violet hover:underline">Read More →</a>
+                        <div class="mt-4">
+                            <h4 class="font-bold text-lg text-primary-blue dark:text-white mb-2">Recommended Tool</h4>
+                            <div class="flex items-center space-x-4 bg-gray-100 dark:bg-dark-card p-4 rounded-xl cursor-pointer hover:bg-gray-200 dark:hover:bg-dark-card/80 transition-colors duration-200" data-modal-target="owncloud-modal">
+                                <img src="static/images/logos/tud_logo.svg" alt="OwnCloud TUD Logo" class="h-10 w-10">
+                                <div>
+                                    <h5 class="font-semibold">OwnCloud TUD</h5>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">Secure cloud storage for TU Dresden users.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold text-primary-blue dark:text-secondary-violet mb-2"><i class="fa-solid fa-box-open mr-2"></i>Data Sharing & Archiving</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Best practices for sharing your research data and long-term archiving.</p>
+                        <a href="data-sharing-archiving.html" class="text-secondary-violet hover:underline">Read More →</a>
+                        <div class="mt-4">
+                            <h4 class="font-bold text-lg text-primary-blue dark:text-white mb-2">Recommended Tools</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col items-center justify-center p-4 bg-gray-100 dark:bg-dark-card rounded-xl cursor-pointer hover:bg-gray-200 dark:hover:bg-dark-card/80 transition-colors duration-200" data-modal-target="zenodo-modal">
+                                    <img src="https://placehold.co/40x40/6a47a8/ffffff?text=Zenodo" alt="Zenodo Logo" class="h-10 w-10 mb-2">
+                                    <p class="font-semibold text-sm text-center">Zenodo</p>
+                                </div>
+                                <div class="flex flex-col items-center justify-center p-4 bg-gray-100 dark:bg-dark-card rounded-xl cursor-pointer hover:bg-gray-200 dark:hover:bg-dark-card/80 transition-colors duration-200" data-modal-target="figshare-modal">
+                                    <img src="https://placehold.co/40x40/6a47a8/ffffff?text=Figshare" alt="Figshare Logo" class="h-10 w-10 mb-2">
+                                    <p class="font-semibold text-sm text-center">Figshare</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="data-science-events" class="text-center py-12 bg-primary-blue dark:bg-secondary-violet text-white rounded-xl shadow-lg">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Upcoming Data Science Events</h2>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-6">Discover workshops, seminars, and talks on data science and genomics hosted by TU Dresden and PoL.</p>
+            <a href="Events.html" class="inline-block bg-white text-primary-blue font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300">View All Events</a>
+        </section>
+    </main>
+
+    <footer class="bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 p-6 text-center transition-colors duration-300">
+        <div class="container mx-auto">
+            © 2025 PoL Data Management Corner. All rights reserved.
+        </div>
+    </footer>
+
+    <div id="modal-container">
+        <div id="about-modal" class="modal-wrapper">
+            <div class="modal-content-container">
+                <div class="relative bg-white dark:bg-dark-surface p-0 rounded-xl shadow-2xl max-w-2xl w-full mx-4 my-8 overflow-hidden">
+        
+                    <div class="relative pt-12 pb-8 px-6 bg-primary-blue text-white text-center">
+                        <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('static/images/image2.jpg');"></div>
+                        <div class="relative z-10">
+                            <h2 class="text-3xl md:text-4xl font-bold mb-2">About Our Initiative</h2>
+                            <p class="text-lg opacity-80">Your guide to effective research data management at PoL.</p>
+                        </div>
+                    </div>
+        
+                    <div class="p-8">
+                        <button class="absolute top-4 right-4 text-white hover:text-gray-200 dark:text-gray-400 dark:hover:text-white" data-modal-close="about-modal"><i class="fa-solid fa-xmark text-2xl"></i></button>
+        
+                        <div class="text-center mb-6">
+                            <p class="text-gray-600 dark:text-gray-400">
+                                This is your central hub for all things related to research data management at the Physics of Life (PoL) and TU Dresden (TUD). We provide comprehensive guides, best practices, and essential tools to help you streamline the entire lifecycle of your research data, from project inception to long-term archiving.
+                            </p>
+                        </div>
+        
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <a href="resources.html" class="flex items-center p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-md hover:bg-gray-200 dark:hover:bg-dark-card/80 transition duration-300">
+                                <i class="fa-solid fa-file-contract mr-4 text-3xl text-secondary-violet"></i>
+                                <div>
+                                    <h3 class="font-bold text-xl">Key Resources</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Detailed guides on regulations, storage, and sharing.</p>
+                                </div>
+                            </a>
+        
+                            <a href="Events.html" class="flex items-center p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-md hover:bg-gray-200 dark:hover:bg-dark-card/80 transition duration-300">
+                                <i class="fa-solid fa-calendar-alt mr-4 text-3xl text-secondary-violet"></i>
+                                <div>
+                                    <h3 class="font-bold text-xl">Upcoming Events</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Workshops, seminars, and talks on data science.</p>
+                                </div>
+                            </a>
+        
+                            <a href="whats-new.html" class="flex items-center p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-md hover:bg-gray-200 dark:hover:bg-dark-card/80 transition duration-300">
+                                <i class="fa-solid fa-bell mr-4 text-3xl text-secondary-violet"></i>
+                                <div>
+                                    <h3 class="font-bold text-xl">What's New</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Latest updates and news from the team.</p>
+                                </div>
+                            </a>
+        
+                            <a href="#" class="flex items-center p-4 bg-gray-100 dark:bg-dark-card rounded-lg shadow-md hover:bg-gray-200 dark:hover:bg-dark-card/80 transition duration-300">
+                                <i class="fa-solid fa-envelope mr-4 text-3xl text-secondary-violet"></i>
+                                <div>
+                                    <h3 class="font-bold text-xl">Contact Us</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Get in touch with the data management team.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="owncloud-modal" class="modal-wrapper">
+            <div class="modal-content-container">
+                <div class="relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-2xl w-full mx-4 my-8">
+                    <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white" data-modal-close="owncloud-modal"><i class="fa-solid fa-xmark text-2xl"></i></button>
+                    <div class="flex flex-col items-center">
+                        <img src="static/images/logos/tud_logo.svg" alt="OwnCloud TUD Logo" class="h-20 w-20 mb-4">
+                        <h2 class="text-2xl font-bold mb-4">OwnCloud TUD</h2>
+                        <p class="text-center text-gray-600 dark:text-gray-400 mb-6">OwnCloud at TU Dresden provides a secure and compliant cloud storage solution, allowing researchers to store, share, and collaborate on their data with ease. It's an excellent choice for internal data management and collaboration within the university network.</p>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <button class="bg-gray-200 dark:bg-dark-card text-gray-800 dark:text-white font-bold py-2 px-6 rounded-full hover:bg-gray-300 dark:hover:bg-dark-card/80 transition duration-300">About</button>
+                            <button class="bg-gray-200 dark:bg-dark-card text-gray-800 dark:text-white font-bold py-2 px-6 rounded-full hover:bg-gray-300 dark:hover:bg-dark-card/80 transition duration-300">Documentation</button>
+                            <a href="https://cloud.tu-dresden.de/" target="_blank" rel="noopener noreferrer" class="bg-secondary-violet text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-violet-700 transition duration-300">Link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="zenodo-modal" class="modal-wrapper">
+            <div class="modal-content-container">
+                <div class="relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-2xl w-full mx-4 my-8">
+                    <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white" data-modal-close="zenodo-modal"><i class="fa-solid fa-xmark text-2xl"></i></button>
+                    <div class="flex flex-col items-center">
+                        <img src="static/images/logos/zenodo_logo.svg" onerror="this.onerror=null;this.src='https://placehold.co/80x80/6a47a8/ffffff?text=Zenodo';" alt="Zenodo Logo" class="h-20 w-20 mb-4">
+                        <h2 class="text-2xl font-bold mb-4">Zenodo</h2>
+                        <p class="text-center text-gray-600 dark:text-gray-400 mb-6">Zenodo is a general-purpose open-access repository developed by CERN. It allows researchers to deposit research data, software, publications, and more. It provides a persistent identifier (DOI) for each upload, ensuring your research output is citable and long-lasting.</p>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <button class="bg-gray-200 dark:bg-dark-card text-gray-800 dark:text-white font-bold py-2 px-6 rounded-full hover:bg-gray-300 dark:hover:bg-dark-card/80 transition duration-300">About</button>
+                            <button class="bg-gray-200 dark:bg-dark-card text-gray-800 dark:text-white font-bold py-2 px-6 rounded-full hover:bg-gray-300 dark:hover:bg-dark-card/80 transition duration-300">Documentation</button>
+                            <a href="https://zenodo.org" target="_blank" rel="noopener noreferrer" class="bg-secondary-violet text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-violet-700 transition duration-300">Link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="figshare-modal" class="modal-wrapper">
+            <div class="modal-content-container">
+                <div class="relative bg-white dark:bg-dark-surface p-6 rounded-xl shadow-2xl max-w-2xl w-full mx-4 my-8">
+                    <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white" data-modal-close="figshare-modal"><i class="fa-solid fa-xmark text-2xl"></i></button>
+                    <div class="flex flex-col items-center">
+                        <img src="static/images/logos/figshare_logo.svg" onerror="this.onerror=null;this.src='https://placehold.co/80x80/6a47a8/ffffff?text=Figshare';" alt="Figshare Logo" class="h-20 w-20 mb-4">
+                        <h2 class="text-2xl font-bold mb-4">Figshare</h2>
+                        <p class="text-center text-gray-600 dark:text-gray-400 mb-6">Figshare is an online repository for researchers to publish their data, figures, and other research outputs. It supports all file types and provides persistent, citable DOIs. Figshare is known for its user-friendly interface and focus on making research accessible and shareable.</p>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <button class="bg-gray-200 dark:bg-dark-card text-gray-800 dark:text-white font-bold py-2 px-6 rounded-full hover:bg-gray-300 dark:hover:bg-dark-card/80 transition duration-300">About</button>
+                            <button class="bg-gray-200 dark:bg-dark-card text-gray-800 dark:text-white font-bold py-2 px-6 rounded-full hover:bg-gray-300 dark:hover:bg-dark-card/80 transition duration-300">Documentation</button>
+                            <a href="https://figshare.com" target="_blank" rel="noopener noreferrer" class="bg-secondary-violet text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-violet-700 transition duration-300">Link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme toggle logic
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
+            
+            // On page load or when dark mode is toggled
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                lightIcon.classList.add('hidden');
+                darkIcon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                lightIcon.classList.remove('hidden');
+                darkIcon.classList.add('hidden');
+            }
+            
+            themeToggleBtn.addEventListener('click', () => {
+                // Toggle icons
+                lightIcon.classList.toggle('hidden');
+                darkIcon.classList.toggle('hidden');
+            
+                // Toggle dark mode
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            });
+
+            // Navbar collapse toggle logic
+            const navbarToggleBtn = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
+            const navbarMenu = document.getElementById('navbar-sticky');
+            navbarToggleBtn.addEventListener('click', () => {
+                navbarMenu.classList.toggle('hidden');
+                navbarMenu.classList.toggle('flex');
+            });
+            
+            // Modal logic
+            const modals = document.querySelectorAll('.modal-wrapper');
+            const modalOpenBtns = document.querySelectorAll('[data-modal-target]');
+            const modalCloseBtns = document.querySelectorAll('[data-modal-close]');
+            
+            // Function to open modal
+            const openModal = (modalId) => {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.add('active');
+                }
+            };
+            
+            // Function to close modal
+            const closeModal = (modalId) => {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.remove('active');
+                }
+            };
+            
+            // Event listeners for opening modals
+            modalOpenBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const modalId = e.currentTarget.getAttribute('data-modal-target');
+                    openModal(modalId);
+                });
+            });
+            
+            // Event listeners for closing modals
+            modalCloseBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const modalId = e.currentTarget.getAttribute('data-modal-close');
+                    closeModal(modalId);
+                });
+            });
+            
+            // Close modal when clicking outside
+            modals.forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal(modal.id);
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="static/public/js/chatbot.js"></script>
+</body>
+</html>
