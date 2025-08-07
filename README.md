@@ -1,73 +1,70 @@
 # PoL Data Management Hub
 
+This repository contains the front-end and a Python-based back-end for a Proof of Learning (PoL) Data Management Hub. The application allows users to view, search, and manage a collection of data records. The front end is built with HTML, CSS (Tailwind CSS), and JavaScript, while the back end uses the Flask framework with a SQLite database to provide a RESTful API.
+
 # 🌟 Overview
 The PoL Data Management Hub is a central web platform designed to provide researchers at the Physics of Life (PoL) institute with a comprehensive set of resources, guidelines, and tools for effective and compliant data management. This hub simplifies the research data lifecycle, from initial planning to long-term archiving.
 
 # ✨ Features
-Key Resources: Access essential guides on data management regulations, secure storage, and data sharing best practices.
+RESTful API: A Python Flask back end with a RESTful API for managing data.
 
-What's New: Stay up-to-date with the latest advancements, news, and trends in data science, AI, and research tools.
+Database Integration: Uses a lightweight SQLite database for data persistence.
 
-Upcoming Events: Discover and register for workshops, seminars, and events related to data science and management.
+Data Models: Records are stored with a title, description, category, and creation timestamp.
 
-Contact Information: Easily get in touch with the data management team for personalized support and assistance.
+Efficient Searching: The back end includes a /api/data/search endpoint that supports searching and pagination, allowing for efficient querying of large datasets.
 
-Tools: Find recommended tools and services for cloud storage, version control (e.g., GitLab), and data archiving (e.g., OPARA, Zenodo).
+Dynamic Front End: The front end fetches data from the back end and dynamically renders it with a responsive user interface.
 
-## 🛠️ Local Development
+Pagination: The front end includes pagination controls to navigate through search results effectively.
 
-Clone the repo:
+# ⚙️ Prerequisites
+To run this project, you will need:
 
-```bash
-git clone https://meet2197.github.io/PoL_Datamgmt-hub/
-cd PoL_Datamgmt-hub.github.io
-```
-Open index.html directly in a browser or use a local server like:
+Python 3.8+
 
-```bash
-python3 -m http.server
-```
+pip (Python package manager)
+
+Node.js and npm (for front-end dependencies if any are added, though not strictly required for the current version)
 
 # 🌐 Running Locally
 
-## 🌐 Live Site
-
-Visit the site: [https://meet2197.github.io/PoL_Datamgmt-hub/](https://meet2197.github.io/PoL_Datamgmt-hub)
-```bash
-python -m http.server
-```
-
-Or access the hosted version at:
-👉 ```https://meet2197.github.io/PoL_Datamgmt-hub.github.io```
-
-
-# Prerequisites
-You only need a web browser to view the hub.
-
-# Installation
-
+Installation and Setup
+Back End
 Clone the repository:
 
-git clone https://github.com/Meet2197/PoL_Datamgmt-hub.git
-
-Navigate to the project directory:
-```
+```bash
+git clone https://github.com/Meet2197/PoL_Datamgmt-hub
 cd PoL_Datamgmt-hub
 ```
-Open the main file:
-Open the index.html file in your preferred web browser.
 
-# 🛠️ Technology Stack
+# Create and activate a virtual environment:
 
-This project is built using:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
-HTML5: For the page structure.
+Install back-end dependencies:
+```bash
+pip install Flask Flask-Cors
+```
 
-Tailwind CSS: For a modern, utility-first approach to styling.
+Run the back-end server:
+```bash
+python3 app/venv/app.py
+```
 
-JavaScript: To handle interactive elements and dynamic content.
+The server will start on ```bash http://127.0.0.1:5000```
 
-Font Awesome: For icons.
+## Front End
+
+The front-end code is self-contained in a single ```bash data-hub.html``` file. You can simply open this file in a modern web browser to run the application, as it fetches data directly from the running back-end server
+
+## 🌐 Live Site
+
+Visit the site: [```bashhttps://meet2197.github.io/PoL_Datamgmt-hub/```]
+
 
 # 🤝 Contribution
 If you are a member of the PoL team and would like to contribute to the content or suggest improvements, please contact the repository owner or submit a pull request.
