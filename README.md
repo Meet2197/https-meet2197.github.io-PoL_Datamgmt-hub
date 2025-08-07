@@ -5,6 +5,9 @@ This repository contains the front-end and a Python-based back-end for a Proof o
 # 🌟 Overview
 The PoL Data Management Hub is a central web platform designed to provide researchers at the Physics of Life (PoL) institute with a comprehensive set of resources, guidelines, and tools for effective and compliant data management. This hub simplifies the research data lifecycle, from initial planning to long-term archiving.
 
+🌐 Live Site
+Visit the site: https://meet2197.github.io/PoL_Datamgmt-hub/ 
+
 # ✨ Features
 RESTful API: A Python Flask back end with a RESTful API for managing data.
 
@@ -55,15 +58,11 @@ Run the back-end server:
 python3 app/venv/app.py
 ```
 
-The server will start on ```bash http://127.0.0.1:5000```
+The server will start on ```http://127.0.0.1:5000```
 
 ## Front End
 
 The front-end code is self-contained in a single ```bash data-hub.html``` file. You can simply open this file in a modern web browser to run the application, as it fetches data directly from the running back-end server
-
-## 🌐 Live Site
-
-Visit the site: [```bash https://meet2197.github.io/PoL_Datamgmt-hub/```]
 
 
 # 🤝 Contribution
