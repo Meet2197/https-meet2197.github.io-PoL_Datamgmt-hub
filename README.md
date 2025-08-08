@@ -1,6 +1,6 @@
 # PoL Data Management Hub
 
-This repository contains the front-end and a Python-based back-end for a Proof of Learning (PoL) Data Management Hub. The application allows users to view, search, and manage a collection of data records. The front end is built with HTML, CSS (Tailwind CSS), and JavaScript, while the back end uses the Flask framework with a SQLite database to provide a RESTful API.
+This repository contains the front-end and a Python-based back-end for a Physics of Life (PoL) Exc Data Management Corner. The application allows users to view, search, and manage a collection of data records. The front end is built with HTML, CSS (Tailwind CSS), and JavaScript, while the back end uses the Flask framework with a SQLite database to provide a RESTful API.
 
 # 🌟 Overview
 The PoL Data Management Hub is a central web platform designed to provide researchers at the Physics of Life (PoL) institute with a comprehensive set of resources, guidelines, and tools for effective and compliant data management. This hub simplifies the research data lifecycle, from initial planning to long-term archiving.
