@@ -274,18 +274,186 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Mobile menu
-    mobileMenuToggle.addEventListener('click', () => {
-        mobileMenu.classList.add('open');
-        mobileMenuBackdrop.classList.remove('hidden');
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const navbar = document.getElementById('navbar');
+    const body = document.body;
+
+    // Track menu state
+    let isMenuOpen = false;
+
+    // Function to open mobile menu
+    function openMobileMenu() {
+        if (!isMenuOpen) {
+            isMenuOpen = true;
+            mobileMenu.classList.add('open');
+            menuToggle.classList.add('active');
+            body.classList.add('menu-open');
+            
+            // Ensure navbar background stays visible
+            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            if (document.documentElement.classList.contains('dark')) {
+                navbar.style.backgroundColor = 'rgba(30, 30, 30, 0.95)';
+            }
+        }
+    }
+
+    // Function to close mobile menu
+    function closeMobileMenu() {
+        if (isMenuOpen) {
+            isMenuOpen = false;
+            mobileMenu.classList.remove('open');
+            menuToggle.classList.remove('active');
+            body.classList.remove('menu-open');
+            
+            // Reset navbar background
+            navbar.style.backgroundColor = '';
+        }
+    }
+
+    // Event listeners for menu toggle
+    if (menuToggle) {
+        menuToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            if (isMenuOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+    }
+
+    // Close button event listener
+    if (mobileMenuClose) {
+        mobileMenuClose.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeMobileMenu();
+        });
+    }
+
+    // Close menu when clicking on navigation links
+    const mobileNavLinks = mobileMenu?.querySelectorAll('.nav-link');
+    mobileNavLinks?.forEach(link => {
+        link.addEventListener('click', () => {
+            closeMobileMenu();
+        });
     });
-    mobileMenuClose.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        mobileMenuBackdrop.classList.add('hidden');
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (isMenuOpen && !mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+            closeMobileMenu();
+        }
     });
-    mobileMenuBackdrop.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        mobileMenuBackdrop.classList.add('hidden');
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isMenuOpen) {
+            closeMobileMenu();
+        }
     });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768 && isMenuOpen) {
+            closeMobileMenu();
+        }
+    });
+
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    // Check for saved theme or default to light
+    const savedTheme = localStorage.getItem('color-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+        themeToggleDarkIcon?.classList.add('hidden');
+        themeToggleLightIcon?.classList.remove('hidden');
+    } else {
+        document.documentElement.classList.remove('dark');
+        themeToggleDarkIcon?.classList.remove('hidden');
+        themeToggleLightIcon?.classList.add('hidden');
+    }
+// Theme toggle event listener
+themeToggleBtn?.addEventListener('click', () => {
+    themeToggleLightIcon?.classList.toggle('hidden');
+    themeToggleDarkIcon?.classList.toggle('hidden');
+
+    if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+    } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+    }
+
+    // Update navbar background if menu is open
+    if (isMenuOpen) {
+        if (document.documentElement.classList.contains('dark')) {
+            navbar.style.backgroundColor = 'rgba(30, 30, 30, 0.95)';
+        } else {
+            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+        }
+    }
+});
+
+// Enhanced Modal Logic
+const modals = document.querySelectorAll('.modal-wrapper');
+const openModalButtons = document.querySelectorAll('[data-modal-target]');
+const closeModalButtons = document.querySelectorAll('[data-modal-close]');
+
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'flex';
+        body.style.overflow = 'hidden';
+        
+        // Close mobile menu if open
+        if (isMenuOpen) {
+            closeMobileMenu();
+        }
+    }
+}
+
+function closeModal(modal) {
+    if (modal) {
+        modal.style.display = 'none';
+        body.style.overflow = 'auto';
+    }
+}
+// Modal event listeners
+openModalButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+        event.preventDefault();
+        const modalId = button.getAttribute('data-modal-target');
+        openModal(modalId);
+    });
+});
+
+closeModalButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+        event.preventDefault();
+        const modalId = button.getAttribute('data-modal-close');
+        const modal = document.getElementById(modalId);
+        closeModal(modal);
+    });
+});
+
+// Close modals when clicking outside
+modals.forEach(modal => {
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal || event.target.classList.contains('modal-backdrop')) {
+            closeModal(modal);
+        }
+    });
+});
             
     // Search functionality
     const handleSearch = (query) => {

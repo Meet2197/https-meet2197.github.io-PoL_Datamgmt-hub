@@ -195,44 +195,50 @@
 </head>
 <body class="bg-light-bg dark:bg-dark-bg text-gray-800 dark:text-gray-200 transition-colors duration-300">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 dark:bg-dark-surface/80 shadow-md transition-all">
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 dark:bg-dark-surface/80 shadow-md transition-all" id="navbar">
         <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-          <div class="flex items-center space-x-2 sm:space-x-4">
-            <a href="index.html"><img src="static/images/logos/tud_logo.svg" alt="TUD" class="h-8 sm:h-10 w-auto rounded-full" /></a>
-            <a href="index.html"><img src="static/images/logos/pol-logo.png" alt="PoL" class="h-6 sm:h-8 w-auto" /></a>
-          </div>
+            <div class="flex items-center space-x-2 sm:space-x-4" id="nav-logos">
+                <a href="index.html"><img src="static/images/logos/tud_logo.svg" alt="TUD" class="h-8 sm:h-10 w-auto rounded-full" id="tud-logo" /></a>
+                <a href="index.html"><img src="static/images/logos/pol-logo.png" alt="PoL" class="h-6 sm:h-8 w-auto" id="pol-logo" /></a>
+            </div>
           
           <!-- Desktop Menu -->
-          <div class="hidden md:flex space-x-4 lg:space-x-6 font-medium text-sm">
+          <div class="hidden md:flex space-x-4 lg:space-x-6 font-medium text-sm" id="desktop-menu">
             <a href="#" data-modal-target="about-modal" class="nav-link hover:text-secondary-violet transition-colors">Overview</a>
             <a href="#" data-modal-target="resources-modal" class="nav-link hover:text-secondary-violet transition-colors">Resources</a>
             <a href="Events.html" class="nav-link hover:text-secondary-violet transition-colors">Events</a>
             <a href="#" data-modal-target="contact-modal" class="nav-link hover:text-secondary-violet transition-colors">Contact</a>
             <a href="whats-new.html" class="nav-link text-secondary-red font-semibold hover:text-red-600 transition-colors">What's New</a>
-          </div>
-          
-          <div class="flex items-center space-x-3">
+        </div>
+        
+        <div class="flex items-center space-x-3">
             <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-              <i id="theme-toggle-light-icon" class="fa-solid fa-sun hidden"></i>
-              <i id="theme-toggle-dark-icon" class="fa-solid fa-moon"></i>
+                <i id="theme-toggle-light-icon" class="fa-solid fa-sun hidden"></i>
+                <i id="theme-toggle-dark-icon" class="fa-solid fa-moon"></i>
             </button>
             <button class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" id="menu-toggle">
-              <i class="fa-solid fa-bars text-xl"></i>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
             </button>
-          </div>
+        </div>
+        </div>
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden mobile-menu fixed top-0 left-0 w-full h-full bg-white dark:bg-dark-surface z-40 pt-20">
-          <div class="flex flex-col space-y-0">
-            <a href="#" data-modal-target="about-modal" class="nav-link text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Overview</a>
-            <a href="#" data-modal-target="resources-modal" class="nav-link text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Resources</a>
-            <a href="Events.html" class="nav-link text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Events</a>
-            <a href="#" data-modal-target="contact-modal" class="nav-link text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Contact</a>
-            <a href="whats-new.html" class="nav-link text-secondary-red font-semibold hover:bg-gray-100 dark:hover:bg-gray-700">What's New</a>
-          </div>
+        <div id="mobile-menu" class="md:hidden fixed top-0 left-0 w-full h-full bg-white dark:bg-dark-surface z-40 transform -translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col pt-20 px-4">
+                <button id="mobile-menu-close" class="absolute top-4 right-4 p-2 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+                <a href="#" data-modal-target="about-modal" class="nav-link text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 py-3 px-4 block">Overview</a>
+                <a href="#" data-modal-target="resources-modal" class="nav-link text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 py-3 px-4 block">Resources</a>
+                <a href="Events.html" class="nav-link text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 py-3 px-4 block">Events</a>
+                <a href="#" data-modal-target="contact-modal" class="nav-link text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 py-3 px-4 block">Contact</a>
+                <a href="whats-new.html" class="nav-link text-secondary-red font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 py-3 px-4 block">What's New</a>
+            </div>
         </div>
-      </nav>
+    </nav>
 
       <!-- Hero Section -->
       <header class="relative bg-primary-blue text-white min-h-screen flex items-center justify-center pt-20 sm:pt-32 pb-12 sm:pb-24">
@@ -691,7 +697,7 @@
           
           // --- Dynamic Slider for Sharing & Archiving Tools ---
           const toolsData = [
-              { name: 'Zenodo', link: 'https://zenodo.org/', logo: 'static/images/logos/omero-logo.png', description: 'A general-purpose open-access repository for research data, software, publications, and more.', documentation: 'https://help.zenodo.org/docs/', join: 'https://zenodo.org/signup/' },
+              { name: 'Zenodo', link: 'https://zenodo.org/', logo: 'static/images/logos/zenodo_logo.jpg', description: 'A general-purpose open-access repository for research data, software, publications, and more.', documentation: 'https://help.zenodo.org/docs/', join: 'https://zenodo.org/signup/' },
               { name: 'Figshare', link: 'https://figshare.com/', logo: 'static/images/logos/imagesc-logo.png', description: 'An online repository to share, publish, and discover research data, figures, and other scholarly outputs.', documentation: 'https://knowledge.figshare.com/', join: 'https://figshare.com/account/login' },
               { name: 'elabftw', link: 'https://elab.cmcb.tu-dresden.de/', logo: 'static/images/logos/elabftw-logo.png', description: 'An open-source electronic lab notebook for recording and managing experimental data.', documentation: 'https://doc.elabftw.net/', join: 'https://elab.cmcb.tu-dresden.de/login.php' },
               { name: 'Gitlab TUD', link: 'https://gitlab.mn.tu-dresden.de/', logo: 'static/images/logos/gitlab-logo.png', description: 'TU Dresden\'s platform for Git-based version control, code collaboration, and CI/CD.', documentation: 'https://tu-dresden.de/mn/der-bereich/it-kompetenz-und-servicezentrum/gitlab-dienst', join: 'https://gitlab.mn.tu-dresden.de/users/sign_in' },
