@@ -16,7 +16,7 @@
                     colors: {
                         'primary-blue': '#1a237e',
                         'secondary-violet': '#6a47a8',
-                        'secondary-red': '#ef4444', // Added new red color for 'What's New' link
+                        'secondary-red': '#ef4444',
                         'light-bg': '#f4f7f9',
                         'dark-bg': '#121212',
                         'dark-surface': '#1e1e1e',
@@ -128,35 +128,29 @@
         .group:hover .tooltip-hover {
           animation: fadeInUpHover 0.4s ease forwards;
         }
+
+        /* Added new padding to prevent content from being hidden behind the fixed nav */
+        body {
+            padding-bottom: 80px; /* Adjust this value as needed based on nav height */
+        }
     </style>
 </head>
 <body class="bg-light-bg dark:bg-dark-bg text-gray-800 dark:text-gray-200 transition-colors duration-300">
-    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 dark:bg-dark-surface/80 shadow-md transition-all">
-        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-          <div class="flex items-center space-x-4">
-            <a href="index.html"><img src="static/images/logos/tud_logo.svg" alt="TUD" class="h-10 w-auto rounded-full" /></a>
-            <a href="index.html"><img src="static/images/logos/pol-logo.png" alt="PoL" class="h-8 w-auto" /></a>
-          </div>
-          <div class="hidden md:flex space-x-6 font-medium text-sm">
-            <a href="#" data-modal-target="about-modal" class="nav-link">Overview</a>
-            <a href="#" data-modal-target="resources-modal" class="nav-link">Resources</a>
-            <a href="Events.html" class="nav-link">Events</a>
-            <a href="#" data-modal-target="contact-modal" class="nav-link">Contact</a>
-            <a href="whats-new.html" class="nav-link text-secondary-red font-semibold">What's New</a>
-          </div>
-          <div class="flex items-center space-x-3">
-            <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-              <i id="theme-toggle-light-icon" class="fa-solid fa-sun hidden"></i>
-              <i id="theme-toggle-dark-icon" class="fa-solid fa-moon"></i>
-            </button>
-            <button class="md:hidden p-2" id="menu-toggle">
-              <i class="fa-solid fa-bars text-xl"></i>
-            </button>
-          </div>
+    <header class="relative bg-primary-blue text-white min-h-screen flex items-center justify-center pt-32 pb-24">
+        <!-- Logo and Nav Toggle for desktop. The fixed nav will be at the bottom -->
+        <div class="absolute top-0 left-0 right-0 z-20 mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-500 text-sm shadow-md">
+            <div class="flex items-center space-x-4">
+                <a href="index.html"><img src="static/images/logos/tud_logo.svg" alt="TUD" class="h-10 w-auto rounded-full" /></a>
+                <a href="index.html"><img src="static/images/logos/pol-logo.png" alt="PoL" class="h-8 w-auto" /></a>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun hidden"></i>
+                    <i id="theme-toggle-dark-icon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
         </div>
-      </nav>
 
-      <header class="relative bg-primary-blue text-white min-h-screen flex items-center justify-center pt-32 pb-24">
         <div class="absolute inset-0 z-0">
           <div class="absolute inset-0 bg-black opacity-50"></div>
           <img src="static/images/background_img.jpg" class="w-full h-full object-cover opacity-30" alt="Background">
@@ -211,7 +205,7 @@
                   <h3 class="text-xl font-semibold">Data Storage & Backup</h3>
                 </div>
                 <p class="text-sm text-gray-600 dark:text-gray-400">Guidelines and recommendations for secure data storage and backup solutions.</p>
-                <a href="data-storage-backup.html" class="inline-block mt-4 text-secondary-violet hover:underline font-medium">Read More &rarr;</a>
+                <a href="data-storage-backup.html" class="inline-block mt-4 text-secondary-violet hover:underline font-medium">Store More &rarr;</a>
               </div>      
               <div class="group relative bg-transparent border-2 border-gray-300 dark:border-gray-700 rounded-xl p-6 shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-white/50 dark:bg-dark-surface/50">
                 <div class="flex items-center mb-4">
@@ -219,7 +213,7 @@
                   <h3 class="text-xl font-semibold">Data Sharing & Archiving</h3>
                 </div>
                 <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Best practices for sharing your research data and long-term archiving.</p>
-                <a href="data-sharing-archiving.html" class="inline-block text-secondary-violet hover:underline font-medium">Read More &rarr;</a>
+                <a href="data-sharing-archiving.html" class="inline-block text-secondary-violet hover:underline font-medium">Expore More &rarr;</a>
                 <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700 relative">
                   <h4 class="font-semibold mb-3">Recommended Tools</h4>
                   <div class="slider-wrapper flex gap-4 overflow-x-auto scroll-smooth" id="sharing-archiving-tools-container">
@@ -263,6 +257,44 @@
                 </button>
               </section>
         </main>
+        
+    <!-- Fixed Navigation Bar -->
+    <nav class="fixed inset-x-0 bottom-0 z-50 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-sm shadow-lg rounded-t-3xl">
+        <div class="max-w-screen-xl mx-auto px-4 py-3">
+            <!-- Mobile Navigation (visible on small screens) -->
+            <div class="flex justify-around items-center md:hidden">
+                <a href="#" data-modal-target="about-modal" class="flex flex-col items-center p-2 text-center hover:text-primary-blue dark:hover:text-white transition-colors duration-300">
+                    <i class="fa-solid fa-home text-xl mb-1"></i>
+                    <span class="text-xs">Home</span>
+                </a>
+                <a href="#" data-modal-target="resources-modal" class="flex flex-col items-center p-2 text-center hover:text-primary-blue dark:hover:text-white transition-colors duration-300">
+                    <i class="fa-solid fa-file-contract text-xl mb-1"></i>
+                    <span class="text-xs">Resources</span>
+                </a>
+                <a href="Events.html" class="flex flex-col items-center p-2 text-center hover:text-primary-blue dark:hover:text-white transition-colors duration-300">
+                    <i class="fa-solid fa-calendar-alt text-xl mb-1"></i>
+                    <span class="text-xs">Events</span>
+                </a>
+                <a href="whats-new.html" class="flex flex-col items-center p-2 text-center hover:text-primary-blue dark:hover:text-white transition-colors duration-300">
+                    <i class="fa-solid fa-bell text-xl mb-1"></i>
+                    <span class="text-xs">What's New</span>
+                </a>
+                <a href="#" data-modal-target="contact-modal" class="flex flex-col items-center p-2 text-center hover:text-primary-blue dark:hover:text-white transition-colors duration-300">
+                    <i class="fa-solid fa-envelope text-xl mb-1"></i>
+                    <span class="text-xs">Contact</span>
+                </a>
+            </div>
+
+            <!-- Desktop Navigation (hidden on small screens) -->
+            <div class="hidden md:flex justify-center space-x-6 font-medium text-sm">
+                <a href="#" data-modal-target="about-modal" class="nav-link">Overview</a>
+                <a href="#" data-modal-target="resources-modal" class="nav-link">Resources</a>
+                <a href="Events.html" class="nav-link">Events</a>
+                <a href="#" data-modal-target="contact-modal" class="nav-link">Contact</a>
+                <a href="whats-new.html" class="nav-link text-secondary-red font-semibold">What's New</a>
+            </div>
+        </div>
+    </nav>
 
     <footer class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-sm text-center py-6 mt-12 rounded-t-3xl shadow-inner">
         <p>&copy; 2025 PoL Data Management Corner. All rights reserved.</p>
@@ -610,8 +642,9 @@
           // Slider navigation logic
           const updateSlider = () => {
               sliderContainer.style.transform = `translateX(-${currentPosition * cardWidth}px)`;
-              leftArrow.disabled = currentPosition === 0;
-              rightArrow.disabled = currentPosition >= toolsData.length - 1;
+              // The following two lines were commented out and are not needed as there are no arrow buttons in the HTML
+              // leftArrow.disabled = currentPosition === 0;
+              // rightArrow.disabled = currentPosition >= toolsData.length - 1;
           };
 
           // The following two event listeners are commented out because the HTML doesn't contain the buttons for them.
@@ -633,6 +666,7 @@
           updateSlider();
 
           // --- Button Actions ---
+          // Since the buttons were removed from the old nav, we need to add new event listeners for the modals
           const getStartedBtn = document.getElementById('getStartedBtn');
           const viewGuidelinesBtn = document.getElementById('viewGuidelinesBtn');
           const emailUsBtn = document.getElementById('emailUsBtn');
@@ -699,4 +733,3 @@
 
 </body>
 </html>
-
