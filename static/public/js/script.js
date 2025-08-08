@@ -55,6 +55,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let toolsPerSlide = 2; // Default for mobile
     let totalSlides = 0;
     
+    // --- Hamburger Menu Toggle ---
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+    }
+
+    if (mobileMenuClose) {
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
+    }
+    // --- End Hamburger Menu Toggle ---
+
     // Function to determine tools per slide based on screen size
     const updateToolsPerSlide = () => {
         const width = window.innerWidth;
@@ -180,7 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sliderPrev) {
         sliderPrev.addEventListener('click', prevSlide);
     }
-    
     if (sliderNext) {
         sliderNext.addEventListener('click', nextSlide);
     }
@@ -189,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
         const oldToolsPerSlide = toolsPerSlide;
         updateToolsPerSlide();
-        
         if (oldToolsPerSlide !== toolsPerSlide) {
             currentSlide = 0; // Reset to first slide when layout changes
             initSlider();
@@ -215,10 +231,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start auto-slide and pause on hover
     if (sliderContainer) {
         initSlider();
-        
         // Optional: Enable auto-slide
         // startAutoSlide();
-        
         // sliderContainer.addEventListener('mouseenter', stopAutoSlide);
         // sliderContainer.addEventListener('mouseleave', startAutoSlide);
     }
@@ -233,326 +247,13 @@ document.addEventListener('DOMContentLoaded', () => {
             startX = e.touches[0].clientX;
             isDragging = true;
         });
-    
+        
         sliderContainer.addEventListener('touchmove', (e) => {
             if (!isDragging) return;
             currentX = e.touches[0].clientX;
-        });
-    
-        sliderContainer.addEventListener('touchend', () => {
-            if (!isDragging) return;
-            isDragging = false;
-            
-            const diff = startX - currentX;
-            const threshold = 50; // Minimum swipe distance
-            
-            if (Math.abs(diff) > threshold) {
-                if (diff > 0) {
-                    nextSlide(); // Swipe left - next slide
-                } else {
-                    prevSlide(); // Swipe right - previous slide
-                }
-            }
-        });
-    }
-
-    // --- Event Listeners ---
-
-    // Theme toggle
-    themeToggleBtn.addEventListener('click', () => {
-        if (document.documentElement.classList.contains('dark')) {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('color-theme', 'light');
-            lightIcon.classList.add('hidden');
-            darkIcon.classList.remove('hidden');
-        } else {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('color-theme', 'dark');
-            lightIcon.classList.remove('hidden');
-            darkIcon.classList.add('hidden');
-        }
-    });
-
-    // Mobile menu
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileMenuClose = document.getElementById('mobile-menu-close');
-    const navbar = document.getElementById('navbar');
-    const body = document.body;
-
-    // Track menu state
-    let isMenuOpen = false;
-
-    // Function to open mobile menu
-    function openMobileMenu() {
-        if (!isMenuOpen) {
-            isMenuOpen = true;
-            mobileMenu.classList.add('open');
-            menuToggle.classList.add('active');
-            body.classList.add('menu-open');
-            
-            // Ensure navbar background stays visible
-            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-            if (document.documentElement.classList.contains('dark')) {
-                navbar.style.backgroundColor = 'rgba(30, 30, 30, 0.95)';
-            }
-        }
-    }
-
-    // Function to close mobile menu
-    function closeMobileMenu() {
-        if (isMenuOpen) {
-            isMenuOpen = false;
-            mobileMenu.classList.remove('open');
-            menuToggle.classList.remove('active');
-            body.classList.remove('menu-open');
-            
-            // Reset navbar background
-            navbar.style.backgroundColor = '';
-        }
-    }
-
-    // Event listeners for menu toggle
-    if (menuToggle) {
-        menuToggle.addEventListener('click', (e) => {
+            const diffX = startX - currentX;
+            // Prevent scrolling on the page when swiping the slider
             e.preventDefault();
-            e.stopPropagation();
-            
-            if (isMenuOpen) {
-                closeMobileMenu();
-            } else {
-                openMobileMenu();
-            }
-        });
-    }
-
-    // Close button event listener
-    if (mobileMenuClose) {
-        mobileMenuClose.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            closeMobileMenu();
-        });
-    }
-
-    // Close menu when clicking on navigation links
-    const mobileNavLinks = mobileMenu?.querySelectorAll('.nav-link');
-    mobileNavLinks?.forEach(link => {
-        link.addEventListener('click', () => {
-            closeMobileMenu();
-        });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (isMenuOpen && !mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-            closeMobileMenu();
-        }
-    });
-
-    // Close menu on escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && isMenuOpen) {
-            closeMobileMenu();
-        }
-    });
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        if (window.innerWidth >= 768 && isMenuOpen) {
-            closeMobileMenu();
-        }
-    });
-
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
-    // Check for saved theme or default to light
-    const savedTheme = localStorage.getItem('color-theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-        document.documentElement.classList.add('dark');
-        themeToggleDarkIcon?.classList.add('hidden');
-        themeToggleLightIcon?.classList.remove('hidden');
-    } else {
-        document.documentElement.classList.remove('dark');
-        themeToggleDarkIcon?.classList.remove('hidden');
-        themeToggleLightIcon?.classList.add('hidden');
-    }
-// Theme toggle event listener
-themeToggleBtn?.addEventListener('click', () => {
-    themeToggleLightIcon?.classList.toggle('hidden');
-    themeToggleDarkIcon?.classList.toggle('hidden');
-
-    if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('color-theme', 'light');
-    } else {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('color-theme', 'dark');
-    }
-
-    // Update navbar background if menu is open
-    if (isMenuOpen) {
-        if (document.documentElement.classList.contains('dark')) {
-            navbar.style.backgroundColor = 'rgba(30, 30, 30, 0.95)';
-        } else {
-            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-        }
-    }
-});
-
-// Enhanced Modal Logic
-const modals = document.querySelectorAll('.modal-wrapper');
-const openModalButtons = document.querySelectorAll('[data-modal-target]');
-const closeModalButtons = document.querySelectorAll('[data-modal-close]');
-
-function openModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.style.display = 'flex';
-        body.style.overflow = 'hidden';
-        
-        // Close mobile menu if open
-        if (isMenuOpen) {
-            closeMobileMenu();
-        }
-    }
-}
-
-function closeModal(modal) {
-    if (modal) {
-        modal.style.display = 'none';
-        body.style.overflow = 'auto';
-    }
-}
-// Modal event listeners
-openModalButtons.forEach(button => {
-    button.addEventListener('click', (event) => {
-        event.preventDefault();
-        const modalId = button.getAttribute('data-modal-target');
-        openModal(modalId);
-    });
-});
-
-closeModalButtons.forEach(button => {
-    button.addEventListener('click', (event) => {
-        event.preventDefault();
-        const modalId = button.getAttribute('data-modal-close');
-        const modal = document.getElementById(modalId);
-        closeModal(modal);
-    });
-});
-
-// Close modals when clicking outside
-modals.forEach(modal => {
-    modal.addEventListener('click', (event) => {
-        if (event.target === modal || event.target.classList.contains('modal-backdrop')) {
-            closeModal(modal);
-        }
-    });
-});
-            
-    // Search functionality
-    const handleSearch = (query) => {
-        const normalizedQuery = query.trim().toLowerCase();
-        if (normalizedQuery.length > 0) {
-            const filteredCards = allContentCards.filter(card => {
-                const textContent = card.textContent.toLowerCase();
-                return textContent.includes(normalizedQuery);
-            });
-            
-            searchResultsContainer.innerHTML = '';
-            if (filteredCards.length > 0) {
-                filteredCards.forEach(card => {
-                    const clonedCard = card.cloneNode(true);
-                    searchResultsContainer.appendChild(clonedCard);
-                });
-                searchResultsSection.classList.remove('hidden');
-                mainContentSections.classList.add('hidden');
-            } else {
-                searchResultsContainer.innerHTML = '<p class="text-center text-gray-500 col-span-full">No results found.</p>';
-                searchResultsSection.classList.remove('hidden');
-                mainContentSections.classList.add('hidden');
-            }
-        } else {
-            searchResultsSection.classList.add('hidden');
-            mainContentSections.classList.remove('hidden');
-        }
-    };
-    
-    mainSearchInput.addEventListener('input', (e) => handleSearch(e.target.value));
-    mobileSearchInput.addEventListener('input', (e) => handleSearch(e.target.value));
-
-    // Modal handling
-    const modalWrappers = document.querySelectorAll('.modal-wrapper');
-    const openModal = (modalElement) => {
-        modalElement.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-    };
-    const closeModal = (modalElement) => {
-        modalElement.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-    };
-    
-    document.querySelectorAll('[data-modal-target]').forEach(button => {
-        button.addEventListener('click', () => {
-            const modalId = button.getAttribute('data-modal-target');
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                openModal(modal);
-            }
-        });
-    });
-    document.querySelectorAll('[data-modal-close]').forEach(button => {
-        button.addEventListener('click', () => {
-            const modalId = button.getAttribute('data-modal-close');
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                closeModal(modal);
-            }
-        });
-    });
-
-    // Tool card click to open details modal
-    toolsContainer.addEventListener('click', (e) => {
-        const toolCard = e.target.closest('.tool-card');
-        if (toolCard) {
-            const modal = document.getElementById('tool-details-modal');
-            const name = toolCard.getAttribute('data-tool-name');
-            const desc = toolCard.getAttribute('data-tool-desc');
-            const logoUrl = toolCard.getAttribute('data-tool-logo');
-            const docsUrl = toolCard.getAttribute('data-tool-docs');
-            const joinUrl = toolCard.getAttribute('data-tool-join');
-            
-            document.getElementById('tool-modal-name').textContent = name;
-            document.getElementById('tool-modal-description').textContent = desc;
-            document.getElementById('tool-modal-logo').src = logoUrl;
-            document.getElementById('tool-modal-logo').alt = `${name} logo`;
-            
-            const docBtn = document.getElementById('tool-modal-doc-btn');
-            docBtn.href = docsUrl;
-            docBtn.classList.toggle('hidden', docsUrl === '#');
-
-            const joinBtn = document.getElementById('tool-modal-join-btn');
-            joinBtn.href = joinUrl;
-            joinBtn.classList.toggle('hidden', joinUrl === '#');
-            
-            openModal(modal);
-        }
-    });
-
-    // Handle form submission for contact form
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // A custom modal or message box would be better, but this is for demonstration.
-            alert('Your message has been sent!');
-            closeModal(document.getElementById('contact-modal'));
-            contactForm.reset();
         });
     }
 
