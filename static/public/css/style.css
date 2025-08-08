@@ -151,3 +151,52 @@ body {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+
+/* Additional CSS for slider */
+.slider-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    width: 100%;
+}
+
+.slider-card-item {
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure consistent card heights */
+.slider-card-item > div {
+    height: 100%;
+}
+
+/* Button styles */
+#slider-prev:disabled,
+#slider-next:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .slider-card-item {
+        min-height: 100px;
+    }
+}
+
+@media (min-width: 768px) {
+    .slider-card-item {
+        min-height: 130px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .slider-card-item {
+        min-height: 140px;
+    }
+}

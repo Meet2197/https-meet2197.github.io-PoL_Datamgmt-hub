@@ -1,6 +1,4 @@
-I'll help you make this website fully responsive for all screen sizes, including mobile. Here are the key improvements needed:Based on the current code and best practices for responsive design, here's the improved version with better mobile responsiveness:
 
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -303,10 +301,26 @@ I'll help you make this website fully responsive for all screen sizes, including
                 </div>
                 <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Best practices for sharing your research data and long-term archiving.</p>
                 <a href="data-sharing-archiving.html" class="inline-block text-secondary-violet hover:underline font-medium">Read More &rarr;</a>
+                
                 <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700 relative">
-                  <h4 class="font-semibold mb-3">Recommended Tools</h4>
-                  <div class="slider-wrapper flex gap-3 sm:gap-4 overflow-x-auto scroll-smooth pb-2" id="sharing-archiving-tools-container">
+                  <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-semibold">Recommended Tools</h4>
+                    <div class="flex space-x-2">
+                      <button id="slider-prev" class="p-1 rounded-full bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors" aria-label="Previous tools">
+                        <i class="fa-solid fa-chevron-left text-sm"></i>
+                      </button>
+                      <button id="slider-next" class="p-1 rounded-full bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors" aria-label="Next tools">
+                        <i class="fa-solid fa-chevron-right text-sm"></i>
+                      </button>
                     </div>
+                  </div>
+                  <div class="slider-container relative overflow-hidden">
+                    <div class="slider-wrapper flex gap-3 sm:gap-4 transition-transform duration-300 ease-in-out" id="sharing-archiving-tools-container">
+                    </div>
+                  </div>
+                  <!-- Pagination dots -->
+                  <div class="flex justify-center mt-3 space-x-1" id="slider-dots">
+                  </div>
                 </div>
               </div>
             </div>
@@ -775,6 +789,7 @@ I'll help you make this website fully responsive for all screen sizes, including
       });
   </script>
   <script src="static/public/js/chatbot.js"></script>
- 
+  <script src="static/public/js/script.js"></script>
+
  </body>
  </html>
