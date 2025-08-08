@@ -86,42 +86,70 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close modal with the Escape key
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
-            const openModal = document.querySelector('.modal-wrapper[style*="flex"]');
-            if (openModal) {
-                closeModal(openModal);
+            const openModalElement = document.querySelector('.modal-wrapper[style*="flex"]');
+            if (openModalElement) {
+                closeModal(openModalElement);
             }
         }
     });
-
+    
     // --- Dynamic Slider for Sharing & Archiving Tools ---
     const toolsData = [
-        { name: 'Zenodo', link: 'https://zenodo.org/', logo: '📚', description: 'A general-purpose open-access repository for research data, software, publications, and more.', documentation: 'https://help.zenodo.org/docs/', join: 'https://zenodo.org/signup/' },
-        { name: 'Figshare', link: 'https://figshare.com/', logo: '📊', description: 'An online repository to share, publish, and discover research data, figures, and other scholarly outputs.', documentation: 'https://knowledge.figshare.com/', join: 'https://figshare.com/account/login' },
-        { name: 'Datashare TUD', link: 'https://datashare.tu-dresden.de/', logo: '☁️', description: 'The institutional data repository of TU Dresden for publishing and archiving research data.', documentation: 'https://tu-dresden.de/zih/dienste/service-katalog/zusammenarbeiten-und-forschen/datenaustausch/index_1?set_language=en', join: 'https://datashare.tu-dresden.de/login' },
-        { name: 'elabftw', link: 'https://elab.cmcb.tu-dresden.de/', logo: '🧪', description: 'An open-source electronic lab notebook for recording and managing experimental data.', documentation: 'https://doc.elabftw.net/', join: 'https://elab.cmcb.tu-dresden.de/login.php' },
-        { name: 'Gitlab TUD', link: 'https://gitlab.mn.tu-dresden.de/', logo: '🦊', description: 'TU Dresden\'s platform for Git-based version control, code collaboration, and CI/CD.', documentation: 'https://tu-dresden.de/mn/der-bereich/it-kompetenz-und-servicezentrum/gitlab-dienst', join: 'https://gitlab.mn.tu-dresden.de/users/sign_in' },
-        { name: 'OpARA TUD', link: 'https://opara.zih.tu-dresden.de/home', logo: '🏛️', description: 'TU Dresden\'s institutional repository for publications and research data, ensuring long-term accessibility.', documentation: 'https://opara.zih.tu-dresden.de/collections/1b788b1c-9c5f-402c-8c5b-74eb38f69bb0', join: 'https://opara.zih.tu-dresden.de/login' },
-    ];
+        { name: 'Zenodo', link: 'https://zenodo.org/', logo: 'static/images/logos/omero-logo.png', description: 'A general-purpose open-access repository for research data, software, publications, and more.', documentation: 'https://help.zenodo.org/docs/', join: 'https://zenodo.org/signup/' },
+        { name: 'Figshare', link: 'https://figshare.com/', logo: 'static/images/logos/imagesc-logo.png', description: 'An online repository to share, publish, and discover research data, figures, and other scholarly outputs.', documentation: 'https://knowledge.figshare.com/', join: 'https://figshare.com/account/login' },
+        { name: 'elabftw', link: 'https://elab.cmcb.tu-dresden.de/', logo: 'static/images/logos/elabftw-logo.png', description: 'An open-source electronic lab notebook for recording and managing experimental data.', documentation: 'https://doc.elabftw.net/', join: 'https://elab.cmcb.tu-dresden.de/login.php' },
+        { name: 'Gitlab TUD', link: 'https://gitlab.mn.tu-dresden.de/', logo: 'static/images/logos/gitlab-logo.png', description: 'TU Dresden\'s platform for Git-based version control, code collaboration, and CI/CD.', documentation: 'https://tu-dresden.de/mn/der-bereich/it-kompetenz-und-servicezentrum/gitlab-dienst', join: 'https://gitlab.mn.tu-dresden.de/users/sign_in' },
+        { name: 'OpARA TUD', link: 'https://opara.zih.tu-dresden.de/home', logo: 'static/images/logos/opara-logo.png', description: 'TU Dresden\'s institutional repository for publications and research data, ensuring long-term accessibility.', documentation: 'https://opara.zih.tu-dresden.de/collections/1b788b1c-9c5f-402c-8c5b-74eb38f69bb0', join: 'https://opara.zih.tu-dresden.de/login' },
+        { name: 'BioImage Archieve', link: 'https://www.ebi.ac.uk/bioimage-archive/help-policies/', logo: 'static/images/logos/bioimage-archive-logo.png', description: 'EMBL supported Large-scale, centralised data resource to host reference imaging data.', documentation: 'https://www.ebi.ac.uk/about/', join: 'https://www.ebi.ac.uk/biostudies/submissions/signin' },
+        { name: 'Proteomics IDEntifications Database' , link: 'https://www.ebi.ac.uk/pride/', logo: 'static/images/logos/pride_logo.png', description: 'PRoteomics Archive database is data repository for mass spectrometry proteomics data.', documentation: 'https://www.ebi.ac.uk/pride/markdownpage/citationpage', join: 'https://www.ebi.ac.uk/pride/login'},
+        ];
 
     const sliderContainer = document.getElementById('sharing-archiving-tools-container');
     const leftArrow = document.getElementById('sharing-archiving-slider-left');
     const rightArrow = document.getElementById('sharing-archiving-slider-right');
     const cardWidth = 216; // 200px width + 16px gap
     let currentPosition = 0;
+    
+    // Function to populate and open the tool details modal
+    const openToolDetailsModal = (tool) => {
+        const modal = document.getElementById('tool-details-modal');
+        const modalContent = document.querySelector('#tool-details-modal .modal-content-container');
+        
+        const modalLogo = document.getElementById('tool-modal-logo');
+        const modalName = document.getElementById('tool-modal-name');
+        const modalDescription = document.getElementById('tool-modal-description');
+        const modalDocBtn = document.getElementById('tool-modal-doc-btn');
+        const modalJoinBtn = document.getElementById('tool-modal-join-btn');
+        
+        modalLogo.src = tool.logo;
+        modalLogo.alt = `${tool.name} logo`;
+        modalName.textContent = tool.name;
+        modalDescription.textContent = tool.description;
+        modalDocBtn.href = tool.documentation;
+        modalJoinBtn.href = tool.join;
+
+        // Animate the modal opening
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    };
 
     // Dynamically create slider cards
     const renderSliderCards = () => {
         sliderContainer.innerHTML = '';
         toolsData.forEach(tool => {
-            const card = document.createElement('a');
-            card.href = tool.link;
-            card.target = "_blank";
-            card.className = "slider-card-item bg-light-bg dark:bg-dark-card rounded-lg shadow-sm p-4 hover:shadow-lg transition-all duration-300 transform hover:scale-105";
+            const card = document.createElement('div');
+            card.className = "slider-card-item cursor-pointer bg-light-bg dark:bg-dark-card rounded-lg shadow-sm p-4 hover:shadow-lg transition-all duration-300 transform hover:scale-105 min-w-[200px]";
             card.innerHTML = `
-                <span class="text-3xl text-secondary-violet mb-2">${tool.logo}</span>
+                <img src="${tool.logo}" alt="${tool.name} logo" class="w-10 h-10 object-contain mb-2">
                 <h5 class="font-bold text-base mb-1">${tool.name}</h5>
                 <p class="text-xs text-gray-600 dark:text-gray-400">${tool.description}</p>
             `;
+            
+            // Add click event listener to each card
+            card.addEventListener('click', () => {
+                openToolDetailsModal(tool);
+            });
+            
             sliderContainer.appendChild(card);
         });
     };
@@ -158,18 +186,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const viewGuidelinesBtn = document.getElementById('viewGuidelinesBtn');
     const emailUsBtn = document.getElementById('emailUsBtn');
 
-    // This button now opens the 'about-modal' as requested
-    getStartedBtn.addEventListener('click', () => {
-        openModal('about-modal');
-    });
+    if (getStartedBtn) {
+        getStartedBtn.addEventListener('click', () => {
+            openModal('about-modal');
+        });
+    }
 
-    viewGuidelinesBtn.addEventListener('click', () => {
-        openModal('resources-modal');
-    });
+    if (viewGuidelinesBtn) {
+        viewGuidelinesBtn.addEventListener('click', () => {
+            openModal('resources-modal');
+        });
+    }
 
-    emailUsBtn.addEventListener('click', () => {
-        openModal('contact-modal');
-    });
+    if (emailUsBtn) {
+        emailUsBtn.addEventListener('click', () => {
+            openModal('contact-modal');
+        });
+    }
 
     // Form submission (prevents default behavior and shows a confirmation message)
     const contactForm = document.getElementById('contact-form');
@@ -182,5 +215,4 @@ document.addEventListener('DOMContentLoaded', () => {
             contactForm.reset();
         });
     }
-
 });

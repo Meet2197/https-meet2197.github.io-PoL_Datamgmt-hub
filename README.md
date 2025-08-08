@@ -1,64 +1,72 @@
 # PoL Data Management Hub
 
-A GitHub Pages–powered platform for managing, visualizing, and distributing PoL datasets and related insights. This repository serves as a frontend portal and backend toolkit for data handling, visualization, and publication.
+This repository contains the front-end and a Python-based back-end for a Physics of Life (PoL) Exc Data Management Corner. The application allows users to view, search, and manage a collection of data records. The front end is built with HTML, CSS (Tailwind CSS), and JavaScript, while the back end uses the Flask framework with a SQLite database to provide a RESTful API.
 
-## 🌐 Live Site
+# 🌟 Overview
+The PoL Data Management Hub is a central web platform designed to provide researchers at the Physics of Life (PoL) institute with a comprehensive set of resources, guidelines, and tools for effective and compliant data management. This hub simplifies the research data lifecycle, from initial planning to long-term archiving.
 
-Visit the site: [https://meet2197.github.io/PoL_Datamgmt-hub/](https://meet2197.github.io/PoL_Datamgmt-hub/)
+🌐 Live Site
+Visit the site: https://meet2197.github.io/PoL_Datamgmt-hub/ 
 
-## 📁 Project Structure
+# ✨ Features
+RESTful API: A Python Flask back end with a RESTful API for managing data.
 
-```bash
-├── index.html # Homepage
-├── assets/ # Static files (images, fonts, icons)
-├── data/ # Raw/processed data (CSV, JSON, etc.)
-├── scripts/ # Backend logic (Python/C++ tools)
-├── styles/ # CSS files
-└── README.md # This file
-```
----
+Database Integration: Uses a lightweight SQLite database for data persistence.
 
+Data Models: Records are stored with a title, description, category, and creation timestamp.
 
-## 🔧 Features
+Efficient Searching: The back end includes a /api/data/search endpoint that supports searching and pagination, allowing for efficient querying of large datasets.
 
-- Interactive web interface for browsing PoL datasets.
-- Scripts for preprocessing, formatting, or analyzing data.
-- Responsive UI built with HTML/CSS/JS.
-- GitHub-hosted for easy deployment and collaboration.
+Dynamic Front End: The front end fetches data from the back end and dynamically renders it with a responsive user interface.
 
-## 🛠️ Local Development
+Pagination: The front end includes pagination controls to navigate through search results effectively.
 
-Clone the repo:
+# ⚙️ Prerequisites
+To run this project, you will need:
 
-```bash
-git clone https://meet2197.github.io/PoL_Datamgmt-hub/
-cd PoL_Datamgmt-hub.github.io
-```
-Open index.html directly in a browser or use a local server like:
+Python 3.8+
 
-```bash
-python3 -m http.server
-```
+pip (Python package manager)
+
+Node.js and npm (for front-end dependencies if any are added, though not strictly required for the current version)
 
 # 🌐 Running Locally
 
-Use VS Code with Live Server, or Python’s HTTP server:
+Installation and Setup
+Back End
+Clone the repository:
 
 ```bash
-python -m http.server
+git clone https://github.com/Meet2197/PoL_Datamgmt-hub
+cd PoL_Datamgmt-hub
 ```
-Or access the hosted version at:
-👉 ```https://meet2197.github.io/PoL_Datamgmt-hub.github.io```
 
-# ✅ Deployment :
-Pushed automatically via GitHub Pages on the main branch. Updates reflect live in minutes.
+# Create and activate a virtual environment:
 
-# 🤝  Contributions : 
-Contributions are welcome! Please:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
-Fork the repo
-Create a feature branch
-Open a pull request with a clear description
+Install back-end dependencies:
+```bash
+pip install Flask Flask-Cors
+```
+
+Run the back-end server:
+```bash
+python3 app/venv/app.py
+```
+
+The server will start on ```http://127.0.0.1:5000```
+
+## Front End
+
+The front-end code is self-contained in a single ```bash data-hub.html``` file. You can simply open this file in a modern web browser to run the application, as it fetches data directly from the running back-end server
+
+
+# 🤝 Contribution
+If you are a member of the PoL team and would like to contribute to the content or suggest improvements, please contact the repository owner or submit a pull request.
 
 # 📄 License
 MIT License © 2025 
