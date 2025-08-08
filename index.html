@@ -384,8 +384,9 @@
         <div id="tool-details-modal" class="modal-wrapper hidden fixed inset-0 z-50 flex items-center justify-center p-4">
             <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-50"></div>
             <div class="modal-content-container relative bg-white dark:bg-dark-card w-full max-w-xs sm:max-w-sm p-4 sm:p-6 rounded-lg shadow-xl">
-                <button data-modal-close="tool-details-modal" class="modal-close-btn absolute top-3 right-3 text-xl text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors duration-200">
-                    &times;
+                <!-- Close button with proper data attribute -->
+                <button data-modal-close="tool-details-modal" class="modal-close-btn absolute top-3 right-3 text-xl text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors duration-200 z-10">
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
                 <div class="flex flex-col items-center text-center">
                     <img id="tool-modal-logo" src="" alt="Tool logo" class="w-16 h-16 object-contain mb-2">
@@ -567,7 +568,65 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Configuration ---
+            // --- Modal Management Functions ---
+            const openModal = (modalId) => {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.style.display = 'flex';
+                    modal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                }
+            };
+        
+            const closeModal = (modal) => {
+                if (modal) {
+                    modal.style.display = 'none';
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }
+            };
+        
+            // --- Modal Event Listeners ---
+            // Open modal buttons
+            document.querySelectorAll('[data-modal-target]').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const modalId = button.getAttribute('data-modal-target');
+                    openModal(modalId);
+                });
+            });
+        
+            // Close modal buttons
+            document.querySelectorAll('[data-modal-close]').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation(); // Prevent event bubbling
+                    const modalId = button.getAttribute('data-modal-close');
+                    const modal = document.getElementById(modalId);
+                    closeModal(modal);
+                });
+            });
+        
+            // Close modal when clicking outside
+            document.querySelectorAll('.modal-wrapper').forEach(modal => {
+                modal.addEventListener('click', (event) => {
+                    if (event.target === modal || event.target.classList.contains('modal-backdrop')) {
+                        closeModal(modal);
+                    }
+                });
+            });
+        
+            // Close modal with Escape key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    const openModal = document.querySelector('.modal-wrapper[style*="flex"]');
+                    if (openModal) {
+                        closeModal(openModal);
+                    }
+                }
+            });
+        
+            // --- Slider Configuration ---
             const toolsData = [
                 { name: 'Zenodo', logo: 'static/images/logos/zenodo_logo.jpg', description: 'A general-purpose open-access repository for research data, software, publications, and more.', documentation: 'https://help.zenodo.org/docs/', join: 'https://zenodo.org/signup/' },
                 { name: 'Figshare', logo: 'static/images/logos/imagesc-logo.png', description: 'An online repository to share, publish, and discover research data, figures, and other scholarly outputs.', documentation: 'https://knowledge.figshare.com/', join: 'https://figshare.com/account/login' },
@@ -585,39 +644,44 @@
             const sliderDots = document.getElementById('slider-dots');
             
             let currentSlide = 0;
-            let toolsPerSlide = 2; // Default
+            let toolsPerSlide = 2;
             let totalSlides = 0;
         
-            // Determine tools per slide based on screen size
             const updateToolsPerSlide = () => {
                 const width = window.innerWidth;
                 if (width >= 1024) {
-                    toolsPerSlide = 3; // Desktop
+                    toolsPerSlide = 3;
                 } else if (width >= 768) {
-                    toolsPerSlide = 2; // Tablet
+                    toolsPerSlide = 2;
                 } else {
-                    toolsPerSlide = 1; // Mobile
+                    toolsPerSlide = 1;
                 }
                 totalSlides = Math.ceil(toolsData.length / toolsPerSlide);
             };
         
-            // Open tool details modal
+            // Open tool details modal with data
             const openToolDetailsModal = (tool) => {
                 const modal = document.getElementById('tool-details-modal');
                 if (!modal) return;
                 
-                document.getElementById('tool-modal-logo').src = tool.logo;
-                document.getElementById('tool-modal-logo').alt = `${tool.name} logo`;
-                document.getElementById('tool-modal-name').textContent = tool.name;
-                document.getElementById('tool-modal-description').textContent = tool.description;
-                document.getElementById('tool-modal-doc-btn').href = tool.documentation;
-                document.getElementById('tool-modal-join-btn').href = tool.join;
+                // Populate modal content
+                const modalLogo = document.getElementById('tool-modal-logo');
+                const modalName = document.getElementById('tool-modal-name');
+                const modalDescription = document.getElementById('tool-modal-description');
+                const modalDocBtn = document.getElementById('tool-modal-doc-btn');
+                const modalJoinBtn = document.getElementById('tool-modal-join-btn');
+                
+                if (modalLogo) modalLogo.src = tool.logo;
+                if (modalLogo) modalLogo.alt = `${tool.name} logo`;
+                if (modalName) modalName.textContent = tool.name;
+                if (modalDescription) modalDescription.textContent = tool.description;
+                if (modalDocBtn) modalDocBtn.href = tool.documentation;
+                if (modalJoinBtn) modalJoinBtn.href = tool.join;
         
-                modal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
+                // Open the modal
+                openModal('tool-details-modal');
             };
         
-            // Render slider cards
             const renderSliderCards = () => {
                 if (!sliderContainer) return;
                 
@@ -636,12 +700,17 @@
                         </div>
                     `;
                     
-                    card.addEventListener('click', () => openToolDetailsModal(tool));
+                    // Add click event with proper event handling
+                    card.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        openToolDetailsModal(tool);
+                    });
+                    
                     sliderContainer.appendChild(card);
                 });
             };
         
-            // Render pagination dots
             const renderDots = () => {
                 if (!sliderDots) return;
                 
@@ -655,14 +724,12 @@
                 }
             };
         
-            // Update slider position and button states
             const updateSlider = () => {
                 if (!sliderContainer) return;
                 
                 const translateX = -(currentSlide * 100);
                 sliderContainer.style.transform = `translateX(${translateX}%)`;
                 
-                // Update button states
                 if (sliderPrev) {
                     sliderPrev.disabled = currentSlide === 0;
                     sliderPrev.style.opacity = currentSlide === 0 ? '0.5' : '1';
@@ -673,14 +740,12 @@
                     sliderNext.style.opacity = currentSlide >= totalSlides - 1 ? '0.5' : '1';
                 }
                 
-                // Update dots
                 const dots = sliderDots?.children || [];
                 for (let i = 0; i < dots.length; i++) {
                     dots[i].className = `w-2 h-2 rounded-full transition-colors duration-200 ${i === currentSlide ? 'bg-secondary-violet' : 'bg-gray-300 dark:bg-gray-600'}`;
                 }
             };
         
-            // Navigation functions
             const goToSlide = (slideIndex) => {
                 currentSlide = Math.max(0, Math.min(slideIndex, totalSlides - 1));
                 updateSlider();
@@ -700,7 +765,6 @@
                 }
             };
         
-            // Initialize slider
             const initSlider = () => {
                 updateToolsPerSlide();
                 renderSliderCards();
@@ -708,22 +772,21 @@
                 updateSlider();
             };
         
-            // Event listeners
+            // --- Event Listeners ---
             sliderPrev?.addEventListener('click', prevSlide);
             sliderNext?.addEventListener('click', nextSlide);
         
-            // Handle window resize
             window.addEventListener('resize', () => {
                 const oldToolsPerSlide = toolsPerSlide;
                 updateToolsPerSlide();
                 
                 if (oldToolsPerSlide !== toolsPerSlide) {
-                    currentSlide = 0; // Reset to first slide when layout changes
+                    currentSlide = 0;
                     initSlider();
                 }
             });
         
-            // Touch support for mobile
+            // Touch support
             let startX = 0;
             let isDragging = false;
         
@@ -754,15 +817,16 @@
                 }
             });
         
-            // Initialize
+            // Initialize slider
             if (sliderContainer) {
                 initSlider();
             }
         
-            // --- Rest of your existing functionality (theme toggle, modals, etc.) ---
-            // [Keep all your existing modal, theme, and menu code here]
+            // --- Theme Toggle and Mobile Menu (keep your existing code) ---
+            // [Add your existing theme toggle and mobile menu code here]
         });
-        </script>
+    </script>
+    
   <script src="static/public/js/chatbot.js"></script>
   <script src="static/public/js/script.js"></script>
 

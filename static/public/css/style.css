@@ -306,3 +306,32 @@ body.menu-open {
         width: 100vw;
     }
 }
+/* Modal close button improvements */
+.modal-close-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    background: rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+}
+
+.dark .modal-close-btn {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.dark .modal-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Ensure close button is always on top */
+.modal-close-btn {
+    z-index: 9999;
+}
